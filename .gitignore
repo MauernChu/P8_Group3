@@ -34,7 +34,17 @@ captures/
 
 # Intellij
 *.iml
-.idea/workspace.xml
+Source/P8_Group3/.idea/libraries/
+Source/P8_Group3/.idea/workspace.xml
+Source/P8_Group3/.idea/tasks.xml
+Source/P8_Group3/.idea/.name
+Source/P8_Group3/.idea/compiler.xml
+Source/P8_Group3/.idea/copyright/profiles_settings.xml
+Source/P8_Group3/.idea/encodings.xml
+Source/P8_Group3/.idea/misc.xml
+Source/P8_Group3/.idea/modules.xml
+Source/P8_Group3/.idea/scopes/scope_settings.xml
+Source/P8_Group3/.idea/vcs.xml
 
 # Keystore files
 *.jks
