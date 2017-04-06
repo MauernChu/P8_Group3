@@ -18,10 +18,9 @@
         android:layout_width="280dp"
         android:layout_height="350dp"
         android:background="@drawable/shape"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="31dp">
+        android:layout_centerHorizontal="true">
 
 <!--
 
