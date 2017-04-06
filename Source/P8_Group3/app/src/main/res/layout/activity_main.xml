@@ -17,76 +17,101 @@
         android:id="@+id/LoginBrownBG"
         android:layout_width="280dp"
         android:layout_height="400dp"
-        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape"
         android:layout_centerVertical="true"
-        android:background="@drawable/shape">
+        android:layout_centerHorizontal="true">
+
+<!--
+
+
+COMMENT SPACE
+
+
+
+ -->
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fa_icon_user"
+            android:layout_alignBaseline="@+id/Login"
+            android:layout_toStartOf="@+id/Login"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fa_icon_lock"
+            android:layout_alignBaseline="@+id/Password"
+            android:layout_toStartOf="@+id/Password"
+            android:textSize="18sp"/>
+
 
 
         <EditText
             android:id="@+id/Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/SignIn"
+            android:layout_above="@+id/Password"
             android:layout_alignStart="@+id/Password"
-            android:layout_marginBottom="49dp"
+            android:layout_marginBottom="7dp"
             android:ems="10"
-            android:textSize="14sp"
             android:inputType="textPersonName"
             android:text="Login"
             android:textColor="@color/white"
-            android:layout_alignEnd="@+id/Password" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/ForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/SignIn"
-            android:layout_below="@+id/Password"
-            android:layout_centerVertical="false"
-            android:layout_marginTop="2dp"
             android:textAlignment="textEnd"
             android:background="@color/brown"
             android:text="Forgot my password"
             android:textSize="10sp"
             android:textAllCaps="false"
             android:visibility="visible"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:layout_above="@+id/SignIn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="4dp" />
 
 
         <EditText
             android:id="@+id/Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/SignIn"
-            android:layout_centerHorizontal="true"
             android:ems="10"
             android:inputType="textPassword"
             android:textSize="14sp"
             android:text="Password"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:layout_above="@+id/ForgotPassword"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/SignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/CreateAccount"
-            android:layout_alignStart="@+id/CreateAccount"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="65dp"
             android:background="@color/mustard"
             android:text="Sign in"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_above="@+id/CreateAccount"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="6dp"/>
 
         <Button
             android:id="@+id/CreateAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/SignIn"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
             android:background="@color/mustard"
             android:text="Create account"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="20dp" />
 
 
         android:background="@color/brown"

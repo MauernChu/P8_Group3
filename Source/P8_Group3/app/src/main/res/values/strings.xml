@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">P8_Group3</string>
+    <string name="fa_icon_user">&#xf2c0;</string>
+    <string name="fa_icon_lock">&#xf023;</string>
 </resources>
