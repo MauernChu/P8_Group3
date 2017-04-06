@@ -6,4 +6,6 @@
     <color name="brown">#8D572D</color>
     <color name="redBrown">#BD5C19</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="same">#845420</color>   <!--  same color as background, dont delete!  -->
+    <color name="black">#000</color>
 </resources>
