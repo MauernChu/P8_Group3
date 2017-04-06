@@ -44,7 +44,22 @@ COMMENT SPACE
             android:textAlignment="center"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="32dp"/>
+
+        <TextView
+            android:id="@+id/purpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/same"
+            android:text="- Socialising for parents -"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:visibility="visible"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_below="@+id/loginTitle"
+            android:layout_centerHorizontal="true" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,15 +83,15 @@ COMMENT SPACE
             android:id="@+id/Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/Password"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="17dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Login"
-            android:layout_alignEnd="@id/SignIn"
-            android:layout_alignStart="@id/SignIn"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:layout_alignEnd="@+id/ForgotPassword"
+            android:textSize="14sp"
+            android:layout_above="@+id/Password"
+            android:layout_alignStart="@+id/SignIn" />
 
         <TextView
             android:id="@+id/ForgotPassword"
@@ -89,7 +104,8 @@ COMMENT SPACE
             android:visibility="visible"
             android:textColor="@color/white"
             android:layout_above="@+id/SignIn"
-            android:layout_alignEnd="@+id/SignIn" />
+            android:layout_alignEnd="@+id/SignIn"
+            android:layout_marginBottom="12dp" />
 
 
         <EditText
@@ -101,10 +117,10 @@ COMMENT SPACE
             android:textSize="14sp"
             android:text="Password"
             android:textColor="@color/white"
-            android:layout_alignEnd="@id/SignIn"
-            android:layout_alignStart="@id/SignIn"
+            android:layout_marginBottom="12dp"
             android:layout_above="@+id/ForgotPassword"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignEnd="@+id/ForgotPassword"
+            android:layout_alignStart="@+id/Login" />
 
         <Button
             android:id="@+id/SignIn"
