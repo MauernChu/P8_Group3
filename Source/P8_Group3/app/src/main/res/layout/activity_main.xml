@@ -17,30 +17,21 @@
         android:id="@+id/textView" />
 
     <Button
-        android:text="Button"
+        android:id="@+id/SignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Sign in"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/button"
-        android:id="@+id/button2" />
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="@string/katkaButton"
+        android:id="@+id/CreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_alignEnd="@+id/button2"
-        android:layout_marginTop="82dp"
-        android:id="@+id/button3"
-        style="@style/katkaButton" />
+        android:layout_alignEnd="@+id/SignIn"
+        android:layout_below="@+id/SignIn"
+        android:layout_marginTop="8dp"
+        android:text="Create account" />
 
-    <Button
-        android:text="Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_marginStart="77dp" />
+
 </RelativeLayout>

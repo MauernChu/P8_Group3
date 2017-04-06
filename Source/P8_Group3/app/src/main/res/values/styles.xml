@@ -6,8 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="lightGreen">@color/lightGreen</item>
+        <item name="darkGreen">@color/darkGreen</item>
+        <item name="mustard">@color/mustard</item>
+        <item name="brown">@color/brown</item>
+        <item name="redBrown">@color/redBrown</item>
     </style>
 
-    <style name="katkaButton">Katka</style>
+    <style name="LoginPage">
+
+    </style>
 
 </resources>
