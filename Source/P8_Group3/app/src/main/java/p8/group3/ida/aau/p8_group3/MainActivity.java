@@ -14,8 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
-        TextView textView = (TextView)findViewById(R.id.usericon);
-        textView.setTypeface(font);
+
 
     }
 }

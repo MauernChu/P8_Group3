@@ -9,8 +9,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/Jungle"
+    android:background="@drawable/jungle"
     tools:context="p8.group3.ida.aau.p8_group3.MainActivity">
+
+
+
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:src="@drawable/monkey"
+        android:elevation="15sp"
+        android:layout_marginBottom="322dp"
+        android:layout_alignBottom="@+id/LoginBrownBG"
+        android:layout_alignEnd="@+id/LoginBrownBG"
+        android:layout_marginEnd="46dp" />
 
 
     <RelativeLayout
@@ -27,8 +40,6 @@
 
 
 COMMENT SPACE
-
-
 
 
  -->
@@ -63,25 +74,6 @@ COMMENT SPACE
             android:layout_centerHorizontal="true" />
 
 
-        <TextView
-            android:id="@+id/usericon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fa_icon_user"
-            android:layout_alignBaseline="@+id/Login"
-            android:layout_toStartOf="@+id/Login"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/lockicon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fa_icon_lock"
-            android:layout_alignBaseline="@+id/Password"
-            android:layout_toStartOf="@+id/Password"
-            android:textSize="18sp"/>
-
-
 
         <EditText
             android:id="@+id/Login"
@@ -90,7 +82,9 @@ COMMENT SPACE
             android:layout_marginBottom="17dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Login"
+            android:drawableStart="@drawable/usericon"
+            android:hint="User Name"
+
             android:textColor="@color/white"
             android:layout_alignEnd="@+id/ForgotPassword"
             android:textSize="14sp"
@@ -119,7 +113,9 @@ COMMENT SPACE
             android:ems="10"
             android:inputType="textPassword"
             android:textSize="14sp"
-            android:text="Password"
+            android:drawableStart="@drawable/lock"
+            android:hint="Password"
+
             android:textColor="@color/white"
             android:layout_marginBottom="12dp"
             android:layout_above="@+id/ForgotPassword"
@@ -153,8 +149,6 @@ COMMENT SPACE
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
-
- />
 
 
     </RelativeLayout>
