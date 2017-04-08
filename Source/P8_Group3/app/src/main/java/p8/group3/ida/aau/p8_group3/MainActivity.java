@@ -13,8 +13,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+        TextView txchimp = (TextView)findViewById(R.id.loginTitle);
+        Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
+        txchimp.setTypeface(custom_font);
 
+        TextView txSocforPa = (TextView)findViewById(R.id.purpose);
+        txSocforPa.setTypeface(custom_font);
+
+        TextView txLogin= (TextView)findViewById(R.id.Login);
+        txLogin.setTypeface(custom_font);
+
+        TextView txForgotPass= (TextView)findViewById(R.id.ForgotPassword);
+        txForgotPass.setTypeface(custom_font);
+
+        TextView txPass= (TextView)findViewById(R.id.Password);
+        txPass.setTypeface(custom_font);
+
+        TextView txSignIn= (TextView)findViewById(R.id.SignIn);
+        txSignIn.setTypeface(custom_font);
+
+        TextView txCreateAcc= (TextView)findViewById(R.id.CreateAccount);
+        txCreateAcc.setTypeface(custom_font);
 
     }
 }

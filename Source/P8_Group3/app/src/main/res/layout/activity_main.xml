@@ -41,6 +41,14 @@
 
 COMMENT SPACE
 
+Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf" ); apo main activity
+
+    public static final String ROOT = "fonts/",
+            FONTAWESOME = ROOT + "fontawesome-webfont.ttf";
+
+    public static Typeface getTypeface(Context context, String font){
+        return Typeface.createFromAsset(context.getAssets(), font);
+    }    apo FontManager.java
 
  -->
 
