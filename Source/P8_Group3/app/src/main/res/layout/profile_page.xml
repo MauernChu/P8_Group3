@@ -20,17 +20,18 @@
         android:layout_marginTop="70dp"
         android:background="@color/mustard">
 
-        <TextView
-            android:id="@+id/children"
+        <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/name"
-            android:layout_below="@+id/name"
-            android:fontFamily="sans-serif"
-            android:text="@string/children"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:visibility="visible" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="11dp"
+            android:adjustViewBounds="false"
+            android:background="@color/mustard"
+            android:cropToPadding="false"
+            android:visibility="visible"
+            app:srcCompat="@drawable/monkey_color" />
 
         <TextView
             android:id="@+id/name"
@@ -47,18 +48,37 @@
             android:textStyle="bold"
             android:visibility="visible" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <TextView
+            android:id="@+id/children"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="11dp"
-            android:adjustViewBounds="false"
-            android:background="@color/mustard"
-            android:cropToPadding="false"
-            android:visibility="visible"
-            app:srcCompat="@drawable/monkey_color" />
+            android:layout_alignStart="@+id/name"
+            android:layout_below="@+id/name"
+            android:fontFamily="sans-serif"
+            android:text="@string/children"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/children"
+            android:layout_below="@+id/children"
+            android:text="Age"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/age"
+            android:layout_below="@+id/age"
+            android:text="City"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -71,38 +91,61 @@
         android:layout_alignStart="@+id/picture_box">
 
         <TextView
-            android:id="@+id/about"
+            android:id="@+id/languages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
+            android:text="Languages:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/all_languages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/languages"
+            android:layout_toEndOf="@+id/languages"
+            android:text="English, German, Spanish"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:text="About"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/languages"
+            android:layout_alignStart="@+id/languages" />
 
         <TextView
             android:id="@+id/text_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/about"
-            android:layout_below="@+id/about"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="10dp"
             android:text="I am active and I like to socialise"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_below="@+id/about"
+            android:layout_alignEnd="@+id/all_languages" />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="350dp"
         android:layout_height="125dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/about_profile"
         android:layout_alignStart="@+id/about_profile"
-        android:background="@color/mustard">
+        android:background="@color/mustard"
+        android:id="@+id/relativeLayout2">
 
         <TextView
             android:id="@+id/hobbies"
@@ -117,5 +160,32 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="34dp"
+        app:srcCompat="@android:drawable/sym_def_app_icon"
+        android:layout_alignBottom="@+id/relativeLayout2"
+        android:layout_alignStart="@+id/relativeLayout2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="24dp"
+        app:srcCompat="@drawable/monkey"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/imageView2"
+        app:srcCompat="@android:drawable/star_on" />
 
 </RelativeLayout>

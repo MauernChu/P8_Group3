@@ -17,11 +17,23 @@ public class ProfilePage extends AppCompatActivity{
 
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
 
+        TextView txName = (TextView) findViewById(R.id.name);
+        txName.setTypeface(custom_font);
+
         TextView txChildren = (TextView) findViewById(R.id.children);
         txChildren.setTypeface(custom_font);
 
-        TextView txName = (TextView) findViewById(R.id.name);
-        txName.setTypeface(custom_font);
+        TextView txAge = (TextView) findViewById(R.id.age);
+        txAge.setTypeface(custom_font);
+
+        TextView txCity = (TextView) findViewById(R.id.city);
+        txCity.setTypeface(custom_font);
+
+        TextView txLanguages = (TextView) findViewById(R.id.languages);
+        txLanguages.setTypeface(custom_font);
+
+        TextView txAllLanguages = (TextView) findViewById(R.id.all_languages);
+        txAllLanguages.setTypeface(custom_font);
 
         TextView txAbout = (TextView) findViewById(R.id.about);
         txAbout.setTypeface(custom_font);
