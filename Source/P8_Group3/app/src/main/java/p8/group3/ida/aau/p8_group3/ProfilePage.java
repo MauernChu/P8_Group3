@@ -20,6 +20,9 @@ public class ProfilePage extends AppCompatActivity{
         TextView txName = (TextView) findViewById(R.id.name);
         txName.setTypeface(custom_font);
 
+        TextView txAgeParent = (TextView) findViewById(R.id.ageParent);
+        txAgeParent.setTypeface(custom_font);
+
         TextView txChildren = (TextView) findViewById(R.id.children);
         txChildren.setTypeface(custom_font);
 
@@ -32,13 +35,13 @@ public class ProfilePage extends AppCompatActivity{
         TextView txLanguages = (TextView) findViewById(R.id.languages);
         txLanguages.setTypeface(custom_font);
 
-        TextView txAllLanguages = (TextView) findViewById(R.id.all_languages);
+        TextView txAllLanguages = (TextView) findViewById(R.id.allLanguages);
         txAllLanguages.setTypeface(custom_font);
 
         TextView txAbout = (TextView) findViewById(R.id.about);
         txAbout.setTypeface(custom_font);
 
-        TextView txTextAbout = (TextView) findViewById(R.id.text_about);
+        TextView txTextAbout = (TextView) findViewById(R.id.textAbout);
         txTextAbout.setTypeface(custom_font);
 
         TextView txHobbies = (TextView) findViewById(R.id.hobbies);

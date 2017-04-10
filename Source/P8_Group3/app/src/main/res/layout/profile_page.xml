@@ -12,7 +12,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/picture_box"
+        android:id="@+id/pictureBox"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/menu_bar"
@@ -71,16 +71,16 @@
             android:layout_alignStart="@+id/children" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/ageParent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/children"
             android:layout_marginStart="21dp"
-            android:text="@string/ageProfile"
+            android:layout_toEndOf="@+id/children"
+            android:text="@string/ageParent"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_above="@+id/children"
-            android:layout_toEndOf="@+id/children" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/city"
@@ -94,13 +94,13 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/about_profile"
+        android:id="@+id/aboutProfile"
         android:layout_width="350dp"
         android:layout_height="125dp"
         android:layout_marginTop="18dp"
         android:background="@color/mustard"
-        android:layout_below="@+id/picture_box"
-        android:layout_alignStart="@+id/picture_box">
+        android:layout_below="@+id/pictureBox"
+        android:layout_alignStart="@+id/pictureBox">
 
         <TextView
             android:id="@+id/languages"
@@ -116,7 +116,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/all_languages"
+            android:id="@+id/allLanguages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/english_german_spanish"
@@ -140,7 +140,7 @@
             android:layout_alignStart="@+id/languages" />
 
         <TextView
-            android:id="@+id/text_about"
+            android:id="@+id/textAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
@@ -156,8 +156,8 @@
         android:layout_width="350dp"
         android:layout_height="125dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/about_profile"
-        android:layout_alignStart="@+id/about_profile"
+        android:layout_below="@+id/aboutProfile"
+        android:layout_alignStart="@+id/aboutProfile"
         android:background="@color/mustard"
         android:id="@+id/relativeLayout2">
 
