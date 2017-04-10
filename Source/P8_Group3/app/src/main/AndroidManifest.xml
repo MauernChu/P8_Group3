@@ -16,8 +16,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CreateAccount">
+        <activity
+            android:name=".CreateAccount">
+        </activity>
 
+        <activity
+            android:name=".CreateAccount2">
         </activity>
 
     </application>
