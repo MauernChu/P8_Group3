@@ -13,4 +13,8 @@
     <string name="next">Next</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="email_address">Email Address</string>
+    <string name="finish">Finish</string>
+    <string name="number_of_children">Number of children</string>
+    <string name="city_of_residence">City of Residence</string>
+    <string name="age_of_children">Age of children</string>
 </resources>
