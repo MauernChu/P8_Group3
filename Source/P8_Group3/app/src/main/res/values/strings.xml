@@ -4,7 +4,17 @@
     <string name="fa_icon_lock">&#xf023;</string>
     <string name="socialising_for_parents">- Socialising for parents -</string>
     <string name="chimp">Chimp</string>
+<<<<<<< HEAD
     <string name="user_name">User Name</string>
     <string name="name">Name</string>
     <string name="children">Children</string>
+=======
+    <string name="user_name">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="create_account">Create account</string>
+    <string name="next">Next</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="email_address">Email Address</string>
+>>>>>>> ae5fb9fc8c199748227e6947071601e0f36b4730
 </resources>

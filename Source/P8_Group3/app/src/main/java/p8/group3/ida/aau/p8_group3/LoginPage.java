@@ -1,8 +1,11 @@
 package p8.group3.ida.aau.p8_group3;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class LoginPage extends AppCompatActivity {
@@ -19,20 +22,30 @@ public class LoginPage extends AppCompatActivity {
         TextView txSocforPa = (TextView)findViewById(R.id.purpose);
         txSocforPa.setTypeface(custom_font);
 
-        TextView txLogin= (TextView)findViewById(R.id.Login);
+        TextView txLogin = (TextView)findViewById(R.id.Login);
         txLogin.setTypeface(custom_font);
 
-        TextView txForgotPass= (TextView)findViewById(R.id.ForgotPassword);
+        TextView txForgotPass = (TextView)findViewById(R.id.ForgotPassword);
         txForgotPass.setTypeface(custom_font);
 
-        TextView txPass= (TextView)findViewById(R.id.Password);
+        TextView txPass = (TextView)findViewById(R.id.Password);
         txPass.setTypeface(custom_font);
 
-        TextView txSignIn= (TextView)findViewById(R.id.SignIn);
+        TextView txSignIn = (TextView)findViewById(R.id.SignIn);
         txSignIn.setTypeface(custom_font);
 
         TextView txCreateAcc= (TextView)findViewById(R.id.CreateAccount);
         txCreateAcc.setTypeface(custom_font);
 
+
+
+
+        Button createAccountButton = (Button) findViewById(R.id.CreateAccount);
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), CreateAccount.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
     }
 }
