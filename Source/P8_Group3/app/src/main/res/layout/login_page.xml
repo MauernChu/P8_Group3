@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/jungle"
-    tools:context="p8.group3.ida.aau.p8_group3.MainActivity">
+    tools:context="p8.group3.ida.aau.p8_group3.LoginPage">
 
 
 
@@ -41,14 +41,6 @@
 
 COMMENT SPACE
 
-Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf" ); apo main activity
-
-    public static final String ROOT = "fonts/",
-            FONTAWESOME = ROOT + "fontawesome-webfont.ttf";
-
-    public static Typeface getTypeface(Context context, String font){
-        return Typeface.createFromAsset(context.getAssets(), font);
-    }    apo FontManager.java
 
  -->
 
@@ -57,7 +49,7 @@ Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf" 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/same"
-            android:text="Chimp"
+            android:text="@string/chimp"
             android:textSize="35sp"
             android:textAllCaps="false"
             android:visibility="visible"
@@ -72,7 +64,7 @@ Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf" 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/same"
-            android:text="- Socialising for parents -"
+            android:text="@string/socialising_for_parents"
             android:textSize="12sp"
             android:textAllCaps="false"
             android:visibility="visible"
@@ -91,7 +83,7 @@ Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf" 
             android:ems="10"
             android:inputType="textPersonName"
             android:drawableStart="@drawable/usericon"
-            android:hint="User Name"
+            android:hint="@string/user_name"
 
             android:textColor="@color/white"
             android:layout_alignEnd="@+id/ForgotPassword"
