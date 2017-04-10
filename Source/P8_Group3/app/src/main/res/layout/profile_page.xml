@@ -64,11 +64,23 @@
             android:id="@+id/age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/children"
-            android:layout_below="@+id/children"
-            android:text="Age"
+            android:text="@string/age"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/children"
+            android:layout_alignStart="@+id/children" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:text="@string/ageProfile"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_above="@+id/children"
+            android:layout_toEndOf="@+id/children" />
 
         <TextView
             android:id="@+id/city"
@@ -76,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/age"
             android:layout_below="@+id/age"
-            android:text="City"
+            android:text="@string/city"
             android:textSize="18sp"
             android:textColor="@color/black"/>
     </RelativeLayout>
@@ -98,43 +110,45 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="Languages:"
+            android:text="@string/languages"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/all_languages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/english_german_spanish"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_alignBaseline="@+id/languages"
             android:layout_alignBottom="@+id/languages"
             android:layout_toEndOf="@+id/languages"
-            android:text="English, German, Spanish"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:layout_marginStart="10dp" />
 
         <TextView
             android:id="@+id/about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="About"
+            android:text="@string/about"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/languages"
+            android:layout_centerVertical="true"
             android:layout_alignStart="@+id/languages" />
 
         <TextView
             android:id="@+id/text_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="I am active and I like to socialise"
+            android:layout_marginTop="11dp"
+            android:text="@string/i_am_active_and_i_like_to_socialise"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_below="@+id/about"
-            android:layout_alignEnd="@+id/all_languages" />
+            android:layout_alignStart="@+id/about" />
 
     </RelativeLayout>
 
@@ -151,7 +165,7 @@
             android:id="@+id/hobbies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hobbies"
+            android:text="@string/hobbies"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
