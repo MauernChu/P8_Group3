@@ -40,7 +40,7 @@
 
 
 COMMENT SPACE
-            android:contextClickable="true"
+
 
  -->
 
@@ -84,6 +84,7 @@ COMMENT SPACE
             android:inputType="textPersonName"
             android:drawableStart="@drawable/usericon"
             android:hint="@string/user_name"
+
             android:textColor="@color/white"
             android:layout_alignEnd="@+id/ForgotPassword"
             android:textSize="14sp"
@@ -100,7 +101,6 @@ COMMENT SPACE
             android:textAllCaps="false"
             android:visibility="visible"
             android:textColor="@color/white"
-
             android:layout_above="@+id/SignIn"
             android:layout_alignEnd="@+id/SignIn"
             android:layout_marginBottom="12dp" />
@@ -114,7 +114,7 @@ COMMENT SPACE
             android:inputType="textPassword"
             android:textSize="14sp"
             android:drawableStart="@drawable/lock"
-            android:hint="@string/password"
+            android:hint="Password"
 
             android:textColor="@color/white"
             android:layout_marginBottom="12dp"
@@ -127,7 +127,7 @@ COMMENT SPACE
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/mustard"
-            android:text="@string/sign_in"
+            android:text="Sign in"
             android:textAllCaps="false"
             android:layout_above="@+id/CreateAccount"
             android:textColor="@color/black"
@@ -141,7 +141,7 @@ COMMENT SPACE
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/mustard"
-            android:text="@string/create_account"
+            android:text="Create account"
             android:textColor="@color/black"
             android:textAllCaps="false"
             android:layout_alignParentBottom="true"

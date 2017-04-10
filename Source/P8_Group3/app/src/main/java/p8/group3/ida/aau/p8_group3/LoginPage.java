@@ -1,11 +1,8 @@
 package p8.group3.ida.aau.p8_group3;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class LoginPage extends AppCompatActivity {
@@ -37,16 +34,5 @@ public class LoginPage extends AppCompatActivity {
         TextView txCreateAcc= (TextView)findViewById(R.id.CreateAccount);
         txCreateAcc.setTypeface(custom_font);
 
-        TextView txEmail= (TextView)findViewById(R.id.email);
-        txEmail.setTypeface(custom_font);
-
-
-        Button createAccountButton = (Button) findViewById(R.id.CreateAccount);
-        createAccountButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), CreateAccount.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
     }
 }
