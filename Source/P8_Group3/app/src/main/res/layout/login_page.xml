@@ -21,14 +21,14 @@
         android:src="@drawable/monkey"
         android:elevation="15sp"
         android:layout_marginBottom="322dp"
-        android:layout_alignBottom="@+id/LoginBrownBG"
-        android:layout_alignEnd="@+id/LoginBrownBG"
+        android:layout_alignBottom="@+id/loginBrownBG"
+        android:layout_alignEnd="@+id/loginBrownBG"
         android:layout_marginEnd="46dp" />
 
 
     <RelativeLayout
 
-        android:id="@+id/LoginBrownBG"
+        android:id="@+id/loginBrownBG"
         android:layout_width="280dp"
         android:layout_height="350dp"
         android:background="@drawable/shape"
@@ -76,7 +76,7 @@ COMMENT SPACE
 
 
         <EditText
-            android:id="@+id/Login"
+            android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="17dp"
@@ -85,29 +85,29 @@ COMMENT SPACE
             android:drawableStart="@drawable/usericon"
             android:hint="@string/user_name"
             android:textColor="@color/white"
-            android:layout_alignEnd="@+id/ForgotPassword"
+            android:layout_alignEnd="@+id/forgotPassword"
             android:textSize="14sp"
-            android:layout_above="@+id/Password"
-            android:layout_alignStart="@+id/SignIn" />
+            android:layout_above="@+id/password"
+            android:layout_alignStart="@+id/signIn" />
 
         <TextView
-            android:id="@+id/ForgotPassword"
+            android:id="@+id/forgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/same"
-            android:text="Forgot my password"
+            android:text="@string/forgot_my_password"
             android:textSize="10sp"
             android:textAllCaps="false"
             android:visibility="visible"
             android:textColor="@color/white"
 
-            android:layout_above="@+id/SignIn"
-            android:layout_alignEnd="@+id/SignIn"
+            android:layout_above="@+id/signIn"
+            android:layout_alignEnd="@+id/signIn"
             android:layout_marginBottom="12dp" />
 
 
         <EditText
-            android:id="@+id/Password"
+            android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -118,18 +118,18 @@ COMMENT SPACE
 
             android:textColor="@color/white"
             android:layout_marginBottom="12dp"
-            android:layout_above="@+id/ForgotPassword"
-            android:layout_alignEnd="@+id/ForgotPassword"
-            android:layout_alignStart="@+id/Login" />
+            android:layout_above="@+id/forgotPassword"
+            android:layout_alignEnd="@+id/forgotPassword"
+            android:layout_alignStart="@+id/login" />
 
         <Button
-            android:id="@+id/SignIn"
+            android:id="@+id/signIn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/mustard"
             android:text="@string/sign_in"
             android:textAllCaps="false"
-            android:layout_above="@+id/CreateAccount"
+            android:layout_above="@+id/createAccount"
             android:textColor="@color/black"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="6dp"
@@ -137,7 +137,7 @@ COMMENT SPACE
             android:layout_marginRight="20dp"/>
 
         <Button
-            android:id="@+id/CreateAccount"
+            android:id="@+id/createAccount"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/mustard"

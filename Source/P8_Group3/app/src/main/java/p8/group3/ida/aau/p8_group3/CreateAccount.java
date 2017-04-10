@@ -27,10 +27,10 @@ public class CreateAccount extends LoginPage {
         TextView txSocforPa = (TextView)findViewById(R.id.purpose);
         txSocforPa.setTypeface(custom_font);
 
-        TextView txLogin2 = (TextView)findViewById(R.id.Login2);
+        TextView txLogin2 = (TextView)findViewById(R.id.login2);
         txLogin2.setTypeface(custom_font);
 
-        TextView txPass = (TextView)findViewById(R.id.Password);
+        TextView txPass = (TextView)findViewById(R.id.password);
         txPass.setTypeface(custom_font);
 
         TextView txRepPass = (TextView)findViewById(R.id.repeat_password);
