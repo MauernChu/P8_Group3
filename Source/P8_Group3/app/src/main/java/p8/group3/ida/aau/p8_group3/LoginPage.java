@@ -22,23 +22,22 @@ public class LoginPage extends AppCompatActivity {
         TextView txSocforPa = (TextView)findViewById(R.id.purpose);
         txSocforPa.setTypeface(custom_font);
 
-        TextView txLogin= (TextView)findViewById(R.id.Login);
+        TextView txLogin = (TextView)findViewById(R.id.Login);
         txLogin.setTypeface(custom_font);
 
-        TextView txForgotPass= (TextView)findViewById(R.id.ForgotPassword);
+        TextView txForgotPass = (TextView)findViewById(R.id.ForgotPassword);
         txForgotPass.setTypeface(custom_font);
 
-        TextView txPass= (TextView)findViewById(R.id.Password);
+        TextView txPass = (TextView)findViewById(R.id.Password);
         txPass.setTypeface(custom_font);
 
-        TextView txSignIn= (TextView)findViewById(R.id.SignIn);
+        TextView txSignIn = (TextView)findViewById(R.id.SignIn);
         txSignIn.setTypeface(custom_font);
 
         TextView txCreateAcc= (TextView)findViewById(R.id.CreateAccount);
         txCreateAcc.setTypeface(custom_font);
 
-        TextView txEmail= (TextView)findViewById(R.id.email);
-        txEmail.setTypeface(custom_font);
+
 
 
         Button createAccountButton = (Button) findViewById(R.id.CreateAccount);
