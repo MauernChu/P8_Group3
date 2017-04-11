@@ -20,9 +20,6 @@ public class ProfilePage extends AppCompatActivity{
         TextView txName = (TextView) findViewById(R.id.name);
         txName.setTypeface(custom_font);
 
-        TextView txAgeParent = (TextView) findViewById(R.id.ageParent);
-        txAgeParent.setTypeface(custom_font);
-
         TextView txChildren = (TextView) findViewById(R.id.children);
         txChildren.setTypeface(custom_font);
 
