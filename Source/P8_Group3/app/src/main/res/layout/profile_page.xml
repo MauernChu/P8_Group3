@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/brown">
+    android:background="@drawable/jungle">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,21 +14,31 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/pictureBox"
-        android:layout_width="350dp"
+
+        android:id="@+id/loginBrownBG"
+        android:layout_width="360dp"
+        android:layout_height="525dp"
+        android:background="@drawable/shape"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true">
+
+    <RelativeLayout
+        android:id="@+id/mainProfileBox"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/menu_bar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:background="@color/mustard">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/profilePictureButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="11dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
             android:adjustViewBounds="false"
             android:background="@color/mustard"
             android:cropToPadding="false"
@@ -39,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="21dp"
-            android:layout_toEndOf="@+id/imageButton"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/profilePictureButton"
             android:fontFamily="sans-serif"
             android:text="@string/name"
             android:textColor="@color/black"
@@ -54,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/name"
             android:layout_below="@+id/name"
+            android:layout_marginTop="5dp"
             android:fontFamily="sans-serif"
             android:text="@string/children"
             android:textColor="@color/black"
@@ -68,7 +81,8 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_below="@+id/children"
-            android:layout_alignStart="@+id/children" />
+            android:layout_alignStart="@+id/children"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/city"
@@ -76,19 +90,39 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/age"
             android:layout_below="@+id/age"
+            android:layout_marginTop="5dp"
             android:text="@string/city"
             android:textSize="18sp"
             android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profilePictureButton"
+            android:layout_alignEnd="@+id/age"
+            android:text="@string/edit"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/pencilIconEdit"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            app:srcCompat="@drawable/pencil"
+            android:layout_alignBottom="@+id/editProfile"
+            android:layout_toStartOf="@+id/editProfile" />
+
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/aboutProfile"
-        android:layout_width="350dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="18dp"
+        android:id="@+id/aboutProfileBox"
+        android:layout_width="320dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="10dp"
         android:background="@color/mustard"
-        android:layout_below="@+id/pictureBox"
-        android:layout_alignStart="@+id/pictureBox">
+        android:layout_below="@+id/mainProfileBox"
+        android:layout_alignStart="@+id/mainProfileBox">
 
         <TextView
             android:id="@+id/languages"
@@ -96,8 +130,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:text="@string/languages"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -124,70 +158,74 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/languages" />
+            android:layout_below="@+id/languages"
+            android:layout_alignStart="@+id/languages"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/textAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
             android:text="@string/i_am_active_and_i_like_to_socialise"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_below="@+id/about"
-            android:layout_alignStart="@+id/about" />
+            android:layout_alignStart="@+id/about"
+            android:layout_marginTop="5dp"/>
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="350dp"
+        android:id="@+id/hobbiesBox"
+        android:layout_width="320dp"
         android:layout_height="125dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/aboutProfile"
-        android:layout_alignStart="@+id/aboutProfile"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/aboutProfileBox"
+        android:layout_alignStart="@+id/aboutProfileBox"
         android:background="@color/mustard"
-        android:id="@+id/relativeLayout2">
+        >
 
         <TextView
             android:id="@+id/hobbies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:text="@string/hobbies"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp" />
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/imageView2"
+            app:srcCompat="@android:drawable/star_on" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_marginStart="24dp"
+            android:layout_toEndOf="@+id/imageView"
+            app:srcCompat="@drawable/monkey" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@android:drawable/sym_def_app_icon"
+            android:layout_below="@+id/hobbies"
+            android:layout_alignStart="@+id/hobbies" />
+
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="34dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
-        android:layout_alignBottom="@+id/relativeLayout2"
-        android:layout_alignStart="@+id/relativeLayout2" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="24dp"
-        app:srcCompat="@drawable/monkey"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_marginStart="20dp"
-        android:layout_toEndOf="@+id/imageView2"
-        app:srcCompat="@android:drawable/star_on" />
+    </RelativeLayout>
 
 </RelativeLayout>

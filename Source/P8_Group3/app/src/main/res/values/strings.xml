@@ -17,7 +17,7 @@
     <string name="number_of_children">Number of children</string>
     <string name="city_of_residence">City of Residence</string>
     <string name="age_of_children">Age of children</string>
-    <string name="age">Age</string>
+    <string name="age">Age of children</string>
     <string name="ageProfile">Age</string>
     <string name="city">City</string>
     <string name="languages">Languages:</string>
@@ -27,4 +27,5 @@
     <string name="hobbies">Hobbies</string>
     <string name="ageParent">Age</string>
     <string name="forgot_my_password">Forgot my password</string>
+    <string name="edit">Edit</string>
 </resources>
