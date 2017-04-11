@@ -13,7 +13,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_page);
+        setContentView(R.layout.loginPage);
 
         TextView txchimp = (TextView)findViewById(R.id.loginTitle);
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
@@ -43,7 +43,7 @@ public class LoginPage extends AppCompatActivity {
         Button createAccountButton = (Button) findViewById(R.id.createAccount);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), CreateAccount.class);
+                Intent myIntent = new Intent(view.getContext(), CreateAccountPage.class);
                 startActivityForResult(myIntent, 0);
             }
         });

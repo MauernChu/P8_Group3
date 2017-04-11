@@ -12,13 +12,13 @@ import android.widget.TextView;
  * Created by christosmentzelos on 10/04/2017.
  */
 
-public class CreateAccount extends LoginPage {
+public class CreateAccountPage extends LoginPage {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_account);
+        setContentView(R.layout.createAccountPage);
 
         TextView txchimp = (TextView)findViewById(R.id.loginTitle);
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
@@ -45,7 +45,7 @@ public class CreateAccount extends LoginPage {
         Button next = (Button) findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), CreateAccount2.class);
+                Intent intent = new Intent(view.getContext(), CreateAccountSecondPage.class);
                 startActivityForResult(intent, 0);
             }
         });

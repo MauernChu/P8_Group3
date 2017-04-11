@@ -1,6 +1,5 @@
 package p8.group3.ida.aau.p8_group3;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -9,13 +8,13 @@ import android.widget.TextView;
  * Created by christosmentzelos on 10/04/2017.
  */
 
-public class CreateAccount2 extends CreateAccount {
+public class CreateAccountSecondPage extends CreateAccountPage {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_account2);
+        setContentView(R.layout.createAccountSecondPage);
 
         TextView txchimp = (TextView)findViewById(R.id.loginTitle);
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
