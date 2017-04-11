@@ -1,7 +1,10 @@
 package p8.group3.ida.aau.p8_group3;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -34,6 +37,14 @@ public class CreateAccountSecondPage extends CreateAccountPage {
 
         TextView txAgeOfChildren = (TextView)findViewById(R.id.ageOfChildren);
         txAgeOfChildren.setTypeface(custom_font);
+
+        Button createAccountButton = (Button) findViewById(R.id.finish);
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), ProfilePage.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
     }
 }
 

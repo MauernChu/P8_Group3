@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--
+In order to add a navigation drawer we need to change the rootelement from RelativeLayout to
+android.support.v4.widget.DrawerLayout.
+-->
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@drawable/jungle">
 
+    <!--
+   When using the DrawerLayout:
+   The first "child" (FrameLayout) represents the content of the layout (the page itself)
+   The second "child" (Navigation_view) will holds the information of the navigation drawer.
+   The main layout (first child) should always be before the navigation drawer layout
+   because the XML order implies z-ordering.
 
+   -->
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <include
         android:layout_height="wrap_content"
-        android:id="@+id/menu_bar">
-
-    </RelativeLayout>
+        android:layout_width="match_parent"
+        layout="@layout/toolbar_page"
+        />
 
     <RelativeLayout
 
@@ -19,10 +34,14 @@
         android:layout_width="360dp"
         android:layout_height="525dp"
         android:background="@drawable/shape"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="15dp"
         android:layout_centerHorizontal="true">
 
-    <RelativeLayout
+
+        <RelativeLayout
         android:id="@+id/mainProfileBox"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
@@ -228,4 +247,24 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+</FrameLayout>
+    <!--
+      Create navigation view to hold the content of the navigation drawer.
+      Therefore we use the root: android.support.design.widget.NavigationView
+      and the ID = navigation_view.
+      The layout gravity indicates which side the navigation bar should come from, and when you
+      write "start" it means that the bar is "outside" of the frame to the left.
+      If we use a navigation view to create a navigation drawer we can specify the content of the
+      drawer in the format of a menu (menu ressource file).
+      -->
+    <android.support.design.widget.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/navigation_view"
+        android:layout_gravity="start"
+        app:menu="@menu/drawer_menu"
+        ></android.support.design.widget.NavigationView>
+
+
+    </android.support.v4.widget.DrawerLayout>
+

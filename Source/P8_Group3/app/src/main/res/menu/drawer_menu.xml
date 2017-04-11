@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single">
+
+
+        <!--
+        Category for the menupage
+        -->
+        <item
+            android:id="@+id/home_id"
+            android:title="Home"
+            android:icon="@drawable/account_circle">
+        </item>
+        <item
+            android:id="@+id/message_id"
+            android:title="Message"
+            android:icon="@drawable/date_range">
+        </item>
+        <item
+            android:id="@+id/setting_id"
+            android:title="Settings"
+            android:icon="@drawable/forum">
+        </item>
+    </group>
+
+    <!--
+    Subcategory for the menupage
+    -->
+
+    <item android:title="social">
+        <menu>
+            <item
+                android:title="Add to group"
+                android:id="@+id/add_to_group"
+                android:icon="@drawable/history">
+            </item>
+            <item
+                android:title="Group"
+                android:id="@+id/id_group"
+                android:icon="@drawable/map">
+            </item>
+            <item
+                android:title="Share"
+                android:id="@+id/id_share"
+                android:icon="@drawable/settings">
+            </item>
+        </menu>
+    </item>
+
+
+
+</menu>
