@@ -18,7 +18,7 @@ public class CreateAccountPage extends LoginPage {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.createAccountPage);
+        setContentView(R.layout.create_account_page);
 
         TextView txchimp = (TextView)findViewById(R.id.loginTitle);
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");

@@ -13,7 +13,7 @@ public class ProfilePage extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profilePage);
+        setContentView(R.layout.profile_page);
 
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
 

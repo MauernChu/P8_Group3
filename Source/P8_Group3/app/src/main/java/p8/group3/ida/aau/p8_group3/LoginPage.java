@@ -13,7 +13,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loginPage);
+        setContentView(R.layout.login_page);
 
         TextView txchimp = (TextView)findViewById(R.id.loginTitle);
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");

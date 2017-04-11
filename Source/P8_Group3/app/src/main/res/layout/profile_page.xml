@@ -31,7 +31,7 @@
             android:background="@color/mustard"
             android:cropToPadding="false"
             android:visibility="visible"
-            app:srcCompat="@drawable/monkeyColor" />
+            app:srcCompat="@drawable/monkey_color" />
 
         <TextView
             android:id="@+id/name"

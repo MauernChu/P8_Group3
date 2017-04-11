@@ -14,7 +14,7 @@ public class CreateAccountSecondPage extends CreateAccountPage {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.createAccountSecondPage);
+        setContentView(R.layout.create_account_second_page);
 
         TextView txchimp = (TextView)findViewById(R.id.loginTitle);
         Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
