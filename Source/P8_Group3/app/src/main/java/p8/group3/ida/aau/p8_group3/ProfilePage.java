@@ -23,7 +23,7 @@ public class ProfilePage extends AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
+       /* Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
 
         TextView txName = (TextView) findViewById(R.id.name);
         txName.setTypeface(custom_font);
@@ -51,5 +51,6 @@ public class ProfilePage extends AppCompatActivity{
 
         TextView txHobbies = (TextView) findViewById(R.id.hobbies);
         txHobbies.setTypeface(custom_font);
+        */
     }
 }

@@ -34,10 +34,10 @@ android.support.v4.widget.DrawerLayout.
         android:layout_width="360dp"
         android:layout_height="525dp"
         android:background="@drawable/shape"
-        android:layout_marginTop="65dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="25dp"
         android:layout_centerHorizontal="true">
 
 
@@ -259,10 +259,12 @@ android.support.v4.widget.DrawerLayout.
       -->
     <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/navigation_view"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/brown"
+        android:textColor="@color/white"
         ></android.support.design.widget.NavigationView>
 
 
