@@ -28,4 +28,10 @@
     <string name="ageParent">Age</string>
     <string name="forgot_my_password">Forgot my password</string>
     <string name="edit">Edit</string>
+    <string name="settings">Settings</string>
+    <string name="history">History</string>
+    <string name="forum">Forum</string>
+    <string name="events">Events</string>
+    <string name="map">Map</string>
+    <string name="profile">Profile</string>
 </resources>
