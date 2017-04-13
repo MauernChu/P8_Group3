@@ -39,13 +39,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in Aalborg and move the camera
         LatLng aalborg = new LatLng(57.046707, 9.935932);
         CameraPosition test = CameraPosition.builder().target(aalborg).zoom(12).tilt(45).bearing(0).build();
         mMap.addMarker(new MarkerOptions().position(aalborg).title("Marker in Aalborg"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(aalborg));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(test));
 
+
+//Tranumparken, 9220 Aalborg Øst
+        LatLng playground1 = new LatLng(57.047505, 10.003304);
+        CameraPosition play1 = CameraPosition.builder().target(playground1).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground1).title("Villys Legeplads"));
+       // mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play1));
+
+        //Sebberundsvej, 9220 Aalborg Øst
+        LatLng playground2 = new LatLng(57.039661, 9.997811);
+        CameraPosition play2 = CameraPosition.builder().target(playground2).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground2).title("Naturlegeplads"));
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play2));
+
+       // Kælkebakken ved Tove Ditlevsens Vej
+        LatLng playground3 = new LatLng(57.050867, 9.968285);
+        CameraPosition play3 = CameraPosition.builder().target(playground3).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground3).title("legeplads"));
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play3));
+
+        //  Sohngårdsholmsparken
+
+        LatLng playground4 = new LatLng(57.037046, 9.953866);
+        CameraPosition play4 = CameraPosition.builder().target(playground4).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground4).title("Sohngårdsholmsparken"));
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play4));
 
 
 
