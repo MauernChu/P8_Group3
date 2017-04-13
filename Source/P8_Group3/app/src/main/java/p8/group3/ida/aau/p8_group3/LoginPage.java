@@ -47,5 +47,17 @@ public class LoginPage extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
+
+
+        //Using the sign in button from the LoginPage to test the maps view
+
+        Button mapsTest = (Button) findViewById(R.id.signIn);
+        mapsTest.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), MapsActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
+
     }
 }
