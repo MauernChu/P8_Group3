@@ -2,7 +2,7 @@ package p8.group3.ida.aau.p8_group3;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
