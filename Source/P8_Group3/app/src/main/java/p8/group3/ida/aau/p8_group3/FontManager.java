@@ -2,9 +2,6 @@ package p8.group3.ida.aau.p8_group3;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * Created by christosmentzelos on 06/04/2017.

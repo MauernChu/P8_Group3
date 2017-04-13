@@ -1,10 +1,8 @@
 package p8.group3.ida.aau.p8_group3;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 /**
  * Created by karatinka on 10.4.2017.
