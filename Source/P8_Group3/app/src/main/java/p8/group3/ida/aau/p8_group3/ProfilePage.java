@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar;
  * Created by karatinka on 10.4.2017.
  */
 
-public class ProfilePage extends AppCompatActivity{
-    Toolbar toolbar;
+public class ProfilePage extends BaseActivity{
+
 
 
 
@@ -17,9 +17,6 @@ public class ProfilePage extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
-        //Adding a toolbar into the application
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
        /* Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
 
