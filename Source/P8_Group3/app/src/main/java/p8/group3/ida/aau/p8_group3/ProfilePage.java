@@ -17,6 +17,7 @@ public class ProfilePage extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
+        getSupportActionBar().setTitle("Profile");
 
        /* Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
 
