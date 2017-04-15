@@ -20,7 +20,7 @@ android.support.v4.widget.DrawerLayout.
    because the XML order implies z-ordering.
 
    -->
-<FrameLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -32,15 +32,15 @@ android.support.v4.widget.DrawerLayout.
 
     <RelativeLayout
 
-        android:id="@+id/loginBrownBG"
-        android:layout_width="360dp"
-        android:layout_height="525dp"
+        android:id="@+id/brownBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/shape"
-        android:layout_marginTop="95dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
 
 
         <RelativeLayout
@@ -48,7 +48,9 @@ android.support.v4.widget.DrawerLayout.
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/mustard">
 
         <ImageButton
@@ -120,11 +122,11 @@ android.support.v4.widget.DrawerLayout.
             android:id="@+id/editProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profilePictureButton"
-            android:layout_alignEnd="@+id/age"
             android:text="@string/edit"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignBottom="@+id/profilePictureButton"
+            android:layout_toEndOf="@+id/children" />
 
         <ImageView
             android:id="@+id/pencilIconEdit"
@@ -139,8 +141,9 @@ android.support.v4.widget.DrawerLayout.
     <RelativeLayout
         android:id="@+id/aboutProfileBox"
         android:layout_width="320dp"
-        android:layout_height="155dp"
+        android:layout_height="165dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/mustard"
         android:layout_below="@+id/mainProfileBox"
         android:layout_alignStart="@+id/mainProfileBox">
@@ -201,10 +204,11 @@ android.support.v4.widget.DrawerLayout.
         android:layout_width="320dp"
         android:layout_height="125dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/aboutProfileBox"
-        android:layout_alignStart="@+id/aboutProfileBox"
         android:background="@color/mustard"
-        >
+        android:layout_alignStart="@+id/aboutProfileBox">
 
         <TextView
             android:id="@+id/hobbies"
@@ -249,7 +253,7 @@ android.support.v4.widget.DrawerLayout.
 
     </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>
     <!--
       Create navigation view to hold the content of the navigation drawer.
       Therefore we use the root: android.support.design.widget.NavigationView

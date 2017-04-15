@@ -100,7 +100,6 @@ COMMENT SPACE
             android:textAllCaps="false"
             android:visibility="visible"
             android:textColor="@color/white"
-
             android:layout_above="@+id/signIn"
             android:layout_alignEnd="@+id/signIn"
             android:layout_marginBottom="12dp" />
