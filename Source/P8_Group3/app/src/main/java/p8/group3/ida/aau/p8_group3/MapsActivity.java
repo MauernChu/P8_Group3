@@ -1,6 +1,5 @@
 package p8.group3.ida.aau.p8_group3;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -79,7 +78,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         final ArrayList<LatLng> myMarkers = new ArrayList<LatLng>();
-        
 
 
 
@@ -104,8 +102,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     CameraPosition n = CameraPosition.builder().target(m).zoom(12).tilt(45).bearing(0).build();
                     mMap.moveCamera(CameraUpdateFactory.newCameraPosition(n));
                 }
-                Intent myIntent = new Intent(view.getContext(), MapsActivity.class);
-                startActivityForResult(myIntent, 0);
 
 
 
