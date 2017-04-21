@@ -46,7 +46,6 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
         // Add a marker in Aalborg and move the camera
         LatLng aalborg = new LatLng(57.046707, 9.935932);
         CameraPosition test = CameraPosition.builder().target(aalborg).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(aalborg).title("Marker in Aalborg"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(aalborg));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(test));
 
@@ -90,11 +89,20 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
                 myMarkers.add(new LatLng(57.050867, 9.968285));
                 myMarkers.add(new LatLng(57.037046, 9.953866));
 
-                for(LatLng location : myMarkers){
+                for(LatLng location : myMarkers) {
                     mMap.addMarker(new MarkerOptions()
-                            .position(location)
-                            .title("Playgrounds"));
+                            .position(new LatLng(57.047505, 10.003304))
+                            .title("Libraries"));
+
                 }
+
+                    for(LatLng location2 : myMarkers){
+                        mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(57.037046, 9.953866))
+                                .title("test"));
+
+                }
+
 
 
                 for (LatLng m: myMarkers) {
@@ -107,8 +115,6 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
 
             }
         });
-
-
 
     }
 }
