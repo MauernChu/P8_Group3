@@ -5,19 +5,23 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
+public class MapsActivity extends BaseActivity implements OnMapReadyCallback  {
 
     private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
     }
 
 
@@ -50,35 +56,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(test));
 
 
-        //Tranumparken, 9220 Aalborg Øst
-       /* LatLng playground1 = new LatLng(57.047505, 10.003304);
-        CameraPosition play1 = CameraPosition.builder().target(playground1).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground1).title("Villys Legeplads"));
-        // mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play1));
-
-        //Sebberundsvej, 9220 Aalborg Øst
-        LatLng playground2 = new LatLng(57.039661, 9.997811);
-        CameraPosition play2 = CameraPosition.builder().target(playground2).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground2).title("Naturlegeplads"));
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play2));
-
-       // Kælkebakken ved Tove Ditlevsens Vej
-        LatLng playground3 = new LatLng(57.050867, 9.968285);
-        CameraPosition play3 = CameraPosition.builder().target(playground3).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground3).title("legeplads"));
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play3));
-
-        //  Sohngårdsholmsparken
-
-        LatLng playground4 = new LatLng(57.037046, 9.953866);
-        CameraPosition play4 = CameraPosition.builder().target(playground4).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground4).title("Sohngårdsholmsparken"));
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play4));    */
-
-
         final ArrayList<LatLng> myMarkers = new ArrayList<LatLng>();
-
-
 
         final Button libraries = (Button) findViewById(R.id.libraries);
         libraries.setOnClickListener(new View.OnClickListener() {
@@ -112,9 +90,54 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
                 }
 
 
+                mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                    @Override
+                    public View getInfoWindow(Marker marker) {
+                        View view = getLayoutInflater().inflate(R.layout.info_window_maps, null);
+                        TextView name = (TextView) view.findViewById(R.id.txtname);
+                        name.setText("Hello");
+                        TextView adress = (TextView) view.findViewById(R.id.txtname);
+                        adress.setText("Playground");
+                        TextView number = (TextView) view.findViewById(R.id.txtname);
+                        number.setText("700");
+                        return view;
+                    }
+
+                    @Override
+                    public View getInfoContents(Marker marker) {
+                        return null;
+                    }
+                });
+
 
             }
         });
 
     }
 }
+
+//Tranumparken, 9220 Aalborg Øst
+       /* LatLng playground1 = new LatLng(57.047505, 10.003304);
+        CameraPosition play1 = CameraPosition.builder().target(playground1).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground1).title("Villys Legeplads"));
+        // mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play1));
+
+        //Sebberundsvej, 9220 Aalborg Øst
+        LatLng playground2 = new LatLng(57.039661, 9.997811);
+        CameraPosition play2 = CameraPosition.builder().target(playground2).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground2).title("Naturlegeplads"));
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play2));
+
+       // Kælkebakken ved Tove Ditlevsens Vej
+        LatLng playground3 = new LatLng(57.050867, 9.968285);
+        CameraPosition play3 = CameraPosition.builder().target(playground3).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground3).title("legeplads"));
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play3));
+
+        //  Sohngårdsholmsparken
+
+        LatLng playground4 = new LatLng(57.037046, 9.953866);
+        CameraPosition play4 = CameraPosition.builder().target(playground4).zoom(12).tilt(45).bearing(0).build();
+        mMap.addMarker(new MarkerOptions().position(playground4).title("Sohngårdsholmsparken"));
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play4));    */
