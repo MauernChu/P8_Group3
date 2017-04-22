@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context="p8.group3.ida.aau.p8_group3.MapsActivity" >
+    tools:context="p8.group3.ida.aau.p8_group3.MapsPage" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="p8.group3.ida.aau.p8_group3.MapsActivity" />
+        tools:context="p8.group3.ida.aau.p8_group3.MapsPage" />
 
         <include
             android:layout_height="wrap_content"
@@ -33,11 +33,12 @@
         <RadioGroup
         android:id="@+id/radio_group_list_selector"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="75dp"
         android:orientation="horizontal"
-        android:background="#80000000"
-        android:padding="4dp"
+        android:background="@color/mustard"
+        android:padding="0.5dp"
         android:layout_marginTop="55dp"
+
             >
 
         <Button
@@ -47,8 +48,9 @@
 
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Playgrounds"
+
             android:textAllCaps="false"
+            android:background="@drawable/playground2"
             />
 
 
@@ -63,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/book"
+            android:background="@drawable/book1"
             android:gravity="center_horizontal|center_vertical" />
 
         <View
@@ -73,13 +75,13 @@
             android:background="#aaa" />
 
         <Button
-            android:id="@+id/malls"
+            android:id="@+id/movies"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Malls"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:background="@drawable/movie"/>
 
 
         <View
@@ -89,13 +91,12 @@
             android:background="#aaa" />
 
         <Button
-            android:id="@+id/other"
+            android:id="@+id/forests"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
+            android:background="@drawable/forest"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Other"
             android:textAllCaps="false"/>
 
 

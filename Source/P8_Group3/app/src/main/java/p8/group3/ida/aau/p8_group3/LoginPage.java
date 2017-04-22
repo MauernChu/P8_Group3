@@ -54,7 +54,7 @@ public class LoginPage extends AppCompatActivity {
         Button mapsTest = (Button) findViewById(R.id.signIn);
         mapsTest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), MapsActivity.class);
+                Intent myIntent = new Intent(view.getContext(), MapsPage.class);
                 startActivityForResult(myIntent, 0);
             }
         });
