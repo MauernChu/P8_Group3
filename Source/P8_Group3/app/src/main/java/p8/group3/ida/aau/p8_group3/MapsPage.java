@@ -32,6 +32,9 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     final ArrayList<Marker> movieMarker = new ArrayList<Marker>();
     final ArrayList<Marker> parkMarker = new ArrayList<Marker>();
 
+    //Variable to store title information about marker
+    String titleNoerresundbyLibraryMarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.book1))
                 );
 
+                titleNoerresundbyLibraryMarker = mNoerresunbyLibrary.getTitle();
                 LatLng noerresundbyLibraryPosition = mNoerresunbyLibrary.getPosition();
                 libraryMarkerPosition.add(noerresundbyLibraryPosition);
                 libraryMarker.add(mNoerresunbyLibrary);
@@ -200,10 +204,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             public View getInfoWindow(Marker marker) {
                 View view = getLayoutInflater().inflate(R.layout.info_window_maps, null);
                 TextView name = (TextView) view.findViewById(R.id.txtname);
-                name.setText("");
-                TextView adress = (TextView) view.findViewById(R.id.txtname);
+                name.setText(titleNoerresundbyLibraryMarker);
+                TextView adress = (TextView) view.findViewById(R.id.txtAdress);
                 adress.setText("Playground");
-                TextView number = (TextView) view.findViewById(R.id.txtname);
+                TextView number = (TextView) view.findViewById(R.id.txtnumber);
                 number.setText("700");
                 return view;
             }
