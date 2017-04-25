@@ -149,7 +149,55 @@ COMMENT SPACE
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/login"
+            android:layout_alignTop="@+id/loginTitle"
+            android:layout_marginStart="12dp"
+            android:text="Button" />
+
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/loginBrownBG"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="56dp"
+        android:text="TextView"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/testtwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:layout_toStartOf="@+id/test" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/test"
+        android:layout_alignEnd="@+id/delete"
+        android:text="add" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="delete"
+        android:layout_alignBottom="@+id/background_image"
+        android:layout_alignStart="@+id/loginBrownBG" />
 
 </RelativeLayout>
