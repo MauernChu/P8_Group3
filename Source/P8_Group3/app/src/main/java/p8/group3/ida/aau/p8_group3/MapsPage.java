@@ -1,6 +1,7 @@
 package p8.group3.ida.aau.p8_group3;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +21,11 @@ import java.util.ArrayList;
 public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     private GoogleMap locationMap;
 
+
+    private BottomSheetBehavior bottomSheetBehavior;
+    private View bottomSheet;
+
+
     //Arraylists to store the location positions for each category
     final ArrayList<LatLng> libraryMarkerPosition = new ArrayList<LatLng>();
     final ArrayList<LatLng> playgroundMarkerPosition = new ArrayList<LatLng>();
@@ -35,6 +41,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     //Variable to store title information about marker
     String titleNoerresundbyLibraryMarker;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,13 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+        bottomSheet = findViewById(R.id.bottom_sheet);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        bottomSheetBehavior.setPeekHeight(200);
+        bottomSheetBehavior.setHideable(true);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
 
     /**
@@ -56,6 +71,22 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
+
+
+        locationMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                updateBottomSheetContent(marker);
+                return true;
+            }
+        });
+        locationMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
+
 
         // Creates the focus on the map to be in Aalborg
         final LatLng aalborgLocation = new LatLng(57.046707, 9.935932);
@@ -197,10 +228,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             }
         });
 
-
+    }
         //Method for getting the description of the location, when marker is clicked (both the getInfoWindow method and getInfoContents method)
-        locationMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-            @Override
+     /*    locationMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+           @Override
             public View getInfoWindow(Marker marker) {
                 View view = getLayoutInflater().inflate(R.layout.info_window_maps, null);
                 TextView name = (TextView) view.findViewById(R.id.txtname);
@@ -217,25 +248,34 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 return null;
             }
         });
-    }
+    */
+
+
+        public void updateBottomSheetContent(Marker marker) {
+            View view = getLayoutInflater().inflate(R.layout.pop_up_info, null);
+            TextView name = (TextView) bottomSheet.findViewById(R.id.txtname);
+            name.setText(titleNoerresundbyLibraryMarker);
+            TextView adress = (TextView) bottomSheet.findViewById(R.id.txtAdress);
+            adress.setText("Playground");
+            TextView number = (TextView) bottomSheet.findViewById(R.id.txtnumber);
+            number.setText("700");
+
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        }
+
+
+/*
+    private void updateBottomSheetContent(Marker marker) {
+
+        TextView name = (TextView) bottomSheet.findViewById(R.id.);
+
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }*/
+
+
+
 }
-
-
-
-
-
-
-
-
-      /*
-
-
-
-
-
-
-
-         */
 
 
 
