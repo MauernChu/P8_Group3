@@ -36,7 +36,8 @@
 
 
             <android.support.v4.widget.NestedScrollView android:id="@+id/bottom_sheet"
-                android:layout_width="match_parent" android:layout_height="550dp"
+                android:layout_width="match_parent" android:layout_height="485dp"
+                android:layout_gravity="bottom"
                 android:background="@android:color/white" android:clipToPadding="true"
                 app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
@@ -66,18 +67,25 @@
         android:orientation="horizontal"
         android:background="@color/mustard"
         android:padding="0.5dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="80dp"
 
             >
+            <View
+                android:id="@+id/VerticalLine4"
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="#aaa"
+                android:layout_marginRight="20dp"
+                />
 
         <Button
             android:id="@+id/playgrounds"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_horizontal|center_vertical"
-
             android:textAllCaps="false"
             android:background="@drawable/playground2"
             />
@@ -87,13 +95,18 @@
             android:id="@+id/VerticalLine1"
             android:layout_width="1dip"
             android:layout_height="match_parent"
-            android:background="#aaa" />
+            android:background="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
 
         <Button
             android:id="@+id/libraries"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/book1"
             android:gravity="center_horizontal|center_vertical" />
 
@@ -101,7 +114,9 @@
             android:id="@+id/VerticalLine2"
             android:layout_width="1dip"
             android:layout_height="match_parent"
-            android:background="#aaa" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#000" />
 
         <Button
             android:id="@+id/movies"
@@ -110,6 +125,8 @@
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
             android:textAllCaps="false"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/movie"/>
 
 
@@ -117,7 +134,9 @@
             android:id="@+id/VerticalLine3"
             android:layout_width="1dip"
             android:layout_height="match_parent"
-            android:background="#aaa" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#000" />
 
         <Button
             android:id="@+id/forests"
@@ -125,8 +144,18 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/forest"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_horizontal|center_vertical"
             android:textAllCaps="false"/>
+
+            <View
+                android:id="@+id/VerticalLine5"
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="#aaa"
+                android:layout_marginLeft="20dp"
+                />
 
 
     </RadioGroup>

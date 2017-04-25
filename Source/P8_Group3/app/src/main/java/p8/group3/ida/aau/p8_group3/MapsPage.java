@@ -55,7 +55,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
         bottomSheet = findViewById(R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        bottomSheetBehavior.setPeekHeight(200);
+        bottomSheetBehavior.setPeekHeight(550);
         bottomSheetBehavior.setHideable(true);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
@@ -253,12 +253,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
         public void updateBottomSheetContent(Marker marker) {
             View view = getLayoutInflater().inflate(R.layout.pop_up_info, null);
-            TextView name = (TextView) bottomSheet.findViewById(R.id.txtname);
-            name.setText(titleNoerresundbyLibraryMarker);
             TextView adress = (TextView) bottomSheet.findViewById(R.id.txtAdress);
             adress.setText("Playground");
-            TextView number = (TextView) bottomSheet.findViewById(R.id.txtnumber);
-            number.setText("700");
 
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
