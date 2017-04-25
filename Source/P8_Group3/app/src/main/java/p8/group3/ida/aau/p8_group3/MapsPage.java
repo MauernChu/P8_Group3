@@ -68,6 +68,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      **/
+
+
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
@@ -88,6 +90,80 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         });
 
 
+
+        final boolean sheetShowing = true;
+        Button button = (Button)findViewById(R.id.playgrounds);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+            }
+        });
+
+
+        Button button1 = (Button)findViewById(R.id.libraries);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+                }
+            }
+        });
+
+
+        Button button2 = (Button)findViewById(R.id.movies);
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+                }
+            }
+        });
+
+
+
+        Button button3 = (Button)findViewById(R.id.forests);
+        button3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+                }
+            }
+        });
+
+
+
+        Button button4 = (Button)findViewById(R.id.button2);
+        button4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+            }
+        });
+
+
+        Button button5 = (Button)findViewById(R.id.button3);
+        button5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+            }
+        });
+
+
+
         // Creates the focus on the map to be in Aalborg
         final LatLng aalborgLocation = new LatLng(57.046707, 9.935932);
         CameraPosition cameraPositionAalborg = CameraPosition.builder().target(aalborgLocation).zoom(12).tilt(45).bearing(0).build();
@@ -98,6 +174,11 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         libraries.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 locationMap.clear();
+
+
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
 
                 Marker mNoerresunbyLibrary = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(57.057619, 9.923992))
@@ -143,6 +224,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             public void onClick(View view) {
                 locationMap.clear();
 
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+
                 Marker mPlaygroundAalborgCenter = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(57.042001, 9.915755))
                         .title("Playground Aalborg Center")
@@ -186,6 +271,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             public void onClick(View view) {
                 locationMap.clear();
 
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+
                 Marker mCinemaKennedyArkaden = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(57.042392, 9.918497))
                         .title("Cinema Kennedy Arkaden")
@@ -209,6 +298,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         park.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 locationMap.clear();
+
+                if (sheetShowing){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
 
                 Marker mParkSohngaardsholmsparken = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(56.802179, 9.855545))
