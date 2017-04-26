@@ -92,55 +92,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
 
         final boolean sheetShowing = true;
-        Button button = (Button)findViewById(R.id.playgrounds);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (sheetShowing){
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                }
-            }
-        });
-
-
-        Button button1 = (Button)findViewById(R.id.libraries);
-        button1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (sheetShowing){
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
-                }
-            }
-        });
-
-
-        Button button2 = (Button)findViewById(R.id.movies);
-        button2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (sheetShowing){
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
-                }
-            }
-        });
-
-
-
-        Button button3 = (Button)findViewById(R.id.forests);
-        button3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (sheetShowing){
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
-                }
-            }
-        });
-
-
-
+        
         Button button4 = (Button)findViewById(R.id.button2);
         button4.setOnClickListener(new View.OnClickListener(){
             @Override
