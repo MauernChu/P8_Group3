@@ -13,7 +13,7 @@ public class databaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 16;
+    private static final int DATABASE_VERSION = 19;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -57,7 +57,20 @@ public class databaseHandler extends SQLiteOpenHelper {
     private static final String COLUMN_LOCATIONLONGITUDE = "locationLongitude";
     private static final String COLUMN_LOCATIONLATITUDE = "locationLatitude";
 
+    //Columns for the Rating table
+    private static final String TABLE_RATING = "rating";
+    private static final String COLUMN_RATINGLOCATIONID = "ratingLocationID";
+    private static final String COLUMN_RATINGPARENTID = "ratingParentID";
+    private static final String COLUMN_TIMERATINGCREATED = "timeRatingCreated";
+    private static final String COLUMN_TIMERATINGEDITED = "timeRatingEdited";
+    private static final String COLUMN_RATINGVALUE = "ratingValue";
+    private static final String COLUMN_REVIEWTEXT = "reviewText";
 
+    //Columns for the PlannedActivity table
+    private static final String TABLE_PLANNEDACTIVITY = "plannedActivity";
+    private static final String COLUMN_PLANNEDACTIVITYPARENTID = "plannedActivityParentID";
+    private static final String COLUMN_PLANNEDACTIVITYLOCATIONID = "plannedActivityLocationID";
+    private static final String COLUMN_PLANNEDACITIVTYTIME = "plannedActivityTime";
 
 
     //We need to pass some information to the superclass and that is what we are doing through the
@@ -110,8 +123,22 @@ public class databaseHandler extends SQLiteOpenHelper {
             + COLUMN_LOCATIONLATITUDE + " DOUBLE NOT NULL "
             +");";
 
+    public static final String SQL_CREATE_TABLE_RATING = "CREATE TABLE " + TABLE_RATING + "("
+            + COLUMN_TIMERATINGCREATED + "REAL NOT NULL, "
+            + COLUMN_TIMERATINGEDITED + "REAL NOT NULL, "
+            + COLUMN_RATINGVALUE + "INT NOT NULL, "
+            + COLUMN_REVIEWTEXT + "TEXT, "
+            + COLUMN_RATINGLOCATIONID + " INTEGER NOT NULL, "
+            + COLUMN_RATINGPARENTID + " INTEGER NOT NULL, "
+            + " FOREIGN KEY ("+COLUMN_RATINGLOCATIONID+") REFERENCES "+TABLE_LOCATION+" ("+COLUMN_LOCATIONID+"), "
+            + " FOREIGN KEY ("+COLUMN_RATINGPARENTID+") REFERENCES "+TABLE_PARENT+" ("+COLUMN_PARENTID+"));";
 
-
+    public static final String SQL_CREATE_TABLE_PLANNEDACTIVITY = "CREATE TABLE " + TABLE_PLANNEDACTIVITY + "("
+            + COLUMN_PLANNEDACITIVTYTIME + " TEXT NOT NULL, "
+            + COLUMN_PLANNEDACTIVITYLOCATIONID + " INT NOT NULL, "
+            + COLUMN_PLANNEDACTIVITYPARENTID + " INT NOT NULL, "
+            + " FOREIGN KEY ("+COLUMN_PLANNEDACTIVITYLOCATIONID+") REFERENCES "+TABLE_LOCATION+" ("+COLUMN_LOCATIONID+"), "
+            + " FOREIGN KEY ("+COLUMN_PLANNEDACTIVITYPARENTID+") REFERENCES "+TABLE_PARENT+" ("+COLUMN_PARENTID+"));";
 
 
 
@@ -123,7 +150,8 @@ public class databaseHandler extends SQLiteOpenHelper {
         database.execSQL(SQL_CREATE_TABLE_LANGUAGELIST);
         database.execSQL(SQL_CREATE_TABLE_PARENLANGUAGE);
         database.execSQL(SQL_CREATE_TABLE_LOCATION);
-
+        database.execSQL(SQL_CREATE_TABLE_RATING);
+        database.execSQL(SQL_CREATE_TABLE_PLANNEDACTIVITY);
     }
 
 
@@ -139,6 +167,8 @@ public class databaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LANGUAGELIST);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARENTLANGUAGE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATING);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLANNEDACTIVITY);
         onCreate(db);
 
     }
