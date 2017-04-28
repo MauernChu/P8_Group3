@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,12 +55,30 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
 
 
+
+
         bottomSheet = findViewById(R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         bottomSheetBehavior.setPeekHeight(550);
         bottomSheetBehavior.setHideable(true);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+
+        final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+        Button submitButton = (Button) findViewById(R.id.submitRating);
+        // perform click event on button
+        submitButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // get values and then displayed in a toast
+                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
+                String rating = "Rating :: " + simpleRatingBar.getRating();
+                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating, Toast.LENGTH_LONG).show();
+            }
+        });
     }
+
 
     /**
      * Manipulates the map once available.
@@ -73,6 +93,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
+
+
 
 
         locationMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -92,7 +114,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
 
         final boolean sheetShowing = true;
-        
+
         Button button4 = (Button)findViewById(R.id.button2);
         button4.setOnClickListener(new View.OnClickListener(){
             @Override

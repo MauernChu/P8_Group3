@@ -9,4 +9,6 @@
     <color name="same">#845420</color>   <!--  same color as background, dont delete!  -->
     <color name="black">#000</color>
     <color name="gray">#9b9b9b</color>
+    <color name="yellow">#ffff00</color>
+
 </resources>
