@@ -48,6 +48,7 @@ public class LoginPage extends AppCompatActivity {
         txCreateAcc.setTypeface(custom_font);
 
 
+        //Clicking Create Account to start creating one
         Button createAccountButton = (Button)findViewById(R.id.createAccount);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -67,6 +68,12 @@ public class LoginPage extends AppCompatActivity {
 
             }
         });
+
+
+        //Put code here to hardcode a log-in
+        
+
+
 
         Button dbtest = (Button)findViewById(R.id.add);
         dbtest.setOnClickListener(new View.OnClickListener() {
