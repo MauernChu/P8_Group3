@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import p8.group3.ida.aau.p8_group3.Database.databaseHandler;
 import p8.group3.ida.aau.p8_group3.model.Parent;
@@ -23,11 +24,17 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
+        //Database variables
         databaseTesttwo = (EditText)findViewById(R.id.testtwo);
         databaseTest = (TextView) findViewById(R.id.test);
         dbHandler = new databaseHandler(this, null, null, 1);
         printDatabase();
 
+        //Log-in variables
+        final EditText username = (EditText)findViewById(R.id.username);
+        final EditText password = (EditText) findViewById(R.id.password);
+
+        //Font variables
         TextView txchimp = (TextView)findViewById(R.id.loginTitle);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "KGCorneroftheSky.ttf");
         txchimp.setTypeface(custom_font);
@@ -58,20 +65,22 @@ public class LoginPage extends AppCompatActivity {
         });
 
 
-        //Using the sign in button from the LoginPage to test the maps view
 
-        Button mapsTest = (Button)findViewById(R.id.signIn);
-        mapsTest.setOnClickListener(new View.OnClickListener() {
+        //Hardcoded a log-in
+        Button logIn = (Button) findViewById(R.id.signIn);
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), MapsPage.class);
-                startActivityForResult(myIntent, 0);
-
+                if (username.getText().toString().equals("user") && password.getText().toString().equals("pass")) {
+                    Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
+                    Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
+                    startActivityForResult(mapIntent, 0);
+                }
+                else {
+                    Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-
-        //Put code here to hardcode a log-in
-        
 
 
 
