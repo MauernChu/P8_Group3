@@ -13,18 +13,52 @@ public class databaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 16;
     private static final String DATABASE_NAME = "chimp.db";
-
 
     //Columns for the Parent table
     private static final String TABLE_PARENT = "parent";
     private static final String COLUMN_PARENTID = "_parentID";
     private static final String COLUMN_USERNAME = "username";
-    private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_NUMBERCHILDREN = "numberOfChildren";
     private static final String COLUMN_AGECHILDREN = "ageOfChildren";
+    private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_PROFILEPICTURE = "profilePicture";
     private static final String COLUMN_INFOPARENT = "infoAboutParent";
+    private static final String COLUMN_TIMECHECKEDIN = "timeCheckedIn";
+    private static final String COLUMN_LOCATIONIDCHECKEDIN = "locationIDCheckedIn";
+
+    //Columns for the HobbyList table
+    private static final String TABLE_HOBBYLIST = "hobbyList";
+    private static final String COLUMN_HOBBYID = "_hobbyID";
+    private static final String COLUMN_HOBBYNAME = "hobbyName";
+
+    //Columns for ParentHobby table
+    private static final String TABLE_PARENTHOBBY = "parentHobby";
+    private static final String COLUMN_TRACKHOBBYPARENTID = "trackParentID";
+    private static final String COLUMN_TRACKHOBBYID = "trackHobbyID";
+
+    //Columns for the LanguageList table
+    private static final String TABLE_LANGUAGELIST = "languageList";
+    private static final String COLUMN_LANGUAGEID = "_languageID";
+    private static final String COLUMN_LANGUAGE = "language";
+
+    //Columns for ParentLanguage table
+    private static final String TABLE_PARENTLANGUAGE = "parentLanguage";
+    private static final String COLUMN_TRACKLANGUAGEPARENTID = "trackLanguageParentID";
+    private static final String COLUMN_TRACKLANGUAGEID = "trackLanguageID";
+
+    //Columns for the Location table
+    private static final String TABLE_LOCATION = "location";
+    private static final String COLUMN_LOCATIONID = "_locationID";
+    private static final String COLUMN_LOCATIONNAME = "locationName";
+    private static final String COLUMN_LOCATIONPICTURE = "locationPicture";
+    private static final String COLUMN_LOCATIONDESCRIPTION = "locationDescription";
+    private static final String COLUMN_LOCATIONLONGITUDE = "locationLongitude";
+    private static final String COLUMN_LOCATIONLATITUDE = "locationLatitude";
+
+
+
 
     //We need to pass some information to the superclass and that is what we are doing through the
     //constructor.
@@ -33,19 +67,62 @@ public class databaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
+    public static final String SQL_CREATE_TABLE_PARENT = "CREATE TABLE " + TABLE_PARENT + "("
+                + COLUMN_PARENTID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_USERNAME + " TEXT NOT NULL, "
+                + COLUMN_NUMBERCHILDREN + " TEXT NOT NULL, "
+                + COLUMN_AGECHILDREN + " TEXT NOT NULL, "
+                + COLUMN_PASSWORD + " TEXT NOT NULL, "
+                + COLUMN_PROFILEPICTURE + " BLOB, "
+                + COLUMN_INFOPARENT + " TEXT, "
+                + COLUMN_TIMECHECKEDIN + " REAL, "
+                + COLUMN_LOCATIONIDCHECKEDIN + " INT "
+                +");";
+
+    public static final String SQL_CREATE_TABLE_HOBBYLIST = "CREATE TABLE " + TABLE_HOBBYLIST + "("
+            + COLUMN_HOBBYID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_HOBBYNAME + " TEXT NOT NULL "
+            +");";
+
+    public static final String SQL_CREATE_TABLE_PARENTHOBBY = "CREATE TABLE " + TABLE_PARENTHOBBY + "("
+            + COLUMN_TRACKHOBBYPARENTID + " INTEGER NOT NULL, "
+            + COLUMN_TRACKHOBBYID + " INTEGER NOT NULL, "
+            + " FOREIGN KEY ("+COLUMN_TRACKHOBBYPARENTID+") REFERENCES "+TABLE_PARENT+" ("+COLUMN_PARENTID+"), "
+            + " FOREIGN KEY ("+COLUMN_TRACKHOBBYID+") REFERENCES "+TABLE_HOBBYLIST+" ("+COLUMN_HOBBYID+"));";
+
+    public static final String SQL_CREATE_TABLE_LANGUAGELIST = "CREATE TABLE " + TABLE_LANGUAGELIST + "("
+            + COLUMN_LANGUAGEID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_LANGUAGE + " TEXT NOT NULL "
+            +");";
+
+    public static final String SQL_CREATE_TABLE_PARENLANGUAGE = "CREATE TABLE " + TABLE_PARENTLANGUAGE + "("
+            + COLUMN_TRACKLANGUAGEPARENTID + " INTEGER NOT NULL, "
+            + COLUMN_TRACKLANGUAGEID + " INTEGER NOT NULL, "
+            + " FOREIGN KEY ("+COLUMN_TRACKLANGUAGEPARENTID+") REFERENCES "+TABLE_PARENT+" ("+COLUMN_PARENTID+"), "
+            + " FOREIGN KEY ("+COLUMN_TRACKLANGUAGEID+") REFERENCES "+TABLE_LANGUAGELIST+" ("+COLUMN_LANGUAGEID+"));";
+
+    public static final String SQL_CREATE_TABLE_LOCATION = "CREATE TABLE " + TABLE_LOCATION + "("
+            + COLUMN_LOCATIONID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_LOCATIONNAME + " TEXT NOT NULL, "
+            + COLUMN_LOCATIONPICTURE + " BLOB, "
+            + COLUMN_LOCATIONDESCRIPTION + " TEXT, "
+            + COLUMN_LOCATIONLONGITUDE + " DOUBLE NOT NULL, "
+            + COLUMN_LOCATIONLATITUDE + " DOUBLE NOT NULL "
+            +");";
+
+
+
+
+
+
     //The first time we are going to create this database for the first time it is going to call this method
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_PARENT + "(" +
-                COLUMN_PARENTID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_USERNAME + " TEXT NOT NULL " +
-                /*
-                COLUMN_NUMBERCHILDREN + "" +
-                COLUMN_AGECHILDREN + " " +
-                COLUMN_INFOPARENT + " " +
-                */
-                ");";
-        db.execSQL(query);
+    public void onCreate(SQLiteDatabase database){
+        database.execSQL(SQL_CREATE_TABLE_PARENT);
+        database.execSQL(SQL_CREATE_TABLE_HOBBYLIST);
+        database.execSQL(SQL_CREATE_TABLE_PARENTHOBBY);
+        database.execSQL(SQL_CREATE_TABLE_LANGUAGELIST);
+        database.execSQL(SQL_CREATE_TABLE_PARENLANGUAGE);
+        database.execSQL(SQL_CREATE_TABLE_LOCATION);
 
     }
 
@@ -57,6 +134,11 @@ public class databaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HOBBYLIST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARENTHOBBY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LANGUAGELIST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARENTLANGUAGE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
         onCreate(db);
 
     }
