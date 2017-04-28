@@ -37,5 +37,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="drawer_open">drawer open</string>
     <string name="drawer_close">drawer close</string>
+    <string name="done">Done</string>
 
 </resources>

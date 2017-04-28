@@ -4,14 +4,12 @@
 In order to add a navigation drawer we need to change the rootelement from RelativeLayout to
 android.support.v4.widget.DrawerLayout.
 -->
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jungle"
-    android:id="@+id/drawer_layout"
-    >
+    android:background="@drawable/jungle">
 
     <!--
    When using the DrawerLayout:
@@ -21,240 +19,335 @@ android.support.v4.widget.DrawerLayout.
    because the XML order implies z-ordering.
 
    -->
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <include
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        layout="@layout/toolbar_page"
-        />
-
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        android:id="@+id/brownBackground"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
-
+        <include
+            layout="@layout/toolbar_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <RelativeLayout
-        android:id="@+id/mainProfileBox"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/mustard">
 
-        <ImageButton
-            android:id="@+id/profilePictureButton"
+            android:id="@+id/brownBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:adjustViewBounds="false"
-            android:background="@color/mustard"
-            android:cropToPadding="false"
-            android:visibility="visible"
-            app:srcCompat="@drawable/monkey_color" />
+            android:layout_marginTop="75dp"
+            android:background="@drawable/shape">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/profilePictureButton"
-            android:fontFamily="sans-serif"
-            android:text="@string/name"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:visibility="visible" />
 
-        <TextView
-            android:id="@+id/children"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/name"
-            android:layout_below="@+id/name"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif"
-            android:text="@string/children"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:visibility="visible" />
+            <RelativeLayout
+                android:id="@+id/mainProfileBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/mustard">
 
-        <TextView
-            android:id="@+id/age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/age"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_below="@+id/children"
-            android:layout_alignStart="@+id/children"
-            android:layout_marginTop="5dp"/>
 
-        <TextView
-            android:id="@+id/city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/age"
-            android:layout_below="@+id/age"
-            android:layout_marginTop="5dp"
-            android:text="@string/city"
-            android:textSize="18sp"
-            android:textColor="@color/black"/>
+                <ImageButton
+                    android:id="@+id/profilePictureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="false"
+                    android:background="@color/mustard"
+                    android:cropToPadding="false"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/monkey_color" />
 
-        <TextView
-            android:id="@+id/editProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_alignBottom="@+id/profilePictureButton"
-            android:layout_toEndOf="@+id/children" />
 
-        <ImageView
-            android:id="@+id/pencilIconEdit"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            app:srcCompat="@drawable/pencil"
-            android:layout_alignBottom="@+id/editProfile"
-            android:layout_toStartOf="@+id/editProfile" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/profilePictureButton"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/name"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/profilePictureButton"
+                    android:fontFamily="sans-serif"
+                    android:text="Name2"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/children"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/name"
+                    android:layout_below="@+id/name"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/children"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editName"
+                    android:id="@+id/editChildren"
+                    android:layout_alignStart="@+id/editName"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Children2"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
+
+
+                <TextView
+                    android:id="@+id/age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/children"
+                    android:layout_below="@+id/children"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/age"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editAge"
+                    android:layout_alignStart="@+id/editChildren"
+                    android:layout_below="@+id/editChildren"
+                    android:layout_marginTop="5dp"
+                    android:text="Age2"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/age"
+                    android:layout_below="@+id/age"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/city"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editCity"
+                    android:layout_alignStart="@+id/editAge"
+                    android:layout_below="@+id/editAge"
+                    android:layout_marginTop="5dp"
+                    android:text="City2"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/editProfile"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_alignBottom="@+id/profilePictureButton"
+                    android:layout_toEndOf="@+id/children"
+                    android:text="@string/edit"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="visible"/>
+
+                <Button
+                    android:id="@+id/doneEdit"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:layout_below="@+id/editCity"
+                    android:layout_toEndOf="@+id/editCity"
+                    android:text="@string/done"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/pencilIconEdit"
+                    android:layout_width="18dp"
+                    android:layout_height="35dp"
+                    android:layout_alignBottom="@+id/editProfile"
+                    android:layout_toStartOf="@+id/editProfile"
+                    app:srcCompat="@drawable/pencil"
+                    android:visibility="visible"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/aboutProfileBox"
+                android:layout_width="320dp"
+                android:layout_height="165dp"
+                android:layout_alignStart="@+id/mainProfileBox"
+                android:layout_below="@+id/mainProfileBox"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/mustard">
+
+                <TextView
+                    android:id="@+id/languages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/languages"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/allLanguages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/languages"
+                    android:layout_alignBottom="@+id/languages"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/languages"
+                    android:text="@string/english_german_spanish"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="visible"/>
+
+                <EditText
+                    android:id="@+id/editLanguages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/languages"
+                    android:layout_alignBottom="@+id/languages"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/languages"
+                    android:text="More languages pls."
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/languages"
+                    android:layout_below="@+id/languages"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/about"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textAbout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/about"
+                    android:layout_below="@+id/about"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/i_am_active_and_i_like_to_socialise"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="visible"/>
+
+                <EditText
+                    android:id="@+id/editAbout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/about"
+                    android:layout_below="@+id/about"
+                    android:layout_marginTop="5dp"
+                    android:text="Bla bla"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/hobbiesBox"
+                android:layout_width="320dp"
+                android:layout_height="125dp"
+                android:layout_alignStart="@+id/aboutProfileBox"
+                android:layout_below="@+id/aboutProfileBox"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/mustard">
+
+                <TextView
+                    android:id="@+id/hobbies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/hobbies"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignTop="@+id/imageView2"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/imageView2"
+                    app:srcCompat="@android:drawable/star_on" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignTop="@+id/imageView"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@+id/imageView"
+                    app:srcCompat="@drawable/monkey" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignStart="@+id/hobbies"
+                    android:layout_below="@+id/hobbies"
+                    app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/aboutProfileBox"
-        android:layout_width="320dp"
-        android:layout_height="165dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/mustard"
-        android:layout_below="@+id/mainProfileBox"
-        android:layout_alignStart="@+id/mainProfileBox">
-
-        <TextView
-            android:id="@+id/languages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/languages"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/allLanguages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/english_german_spanish"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_alignBaseline="@+id/languages"
-            android:layout_alignBottom="@+id/languages"
-            android:layout_toEndOf="@+id/languages"
-            android:layout_marginStart="10dp" />
-
-        <TextView
-            android:id="@+id/about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="@string/about"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_below="@+id/languages"
-            android:layout_alignStart="@+id/languages"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/textAbout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/i_am_active_and_i_like_to_socialise"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_below="@+id/about"
-            android:layout_alignStart="@+id/about"
-            android:layout_marginTop="5dp"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/hobbiesBox"
-        android:layout_width="320dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@+id/aboutProfileBox"
-        android:background="@color/mustard"
-        android:layout_alignStart="@+id/aboutProfileBox">
-
-        <TextView
-            android:id="@+id/hobbies"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/hobbies"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignTop="@+id/imageView2"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@+id/imageView2"
-            app:srcCompat="@android:drawable/star_on" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_marginStart="24dp"
-            android:layout_toEndOf="@+id/imageView"
-            app:srcCompat="@drawable/monkey" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:srcCompat="@android:drawable/sym_def_app_icon"
-            android:layout_below="@+id/hobbies"
-            android:layout_alignStart="@+id/hobbies" />
-
-    </RelativeLayout>
-
-    </RelativeLayout>
-
-</RelativeLayout>
     <!--
       Create navigation view to hold the content of the navigation drawer.
       Therefore we use the root: android.support.design.widget.NavigationView
@@ -265,15 +358,14 @@ android.support.v4.widget.DrawerLayout.
       drawer in the format of a menu (menu ressource file).
       -->
     <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/navigation_view"
         android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"
         android:background="@color/brown"
         android:textColor="@color/white"
-        ></android.support.design.widget.NavigationView>
+        app:menu="@menu/drawer_menu"></android.support.design.widget.NavigationView>
 
 
-    </android.support.v4.widget.DrawerLayout>
+</android.support.v4.widget.DrawerLayout>
 
