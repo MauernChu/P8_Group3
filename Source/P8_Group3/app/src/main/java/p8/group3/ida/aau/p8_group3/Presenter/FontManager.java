@@ -1,11 +1,7 @@
-package p8.group3.ida.aau.p8_group3;
+package p8.group3.ida.aau.p8_group3.Presenter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-
-/**
- * Created by christosmentzelos on 06/04/2017.
- */
 
 public class FontManager {
 

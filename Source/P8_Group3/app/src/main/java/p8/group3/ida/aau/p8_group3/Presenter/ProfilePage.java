@@ -1,19 +1,15 @@
-package p8.group3.ida.aau.p8_group3;
+package p8.group3.ida.aau.p8_group3.Presenter;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by karatinka on 10.4.2017.
- */
+import p8.group3.ida.aau.p8_group3.R;
 
-public class ProfilePage extends BaseActivity{
+public class ProfilePage extends BaseActivity {
 
 
 

@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context="p8.group3.ida.aau.p8_group3.MapsPage" >
+    tools:context="p8.group3.ida.aau.p8_group3.Presenter.MapsPage" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            tools:context=".MapsPage">
+            tools:context=".Presenter.MapsPage">
 
 
 
@@ -32,7 +32,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="p8.group3.ida.aau.p8_group3.MapsPage" />
+        tools:context="p8.group3.ida.aau.p8_group3.Presenter.MapsPage" />
 
 
             <android.support.v4.widget.NestedScrollView android:id="@+id/bottom_sheet"

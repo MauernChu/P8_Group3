@@ -31,7 +31,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginPage"
+            android:name=".Presenter.LoginPage"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,15 +40,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateAccountPage"
+            android:name=".Presenter.CreateAccountPage"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".CreateAccountSecondPage"
+            android:name=".Presenter.CreateAccountSecondPage"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ProfilePage"
+            android:name=".Presenter.ProfilePage"
             android:screenOrientation="portrait">
         </activity>
 
@@ -65,7 +65,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsPage"
+            android:name=".Presenter.MapsPage"
             android:label="@string/title_activity_maps">
         </activity>
     </application>

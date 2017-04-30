@@ -1,4 +1,4 @@
-package p8.group3.ida.aau.p8_group3;
+package p8.group3.ida.aau.p8_group3.Presenter;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
@@ -19,6 +19,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+
+import p8.group3.ida.aau.p8_group3.R;
 
 public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     private GoogleMap locationMap;

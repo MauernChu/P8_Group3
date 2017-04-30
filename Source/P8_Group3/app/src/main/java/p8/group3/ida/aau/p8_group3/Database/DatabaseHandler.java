@@ -6,10 +6,10 @@ import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
 
-import p8.group3.ida.aau.p8_group3.model.Parent;
+import p8.group3.ida.aau.p8_group3.Model.Parent;
 
 //This class is for working directly with the database
-public class databaseHandler extends SQLiteOpenHelper {
+public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
@@ -17,16 +17,16 @@ public class databaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
-    private static final String TABLE_PARENT = "parent";
-    private static final String COLUMN_PARENTID = "_parentID";
-    private static final String COLUMN_USERNAME = "username";
-    private static final String COLUMN_NUMBERCHILDREN = "numberOfChildren";
-    private static final String COLUMN_AGECHILDREN = "ageOfChildren";
-    private static final String COLUMN_PASSWORD = "password";
-    private static final String COLUMN_PROFILEPICTURE = "profilePicture";
-    private static final String COLUMN_INFOPARENT = "infoAboutParent";
-    private static final String COLUMN_TIMECHECKEDIN = "timeCheckedIn";
-    private static final String COLUMN_LOCATIONIDCHECKEDIN = "locationIDCheckedIn";
+    public static final String TABLE_PARENT = "parent";
+    public static final String COLUMN_PARENTID = "_parentID";
+    public static final String COLUMN_USERNAME = "username";
+    public static final String COLUMN_NUMBERCHILDREN = "numberOfChildren";
+    public static final String COLUMN_AGECHILDREN = "ageOfChildren";
+    public static final String COLUMN_PASSWORD = "password";
+    public static final String COLUMN_PROFILEPICTURE = "profilePicture";
+    public static final String COLUMN_INFOPARENT = "infoAboutParent";
+    public static final String COLUMN_TIMECHECKEDIN = "timeCheckedIn";
+    public static final String COLUMN_LOCATIONIDCHECKEDIN = "locationIDCheckedIn";
 
     //Columns for the HobbyList table
     private static final String TABLE_HOBBYLIST = "hobbyList";
@@ -76,8 +76,8 @@ public class databaseHandler extends SQLiteOpenHelper {
     //We need to pass some information to the superclass and that is what we are doing through the
     //constructor.
     //context and factory are "background" information.
-    public databaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public DatabaseHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public static final String SQL_CREATE_TABLE_PARENT = "CREATE TABLE " + TABLE_PARENT + "("
@@ -172,56 +172,4 @@ public class databaseHandler extends SQLiteOpenHelper {
         onCreate(db);
 
     }
-
-    /*
-    Add new row to the table
-    In order to add a new pwrent to the database we are going to pass in a parent object.
-    ContentValues is a class build in to android, which allows you to set a bunch of different values
-    for different columns, and insert them in one statement.
-    */
-    public void addParentToDatabase(Parent parent) {
-        ContentValues values = new ContentValues();
-        //values.put just states that get_username should be stored COLUMN_USERNAME.
-        //Here we could add more elements to the value object (all the things we need to store)
-        values.put(COLUMN_USERNAME, parent.get_username());
-        //db (SQLiteDatabase object) is now equal to the database we are going to write to
-        SQLiteDatabase db = getWritableDatabase();
-        //This line is going to insert a new parent into the table
-        db.insert(TABLE_PARENT, null, values);
-        //Closing database
-        db.close();
-    }
-
-    //Method for deleting a product in the database
-    public void deleteParentFromDatabase(String username) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_PARENT + " WHERE " + COLUMN_USERNAME + "=\"" + username + "\";");
-
-    }
-
-    //print out the databse as string
-    public String databaseToString() {
-        String dbString = "";
-        SQLiteDatabase db = getWritableDatabase();
-        //1 means that every condition is met (every row from the database)
-        String query = "SELECT * FROM " + TABLE_PARENT + " WHERE 1;";
-
-        //Cursor point to a location in the results
-        Cursor c = db.rawQuery(query, null);
-        //Move to the first row in your result
-        c.moveToFirst();
-
-        //Goes through everything in the database, and stores the usernames in the dbString.
-        while(!c.isAfterLast()){
-            if(c.getString(c.getColumnIndex("username"))!=null){
-                dbString += c.getString(c.getColumnIndex("username"));
-                //Placing the usernames on another line.
-                dbString += "\n";
-            }
-            c.moveToNext();
-        }
-        db.close();
-        return dbString;
-    }
-
 }

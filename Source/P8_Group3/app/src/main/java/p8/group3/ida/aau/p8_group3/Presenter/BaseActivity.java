@@ -1,4 +1,4 @@
-package p8.group3.ida.aau.p8_group3;
+package p8.group3.ida.aau.p8_group3.Presenter;
 
 /**
  * Created by Mette on 14-04-2017.
@@ -12,11 +12,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import p8.group3.ida.aau.p8_group3.R;
 
-
-/**
- * Created by Mette on 14-04-2017.
- */
 
 public class BaseActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
