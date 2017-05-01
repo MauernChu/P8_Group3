@@ -13,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 20 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -27,11 +27,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_INFOPARENT = "infoAboutParent";
     public static final String COLUMN_TIMECHECKEDIN = "timeCheckedIn";
     public static final String COLUMN_LOCATIONIDCHECKEDIN = "locationIDCheckedIn";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_CITYOFRESIDENCE = "cityOfResidence";
 
     //Columns for the HobbyList table
     private static final String TABLE_HOBBYLIST = "hobbyList";
     private static final String COLUMN_HOBBYID = "_hobbyID";
     private static final String COLUMN_HOBBYNAME = "hobbyName";
+    private static final String COLUMN_HOBBYICON = "hobbyIcon";
 
     //Columns for ParentHobby table
     private static final String TABLE_PARENTHOBBY = "parentHobby";
@@ -89,12 +92,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + COLUMN_PROFILEPICTURE + " BLOB, "
                 + COLUMN_INFOPARENT + " TEXT, "
                 + COLUMN_TIMECHECKEDIN + " REAL, "
-                + COLUMN_LOCATIONIDCHECKEDIN + " INT "
+                + COLUMN_LOCATIONIDCHECKEDIN + " INT, "
+                + COLUMN_EMAIL + " STRING NOT NULL, "
+                + COLUMN_CITYOFRESIDENCE + " STRING "
                 +");";
 
     public static final String SQL_CREATE_TABLE_HOBBYLIST = "CREATE TABLE " + TABLE_HOBBYLIST + "("
             + COLUMN_HOBBYID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_HOBBYNAME + " TEXT NOT NULL "
+            + COLUMN_HOBBYNAME + " TEXT NOT NULL, "
+            + COLUMN_HOBBYICON + " BLOB "
             +");";
 
     public static final String SQL_CREATE_TABLE_PARENTHOBBY = "CREATE TABLE " + TABLE_PARENTHOBBY + "("
