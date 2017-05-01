@@ -3,6 +3,7 @@ package p8.group3.ida.aau.p8_group3.Presenter;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +14,7 @@ import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
 import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.R;
 
-public class CreateAccountSecondPage extends CreateAccountPage {
+public class CreateAccountSecondPage extends AppCompatActivity {
     private ParentDAO parentDAO;
 
     EditText numberOfChildren;

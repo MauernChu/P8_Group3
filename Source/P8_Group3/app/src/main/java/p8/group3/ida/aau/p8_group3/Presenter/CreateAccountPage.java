@@ -3,6 +3,7 @@ package p8.group3.ida.aau.p8_group3.Presenter;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 import p8.group3.ida.aau.p8_group3.R;
 
 
-public class CreateAccountPage extends LoginPage {
+public class CreateAccountPage extends AppCompatActivity {
 
     EditText createUsername;
     EditText createPassword;
