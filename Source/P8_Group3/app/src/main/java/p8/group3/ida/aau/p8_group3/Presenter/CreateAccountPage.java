@@ -16,6 +16,7 @@ public class CreateAccountPage extends AppCompatActivity {
 
     EditText createUsername;
     EditText createPassword;
+    EditText createEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class CreateAccountPage extends AppCompatActivity {
 
         createUsername = (EditText) findViewById(R.id.createUsername);
         createPassword = (EditText) findViewById(R.id.createPassword);
+        createEmail = (EditText) findViewById(R.id.email);
 
         TextView txchimp = (TextView) findViewById(R.id.loginTitle);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "KGCorneroftheSky.ttf");
@@ -53,6 +55,7 @@ public class CreateAccountPage extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), CreateAccountSecondPage.class);
                 intent.putExtra("username", createUsername.getText().toString());
                 intent.putExtra("password", createPassword.getText().toString());
+                intent.putExtra("email", createEmail.getText().toString());
                 startActivityForResult(intent, 0);
             }
         });

@@ -19,12 +19,13 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
 
     private SQLiteDatabase database;
     private DatabaseHandler dbHelper;
-    private Context testContext;
-    private String[] testAllColumns = new String[]{DatabaseHandler.COLUMN_PARENTID,
+    private Context parentContext;
+    private String[] parentAllColumns = new String[]{DatabaseHandler.COLUMN_PARENTID,
             DatabaseHandler.COLUMN_USERNAME, DatabaseHandler.COLUMN_NUMBERCHILDREN,
             DatabaseHandler.COLUMN_AGECHILDREN, DatabaseHandler.COLUMN_PASSWORD,
             DatabaseHandler.COLUMN_PROFILEPICTURE, DatabaseHandler.COLUMN_INFOPARENT,
-            DatabaseHandler.COLUMN_TIMECHECKEDIN, DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN};
+            DatabaseHandler.COLUMN_TIMECHECKEDIN, DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN,
+            DatabaseHandler.COLUMN_EMAIL, DatabaseHandler.COLUMN_CITYOFRESIDENCE};
 
     public ParentDAOImpl(Context context)
     {
@@ -46,10 +47,11 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         ContentValues values = new ContentValues();
         values.put(DatabaseHandler.COLUMN_USERNAME, parent.getUsername());
         values.put(DatabaseHandler.COLUMN_PASSWORD, parent.getPassword());
+        values.put(DatabaseHandler.COLUMN_EMAIL, parent.getEmail());
         values.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, parent.getNumberOfChildren());
         values.put(DatabaseHandler.COLUMN_AGECHILDREN, parent.getAgeOfChildren());
         long insertID = database.insert(DatabaseHandler.TABLE_PARENT, null, values);
-        Cursor cursor = database.query(DatabaseHandler.TABLE_PARENT, testAllColumns,
+        Cursor cursor = database.query(DatabaseHandler.TABLE_PARENT, parentAllColumns,
                 DatabaseHandler.COLUMN_PARENTID + "=" + insertID, null, null, null, null);
         cursor.moveToFirst();
         Parent testParent = cursorToParent(cursor);
@@ -61,9 +63,10 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         int parentID = cursor.getInt(0);
         String username = cursor.getString(1);
         String password = cursor.getString(4);
+        String email = cursor.getString(9);
         int numberOfChildren = cursor.getInt(2);
         String ageOfChildren = cursor.getString(3);
-        Parent parent = new Parent(parentID, username, password, numberOfChildren, ageOfChildren);
+        Parent parent = new Parent(parentID, username, password, email, numberOfChildren, ageOfChildren);
         return parent;
     }
 

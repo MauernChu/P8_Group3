@@ -5,6 +5,7 @@ public class Parent {
     private int parentID;
     private String username;
     private String password;
+    private String email;
     private int numberOfChildren;
     private String ageOfChildren;
     private String infoAboutParent;
@@ -16,55 +17,75 @@ public class Parent {
     information immediatly when they are creating a profile.
     */
 
-    public Parent(int parentID, String username, String password, int numberOfChildren, String ageOfChildren) {
+    public Parent(int parentID, String username, String email, String password, int numberOfChildren, String ageOfChildren) {
         this.parentID = parentID;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.numberOfChildren = numberOfChildren;
         this.ageOfChildren = ageOfChildren;
     }
 
-    public int getParentID() {
+    public int getParentID()
+    {
         return parentID;
     }
 
-    public void setParentID(int parentID) {
+    public void setParentID(int parentID)
+    {
         this.parentID = parentID;
     }
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username)
+    {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password)
+    {
         this.password = password;
     }
 
-    public int getNumberOfChildren() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getNumberOfChildren()
+    {
         return numberOfChildren;
     }
 
-    public void setNumberOfChildren(int numberOfChildren) {
+    public void setNumberOfChildren(int numberOfChildren)
+    {
         this.numberOfChildren = numberOfChildren;
     }
 
-    public String getAgeOfChildren() {
+    public String getAgeOfChildren()
+    {
         return ageOfChildren;
     }
 
-    public void setAgeOfChildren(String ageOfChildren) {
+    public void setAgeOfChildren(String ageOfChildren)
+    {
         this.ageOfChildren = ageOfChildren;
     }
 
-    public String getInfoAboutParent() {
+    public String getInfoAboutParent()
+    {
         return infoAboutParent;
     }
 

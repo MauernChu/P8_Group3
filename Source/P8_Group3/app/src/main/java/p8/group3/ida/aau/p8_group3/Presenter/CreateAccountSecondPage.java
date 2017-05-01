@@ -22,6 +22,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
 
     private String username;
     private String password;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         username = bundle.getString("username");
         password = bundle.getString("password");
+        email = bundle.getString("email");
 
         parentDAO = new ParentDAOImpl(this);
         parentDAO.open();
@@ -67,7 +69,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
                 String numberOfChildrenAsString = numberOfChildren.getText().toString();
                 int numberofchildren = Integer.parseInt(numberOfChildrenAsString);
                 String ageofchildren = ageOfChildren.getText().toString();
-                Parent newParent = new Parent(0, username, password, numberofchildren, ageofchildren);
+                Parent newParent = new Parent(0, username, password, email, numberofchildren, ageofchildren);
                 Parent dbParent = parentDAO.createParent(newParent);
                 Intent myIntent = new Intent(view.getContext(), ProfilePage.class);
                 startActivityForResult(myIntent, 0);
