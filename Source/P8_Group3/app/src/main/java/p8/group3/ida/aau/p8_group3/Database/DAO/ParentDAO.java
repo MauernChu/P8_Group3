@@ -11,4 +11,6 @@ public interface ParentDAO {
     void close();
 
     Parent createParent(Parent parent);
+
+    String loginCheckCredentials(String username);
 }

@@ -68,6 +68,27 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         String ageOfChildren = cursor.getString(3);
         Parent parent = new Parent(parentID, username, password, email, numberOfChildren, ageOfChildren);
         return parent;
-    }
 
+
+    }
+    public String loginCheckCredentials(String username) {
+        database = dbHelper.getReadableDatabase();
+        String query = "SELECT username, password FROM " + DatabaseHandler.TABLE_PARENT;
+        Cursor cursor = database.rawQuery(query, null);
+        String usernameDb, passwordDb;
+        passwordDb = "not found";
+
+        if (cursor.moveToFirst()) {
+            do {
+                usernameDb = cursor.getString(0);
+
+                if (usernameDb.equals(username)) {
+                    passwordDb = cursor.getString(1);
+                    break;
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        return passwordDb;
+    }
 }

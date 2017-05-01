@@ -17,11 +17,11 @@ public class Parent {
     information immediatly when they are creating a profile.
     */
 
-    public Parent(int parentID, String username, String email, String password, int numberOfChildren, String ageOfChildren) {
+    public Parent(int parentID, String username, String password, String email, int numberOfChildren, String ageOfChildren) {
         this.parentID = parentID;
         this.username = username;
-        this.email = email;
         this.password = password;
+        this.email = email;
         this.numberOfChildren = numberOfChildren;
         this.ageOfChildren = ageOfChildren;
     }

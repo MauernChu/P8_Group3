@@ -10,19 +10,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.DatabaseHandler;
+import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
 import p8.group3.ida.aau.p8_group3.R;
 
 public class LoginPage extends AppCompatActivity {
+    private ParentDAO parentDAO;
+
+    EditText loginUsername;
+    EditText loginPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
+        parentDAO = new ParentDAOImpl(this);
+        parentDAO.open();
+
         //Log-in variables
-        final EditText username = (EditText) findViewById(R.id.createUsername);
-        final EditText password = (EditText) findViewById(R.id.createPassword);
+        loginUsername = (EditText) findViewById(R.id.createUsername);
+        loginPassword = (EditText) findViewById(R.id.createPassword);
 
         //Font variables
         TextView txchimp = (TextView) findViewById(R.id.loginTitle);
@@ -54,19 +64,30 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        //Hardcoded a log-in
+        //Method for checking the login credentials and changing view if the credentials is correct.
         Button logIn = (Button) findViewById(R.id.signIn);
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("user") && password.getText().toString().equals("pass")) {
-                    Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
-                    Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
-                    startActivityForResult(mapIntent, 0);
-                } else {
-                    Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
-                }
+                Button logIn = (Button) findViewById(R.id.signIn);
+                logIn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String loginUsernameAsString = loginUsername.getText().toString();
+                        String loginPasswordAsString = loginPassword.getText().toString();
+                        String password = parentDAO.loginCheckCredentials(loginUsernameAsString);
+
+                        if (loginPasswordAsString.equals(password)) {
+                            Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
+                            Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
+                            startActivityForResult(mapIntent, 0);
+                        } else {
+                            Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }
 }
+
