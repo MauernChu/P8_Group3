@@ -6,7 +6,6 @@ import java.sql.Blob;
 public class Location {
     private int locationID;
     private String locationName;
-    private Blob locationPicture;
     private String locationDescription;
     private double locationLongitude;
     private double locationLatitude;
@@ -19,10 +18,9 @@ public class Location {
     locationID is included in the constructor for future usage.
     */
 
-    public Location(int locationID, String locationName, Blob locationPicture, String locationDescription, Double locationLongitude, Double locationLatitude, String locationCategory) {
+    public Location(int locationID, String locationName, String locationDescription, Double locationLongitude, Double locationLatitude, String locationCategory) {
         this.locationID = locationID;
         this.locationName = locationName;
-        this.locationPicture = locationPicture;
         this.locationDescription = locationDescription;
         this.locationLongitude = locationLongitude;
         this.locationLatitude = locationLatitude;
@@ -44,14 +42,6 @@ public class Location {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
-    }
-
-    public Blob getLocationPicture() {
-        return locationPicture;
-    }
-
-    public void setLocationPicture(Blob locationPicture) {
-        this.locationPicture = locationPicture;
     }
 
     public String getLocationDescription() {

@@ -1,13 +1,17 @@
 package p8.group3.ida.aau.p8_group3.Presenter;
 
+import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import p8.group3.ida.aau.p8_group3.Database.LocationDAOImpl;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,12 +26,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import p8.group3.ida.aau.p8_group3.R;
 
 public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     private static int MY_LOCATION_REQUEST_CODE ;
     private GoogleMap locationMap;
+
+    Context context = this;
+    LocationDAOImpl data;
 
     private GpsTracker gpsTracker;
     private Location mLocation;
@@ -60,6 +68,13 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_map_page);
+
+        data = new LocationDAOImpl(context);
+        try{
+            data.open();
+        }   catch (Exception e){
+            Log.i("Error", "Data");
+        }
 
         gpsTracker = new GpsTracker(getApplicationContext());
         mLocation = gpsTracker.getLocation();
@@ -110,6 +125,18 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
 
+        List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
+        for (int i = 0; i < l.size(); i++){
+            LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
+
+            locationMap.addMarker(new MarkerOptions()
+                    .title(l.get(i).getLocationName())
+                    .snippet(l.get(i).getLocationDescription())
+                    .position(lat)
+            );
+        }
+
+
 
         // Add a marker at user's position and move the camera
         //////Add circle for position instead of pin!!!!
@@ -121,7 +148,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
         locationMap.moveCamera(CameraUpdateFactory.newLatLng(userPosition));
 
-
+/*
 
         locationMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -161,12 +188,12 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             }
         });
 
-
+*/
         // Creates the focus on the map to be at user's position
         CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
         locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
-
+/*
         //Add markers to library category
         final Button libraries = (Button) findViewById(R.id.libraries);
         libraries.setOnClickListener(new View.OnClickListener() {
@@ -338,7 +365,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 }
 
             }
-        });
+        });*/
 
     }
 
