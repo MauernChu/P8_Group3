@@ -15,6 +15,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -30,6 +32,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     private GpsTracker gpsTracker;
     private Location mLocation;
     double latitude, longitude;
+    private Circle circle;
 
 
     private BottomSheetBehavior bottomSheetBehavior;
@@ -108,10 +111,15 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         locationMap = googleMap;
 
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(latitude, longitude);
-        locationMap.addMarker(new MarkerOptions().position(sydney).title("I'm here..."));
-        locationMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker at user's position and move the camera
+        //////Add circle for position instead of pin!!!!
+        final LatLng userPosition = new LatLng(latitude, longitude);
+
+
+        locationMap.addCircle(new CircleOptions().center(userPosition));
+
+        locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+        locationMap.moveCamera(CameraUpdateFactory.newLatLng(userPosition));
 
 
 
@@ -154,11 +162,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         });
 
 
-        // Creates the focus on the map to be in Aalborg
-        final LatLng aalborgLocation = new LatLng(57.046707, 9.935932);
-        CameraPosition cameraPositionAalborg = CameraPosition.builder().target(aalborgLocation).zoom(12).tilt(45).bearing(0).build();
-        locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionAalborg));
-        Marker marker = locationMap.addMarker(new MarkerOptions().position(aalborgLocation));
+        // Creates the focus on the map to be at user's position
+        CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+        locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+
 
         //Add markers to library category
         final Button libraries = (Button) findViewById(R.id.libraries);
@@ -177,6 +184,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.book1))
                 );
 
+             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
+             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+
                 titleNoerresundbyLibraryMarker = mNoerresunbyLibrary.getTitle();
                 LatLng noerresundbyLibraryPosition = mNoerresunbyLibrary.getPosition();
                 libraryMarkerPosition.add(noerresundbyLibraryPosition);
@@ -187,6 +198,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                         .title("Aalborg Main Library")
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.book1))
                 );
+
 
                 LatLng aalborgMainLibraryPosition = mAalborgMainLibrary.getPosition();
                 libraryMarkerPosition.add(aalborgMainLibraryPosition);
@@ -203,8 +215,9 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 libraryMarker.add(mVejgaardLibrary);
 
                 for (LatLng collectedLibraryMarkerPosition : libraryMarkerPosition) {
-                    CameraPosition n = CameraPosition.builder().target(collectedLibraryMarkerPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(n));
+                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
                 }
             }
         });
@@ -218,6 +231,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 if (sheetShowing){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
+
+             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
+             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
                 Marker mPlaygroundAalborgCenter = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(57.042001, 9.915755))
@@ -250,8 +267,9 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 playgroundMarker.add(mPlaygroundOestreAnlaeg);
 
                 for (LatLng collectedPlaygroundMarkerPosition : playgroundMarkerPosition) {
-                    CameraPosition n = CameraPosition.builder().target(collectedPlaygroundMarkerPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(n));
+                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
                 }
             }
         });
@@ -261,6 +279,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         cinema.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 locationMap.clear();
+
+             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
+             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
                 if (sheetShowing){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -277,8 +299,9 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 movieMarker.add(mCinemaKennedyArkaden);
 
                 for (LatLng collectedMovieMarkerPosition : movieMarkerPosition) {
-                    CameraPosition n = CameraPosition.builder().target(collectedMovieMarkerPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(n));
+                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
                 }
 
             }
@@ -289,6 +312,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         park.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 locationMap.clear();
+
+             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
+             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
                 if (sheetShowing){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -305,34 +332,15 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 parkMarker.add(mParkSohngaardsholmsparken);
 
                 for (LatLng collectedParkMarkerPosition : parkMarkerPosition) {
-                    CameraPosition n = CameraPosition.builder().target(collectedParkMarkerPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(n));
+                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
                 }
 
             }
         });
 
     }
-        //Method for getting the description of the location, when marker is clicked (both the getInfoWindow method and getInfoContents method)
-     /*    locationMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-           @Override
-            public View getInfoWindow(Marker marker) {
-                View view = getLayoutInflater().inflate(R.layout.info_window_maps, null);
-                TextView name = (TextView) view.findViewById(R.id.txtname);
-                name.setText(titleNoerresundbyLibraryMarker);
-                TextView adress = (TextView) view.findViewById(R.id.txtAdress);
-                adress.setText("Playground");
-                TextView number = (TextView) view.findViewById(R.id.txtnumber);
-                number.setText("700");
-                return view;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-                return null;
-            }
-        });
-    */
 
 
         public void updateBottomSheetContent(Marker marker) {
