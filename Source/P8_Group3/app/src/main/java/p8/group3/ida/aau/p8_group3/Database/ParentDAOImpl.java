@@ -75,7 +75,8 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         database = dbHelper.getReadableDatabase();
         String query = "SELECT username, password FROM " + DatabaseHandler.TABLE_PARENT;
         Cursor cursor = database.rawQuery(query, null);
-        String usernameDb, passwordDb;
+        String usernameDb;
+        String passwordDb;
         passwordDb = "not found";
 
         if (cursor.moveToFirst()) {
