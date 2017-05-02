@@ -1,5 +1,6 @@
 package p8.group3.ida.aau.p8_group3.Presenter;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.view.View;
@@ -23,7 +24,12 @@ import java.util.ArrayList;
 import p8.group3.ida.aau.p8_group3.R;
 
 public class MapsPage extends BaseActivity implements OnMapReadyCallback {
+    private static int MY_LOCATION_REQUEST_CODE ;
     private GoogleMap locationMap;
+
+    private GpsTracker gpsTracker;
+    private Location mLocation;
+    double latitude, longitude;
 
 
     private BottomSheetBehavior bottomSheetBehavior;
@@ -44,19 +50,24 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
     //Variable to store title information about marker
     String titleNoerresundbyLibraryMarker;
-
+    private String[] permissions;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_map_page);
+
+        gpsTracker = new GpsTracker(getApplicationContext());
+        mLocation = gpsTracker.getLocation();
+
+        latitude = mLocation.getLatitude();
+        longitude = mLocation.getLongitude();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
 
 
         bottomSheet = findViewById(R.id.bottom_sheet);
@@ -97,6 +108,11 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         locationMap = googleMap;
 
 
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(latitude, longitude);
+        locationMap.addMarker(new MarkerOptions().position(sydney).title("I'm here..."));
+        locationMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
 
 
         locationMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -114,36 +130,35 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         });
 
 
-
         final boolean sheetShowing = true;
 
-        Button button4 = (Button)findViewById(R.id.button2);
-        button4.setOnClickListener(new View.OnClickListener(){
+        Button button4 = (Button) findViewById(R.id.button2);
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (sheetShowing){
+                if (sheetShowing) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
         });
 
 
-        Button button5 = (Button)findViewById(R.id.button3);
-        button5.setOnClickListener(new View.OnClickListener(){
+        Button button5 = (Button) findViewById(R.id.button3);
+        button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (sheetShowing){
+                if (sheetShowing) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
         });
-
 
 
         // Creates the focus on the map to be in Aalborg
         final LatLng aalborgLocation = new LatLng(57.046707, 9.935932);
         CameraPosition cameraPositionAalborg = CameraPosition.builder().target(aalborgLocation).zoom(12).tilt(45).bearing(0).build();
         locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionAalborg));
+        Marker marker = locationMap.addMarker(new MarkerOptions().position(aalborgLocation));
 
         //Add markers to library category
         final Button libraries = (Button) findViewById(R.id.libraries);
@@ -330,81 +345,6 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         }
 
 
-/*
-    private void updateBottomSheetContent(Marker marker) {
-
-        TextView name = (TextView) bottomSheet.findViewById(R.id.);
-
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-    }*/
-
-
 
 }
 
-
-
-
-       /* final Button libraries = (Button) findViewById(R.id.libraries);
-        libraries.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) { */
-
-
-
-       /*         libraryMarkers.add(new LatLng(57.047505, 10.003304));
-                libraryMarkers.add(new LatLng(57.039661, 9.997811));
-                libraryMarkers.add(new LatLng(57.050867, 9.968285));
-                libraryMarkers.add(new LatLng(57.037046, 9.953866));
-
-
-
-                for(LatLng location : libraryMarkers) {
-                    locationPageMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(57.047505, 10.003304))
-                            .title("Libraries")
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.book)));
-
-                }
-
-                    for(LatLng location2 : libraryMarkers){
-                        locationPageMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(57.037046, 9.953866))
-                                .title("cameraPositionAalborg"));
-
-                } */
-
-
-// for (LatLng m: libraryMarkers) {
-//    locationPageMap.addMarker(new MarkerOptions().position(m));
-//   CameraPosition n = CameraPosition.builder().target(m).zoom(12).tilt(45).bearing(0).build();
-//  locationPageMap.moveCamera(CameraUpdateFactory.newCameraPosition(n));
-//}
-
-
-//mMap.moveCamera(CameraUpdateFactory.newLatLng(aalborgLocation));
-
-
-//Tranumparken, 9220 Aalborg Øst
-       /* LatLng playground1 = new LatLng(57.047505, 10.003304);
-        CameraPosition play1 = CameraPosition.builder().target(playground1).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground1).title("Villys Legeplads"));
-        // mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play1));
-
-        //Sebberundsvej, 9220 Aalborg Øst
-        LatLng playground2 = new LatLng(57.039661, 9.997811);
-        CameraPosition play2 = CameraPosition.builder().target(playground2).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground2).title("Naturlegeplads"));
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play2));
-
-       // Kælkebakken ved Tove Ditlevsens Vej
-        LatLng playground3 = new LatLng(57.050867, 9.968285);
-        CameraPosition play3 = CameraPosition.builder().target(playground3).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground3).title("legeplads"));
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play3));
-
-        //  Sohngårdsholmsparken
-
-        LatLng playground4 = new LatLng(57.037046, 9.953866);
-        CameraPosition play4 = CameraPosition.builder().target(playground4).zoom(12).tilt(45).bearing(0).build();
-        mMap.addMarker(new MarkerOptions().position(playground4).title("Sohngårdsholmsparken"));
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(play4));    */
