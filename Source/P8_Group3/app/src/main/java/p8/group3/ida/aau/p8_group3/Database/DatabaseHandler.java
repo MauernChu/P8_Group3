@@ -13,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 21 ;
+    private static final int DATABASE_VERSION = 22 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -31,50 +31,50 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_CITYOFRESIDENCE = "cityOfResidence";
 
     //Columns for the HobbyList table
-    private static final String TABLE_HOBBYLIST = "hobbyList";
-    private static final String COLUMN_HOBBYID = "_hobbyID";
-    private static final String COLUMN_HOBBYNAME = "hobbyName";
-    private static final String COLUMN_HOBBYICON = "hobbyIcon";
+    public static final String TABLE_HOBBYLIST = "hobbyList";
+    public static final String COLUMN_HOBBYID = "_hobbyID";
+    public static final String COLUMN_HOBBYNAME = "hobbyName";
+    public static final String COLUMN_HOBBYICON = "hobbyIcon";
 
     //Columns for ParentHobby table
-    private static final String TABLE_PARENTHOBBY = "parentHobby";
-    private static final String COLUMN_TRACKHOBBYPARENTID = "trackParentID";
-    private static final String COLUMN_TRACKHOBBYID = "trackHobbyID";
+    public static final String TABLE_PARENTHOBBY = "parentHobby";
+    public static final String COLUMN_TRACKHOBBYPARENTID = "trackParentID";
+    public static final String COLUMN_TRACKHOBBYID = "trackHobbyID";
 
     //Columns for the LanguageList table
-    private static final String TABLE_LANGUAGELIST = "languageList";
-    private static final String COLUMN_LANGUAGEID = "_languageID";
-    private static final String COLUMN_LANGUAGE = "language";
+    public static final String TABLE_LANGUAGELIST = "languageList";
+    public static final String COLUMN_LANGUAGEID = "_languageID";
+    public static final String COLUMN_LANGUAGE = "language";
 
     //Columns for ParentLanguage table
-    private static final String TABLE_PARENTLANGUAGE = "parentLanguage";
-    private static final String COLUMN_TRACKLANGUAGEPARENTID = "trackLanguageParentID";
-    private static final String COLUMN_TRACKLANGUAGEID = "trackLanguageID";
+    public static final String TABLE_PARENTLANGUAGE = "parentLanguage";
+    public static final String COLUMN_TRACKLANGUAGEPARENTID = "trackLanguageParentID";
+    public static final String COLUMN_TRACKLANGUAGEID = "trackLanguageID";
 
     //Columns for the Location table
-    private static final String TABLE_LOCATION = "location";
-    private static final String COLUMN_LOCATIONID = "_locationID";
-    private static final String COLUMN_LOCATIONNAME = "locationName";
-    private static final String COLUMN_LOCATIONPICTURE = "locationPicture";
-    private static final String COLUMN_LOCATIONDESCRIPTION = "locationDescription";
-    private static final String COLUMN_LOCATIONLONGITUDE = "locationLongitude";
-    private static final String COLUMN_LOCATIONLATITUDE = "locationLatitude";
-    private static final String COLUMN_LOCATIONCATEGORY = "locationCategory";
+    public static final String TABLE_LOCATION = "location";
+    public static final String COLUMN_LOCATIONID = "_locationID";
+    public static final String COLUMN_LOCATIONNAME = "locationName";
+    public static final String COLUMN_LOCATIONPICTURE = "locationPicture";
+    public static final String COLUMN_LOCATIONDESCRIPTION = "locationDescription";
+    public static final String COLUMN_LOCATIONLONGITUDE = "locationLongitude";
+    public static final String COLUMN_LOCATIONLATITUDE = "locationLatitude";
+    public static final String COLUMN_LOCATIONCATEGORY = "locationCategory";
 
     //Columns for the Rating table
-    private static final String TABLE_RATING = "rating";
-    private static final String COLUMN_RATINGLOCATIONID = "ratingLocationID";
-    private static final String COLUMN_RATINGPARENTID = "ratingParentID";
-    private static final String COLUMN_TIMERATINGCREATED = "timeRatingCreated";
-    private static final String COLUMN_TIMERATINGEDITED = "timeRatingEdited";
-    private static final String COLUMN_RATINGVALUE = "ratingValue";
-    private static final String COLUMN_REVIEWTEXT = "reviewText";
+    public static final String TABLE_RATING = "rating";
+    public static final String COLUMN_RATINGLOCATIONID = "ratingLocationID";
+    public static final String COLUMN_RATINGPARENTID = "ratingParentID";
+    public static final String COLUMN_TIMERATINGCREATED = "timeRatingCreated";
+    public static final String COLUMN_TIMERATINGEDITED = "timeRatingEdited";
+    public static final String COLUMN_RATINGVALUE = "ratingValue";
+    public static final String COLUMN_REVIEWTEXT = "reviewText";
 
     //Columns for the PlannedActivity table
-    private static final String TABLE_PLANNEDACTIVITY = "plannedActivity";
-    private static final String COLUMN_PLANNEDACTIVITYPARENTID = "plannedActivityParentID";
-    private static final String COLUMN_PLANNEDACTIVITYLOCATIONID = "plannedActivityLocationID";
-    private static final String COLUMN_PLANNEDACITIVTYTIME = "plannedActivityTime";
+    public static final String TABLE_PLANNEDACTIVITY = "plannedActivity";
+    public static final String COLUMN_PLANNEDACTIVITYPARENTID = "plannedActivityParentID";
+    public static final String COLUMN_PLANNEDACTIVITYLOCATIONID = "plannedActivityLocationID";
+    public static final String COLUMN_PLANNEDACITIVTYTIME = "plannedActivityTime";
 
 
     //We need to pass some information to the superclass and that is what we are doing through the
