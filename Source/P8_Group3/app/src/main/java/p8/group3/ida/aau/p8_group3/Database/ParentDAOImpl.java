@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import p8.group3.ida.aau.p8_group3.Model.Parent;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -91,5 +92,15 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
             while (cursor.moveToNext());
         }
         return passwordDb;
+    }
+
+    public Parent retrieveInformationAboutParent(String username, String password){
+        database = dbHelper.getReadableDatabase();
+        String query = "SELECT * FROM " + DatabaseHandler.TABLE_PARENT + " WHERE " + DatabaseHandler.COLUMN_USERNAME + " = ?  AND " + DatabaseHandler.COLUMN_PASSWORD + " = ? ";
+        Cursor cursor = database.rawQuery(query, new String[]{username, password}, null);
+        cursor.moveToFirst();
+        Parent testParent = cursorToParent(cursor);
+        cursor.close();
+        return testParent;
     }
 }

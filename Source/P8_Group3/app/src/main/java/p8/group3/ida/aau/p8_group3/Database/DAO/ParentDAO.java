@@ -13,4 +13,6 @@ public interface ParentDAO {
     Parent createParent(Parent parent);
 
     String loginCheckCredentials(String username);
+
+    Parent retrieveInformationAboutParent(String username, String password);
 }

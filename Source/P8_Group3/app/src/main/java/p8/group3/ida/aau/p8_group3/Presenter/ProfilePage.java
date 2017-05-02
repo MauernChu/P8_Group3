@@ -7,18 +7,45 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
+import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
+import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.R;
 
 public class ProfilePage extends BaseActivity {
+    TextView txProfileUsername;
 
+    private String loginUsername;
+    private String loginPassword;
 
-
+    private ParentDAO parentDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
         getSupportActionBar().setTitle("Profile");
+
+        Bundle bundle = getIntent().getExtras();
+        loginUsername = bundle.getString("loginUsername");
+        loginPassword = bundle.getString("loginPassword");
+
+        parentDAO = new ParentDAOImpl(this);
+        parentDAO.open();
+
+        Parent profileParent = parentDAO.retrieveInformationAboutParent(loginUsername, loginPassword);
+
+        String profileUsername = profileParent.getUsername();
+        String profilePassword = profileParent.getAgeOfChildren();
+        String profileEmail = profileParent.getEmail();
+
+        txProfileUsername = (TextView) findViewById(R.id.name);
+        txProfileUsername.setText(profileUsername);
+
+
+
+
+
 
        /* Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
 

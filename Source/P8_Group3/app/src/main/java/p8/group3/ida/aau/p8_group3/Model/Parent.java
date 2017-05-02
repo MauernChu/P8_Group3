@@ -9,6 +9,8 @@ public class Parent {
     private int numberOfChildren;
     private String ageOfChildren;
     private String infoAboutParent;
+    private int locationIdCheckin;
+
 
     /*
     Constructor for parent objects.
@@ -25,6 +27,8 @@ public class Parent {
         this.numberOfChildren = numberOfChildren;
         this.ageOfChildren = ageOfChildren;
     }
+
+
 
     public int getParentID()
     {

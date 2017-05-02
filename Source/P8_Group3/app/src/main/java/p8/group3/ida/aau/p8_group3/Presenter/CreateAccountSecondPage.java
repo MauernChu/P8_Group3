@@ -71,7 +71,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
                 String ageofchildren = ageOfChildren.getText().toString();
                 Parent newParent = new Parent(0, username, password, email, numberofchildren, ageofchildren);
                 Parent dbParent = parentDAO.createParent(newParent);
-                Intent myIntent = new Intent(view.getContext(), ProfilePage.class);
+                Intent myIntent = new Intent(view.getContext(), LoginPage.class);
                 startActivityForResult(myIntent, 0);
             }
         });
