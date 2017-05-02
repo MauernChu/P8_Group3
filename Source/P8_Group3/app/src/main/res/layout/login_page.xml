@@ -149,15 +149,6 @@ COMMENT SPACE
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/createUsername"
-            android:layout_alignTop="@+id/loginTitle"
-            android:layout_marginStart="12dp"
-            android:text="Button" />
-
 
     </RelativeLayout>
 
