@@ -151,7 +151,7 @@ COMMENT SPACE
 
 
     </RelativeLayout>
-
+<!--
     <Button
         android:id="@+id/map"
         android:layout_width="wrap_content"
@@ -160,5 +160,5 @@ COMMENT SPACE
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
         android:text="Map" />
-
+-->
 </RelativeLayout>

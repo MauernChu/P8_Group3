@@ -1,9 +1,13 @@
 package p8.group3.ida.aau.p8_group3.Presenter;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -63,11 +67,23 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     String titleNoerresundbyLibraryMarker;
     private String[] permissions;
 
+    private static final int PERMISSION_ACCESS_COARSE_LOCATION = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_map_page);
+
+
+        // Ask for permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
+                    PERMISSION_ACCESS_COARSE_LOCATION);
+        }
+
+
 
         data = new LocationDAOImpl(context);
         try{
@@ -378,6 +394,20 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
         }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_ACCESS_COARSE_LOCATION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // All good!
+                } else {
+                    Toast.makeText(this, "Need your location!", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+        }
+    }
 
 
 
