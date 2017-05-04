@@ -12,6 +12,7 @@ public class Location {
     private String locationCategory;
     private String locationAddress;
     private String locationCity;
+    private String locationPicture;
 
 
 
@@ -21,7 +22,7 @@ public class Location {
     */
 
     public Location(int locationID, String locationName, String locationDescription, Double locationLongitude,
-                    Double locationLatitude, String locationCategory, String locationAddress, String locationCity ) {
+                    Double locationLatitude, String locationCategory, String locationAddress, String locationCity, String locationPicture) {
         this.locationID = locationID;
         this.locationName = locationName;
         this.locationDescription = locationDescription;
@@ -30,8 +31,17 @@ public class Location {
         this.locationCategory = locationCategory;
         this.locationAddress = locationAddress;
         this.locationCity = locationCity;
+        this.locationPicture = locationPicture;
     }
 
+
+    public String getLocationPicture() {
+        return locationPicture;
+    }
+
+    public void setLocationPicture(String locationPicture) {
+        this.locationPicture = locationPicture;
+    }
 
     public String getLocationAddress() {
         return locationAddress;

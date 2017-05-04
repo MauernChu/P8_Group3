@@ -25,7 +25,9 @@ public class LocationDAOImpl {
             DatabaseHandler.COLUMN_LOCATIONLATITUDE,
             DatabaseHandler.COLUMN_LOCATIONCATEGORY,
             DatabaseHandler.COLUMN_LOCATIONADDRESS,
-            DatabaseHandler.COLUMN_LOCATIONCITY};
+            DatabaseHandler.COLUMN_LOCATIONCITY,
+            DatabaseHandler.COLUMN_LOCATIONPICTURE};
+
 
 
     public LocationDAOImpl(Context context)
@@ -52,6 +54,7 @@ public class LocationDAOImpl {
         v.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, location.getLocationCategory());
         v.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, location.getLocationAddress());
         v.put(DatabaseHandler.COLUMN_LOCATIONCITY, location.getLocationCity());
+        v.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, location.getLocationPicture());
 
         long insertID = database.insert(DatabaseHandler.TABLE_LOCATION, null, v);
 
@@ -84,8 +87,9 @@ public class LocationDAOImpl {
         String locationCategory = cursor.getString(5);
         String locationAddress = cursor.getString(6);
         String locationCity = cursor.getString(7);
+        String locationPicture = cursor.getString(8);
 
-        Location l = new Location(locationID, locationName, locationDescription, locationLongitude, locationLatitude, locationCategory, locationAddress, locationCity );
+        Location l = new Location(locationID, locationName, locationDescription, locationLongitude, locationLatitude, locationCategory, locationAddress, locationCity , locationPicture );
 
         return l;
 

@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -51,6 +53,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
     private Marker markerCity2;
     private Hashtable<String, String>hashCity;
+    private Hashtable<String, String>hashAddress;
+    private Hashtable<String, String>hashPicture;
 
     //Arraylists to store the location positions for each category
     final ArrayList<LatLng> libraryMarkerPosition = new ArrayList<LatLng>();
@@ -77,6 +81,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         setContentView(R.layout.location_map_page);
 
         hashCity = new Hashtable<String, String>();
+        hashAddress = new Hashtable<String, String>();
+        hashPicture = new Hashtable<String, String>();
 
 
         // Ask for permission
@@ -85,7 +91,6 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
                     PERMISSION_ACCESS_COARSE_LOCATION);
         }
-
 
 
         data = new LocationDAOImpl(context);
@@ -155,6 +160,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                     .snippet(l.get(i).getLocationAddress())
                     .position(lat));
             hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
+            hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
+            hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
 
 
         }
@@ -397,9 +404,6 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
         public void updateBottomSheetContent(Marker marker) {
 
-            // Retrieve the data from the marker.
-            String add = (String) marker.getTag();
-
             View view = getLayoutInflater().inflate(R.layout.pop_up_info, null);
             List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
 
@@ -411,7 +415,22 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             locationCity.setText(hashCity.get(marker.getId()));
 
             TextView locationAddress = (TextView) bottomSheet.findViewById(R.id.txtAddress);
-            locationAddress.setText(marker.getSnippet());
+            locationAddress.setText(hashAddress.get(marker.getId()));
+
+            ImageView locationPicture = (ImageView) bottomSheet.findViewById(R.id.infowindow);
+            Picasso.with(this).load(hashPicture.get(marker.getId())).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(locationPicture, new com.squareup.picasso.Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
+
+                   // setText(hashAddress.get(marker.getId()));
 
 
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);

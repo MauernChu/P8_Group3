@@ -126,12 +126,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String SQL_CREATE_TABLE_LOCATION = "CREATE TABLE " + TABLE_LOCATION + "("
             + COLUMN_LOCATIONID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_LOCATIONNAME + " TEXT NOT NULL, "
-            + COLUMN_LOCATIONPICTURE + " BLOB, "
+            + COLUMN_LOCATIONPICTURE + " TEXT, "
             + COLUMN_LOCATIONDESCRIPTION + " TEXT, "
             + COLUMN_LOCATIONLONGITUDE + " DOUBLE NOT NULL, "
             + COLUMN_LOCATIONLATITUDE + " DOUBLE NOT NULL, "
-            + COLUMN_LOCATIONCATEGORY + " TEXT "
-            + COLUMN_LOCATIONADDRESS + " TEXT NOT NULL "
+            + COLUMN_LOCATIONCATEGORY + " TEXT, "
+            + COLUMN_LOCATIONADDRESS + " TEXT NOT NULL, "
             + COLUMN_LOCATIONCITY + " TEXT NOT NULL "
             +");";
 
