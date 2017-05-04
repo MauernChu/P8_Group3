@@ -23,13 +23,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import p8.group3.ida.aau.p8_group3.R;
@@ -44,12 +44,13 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     private GpsTracker gpsTracker;
     private Location mLocation;
     double latitude, longitude;
-    private Circle circle;
 
 
     private BottomSheetBehavior bottomSheetBehavior;
     private View bottomSheet;
 
+    private Marker markerCity2;
+    private Hashtable<String, String>hashCity;
 
     //Arraylists to store the location positions for each category
     final ArrayList<LatLng> libraryMarkerPosition = new ArrayList<LatLng>();
@@ -74,6 +75,8 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_map_page);
+
+        hashCity = new Hashtable<String, String>();
 
 
         // Ask for permission
@@ -142,29 +145,32 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         locationMap = googleMap;
 
         List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
+
+
         for (int i = 0; i < l.size(); i++){
             LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
-            locationMap.addMarker(new MarkerOptions()
+            markerCity2 = locationMap.addMarker(new MarkerOptions()
                     .title(l.get(i).getLocationName())
-                    .snippet(l.get(i).getLocationDescription())
-                    .position(lat)
-            );
+                    .snippet(l.get(i).getLocationAddress())
+                    .position(lat));
+            hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
+
+
         }
 
 
 
         // Add a marker at user's position and move the camera
-        //////Add circle for position instead of pin!!!!
         final LatLng userPosition = new LatLng(latitude, longitude);
 
 
-        locationMap.addCircle(new CircleOptions().center(userPosition));
+        //locationMap.addCircle(new CircleOptions().center(userPosition));
 
         locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
         locationMap.moveCamera(CameraUpdateFactory.newLatLng(userPosition));
 
-/*
+
 
         locationMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -173,12 +179,15 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 return true;
             }
         });
+
         locationMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             }
         });
+
+         /*
 
 
         final boolean sheetShowing = true;
@@ -387,9 +396,23 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
 
         public void updateBottomSheetContent(Marker marker) {
+
+            // Retrieve the data from the marker.
+            String add = (String) marker.getTag();
+
             View view = getLayoutInflater().inflate(R.layout.pop_up_info, null);
-            TextView adress = (TextView) bottomSheet.findViewById(R.id.txtAdress);
-            adress.setText("Playground");
+            List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
+
+
+            TextView locationName = (TextView) bottomSheet.findViewById(R.id.txtLocationName);
+            locationName.setText(marker.getTitle());
+
+            TextView locationCity = (TextView) bottomSheet.findViewById(R.id.txtCity);
+            locationCity.setText(hashCity.get(marker.getId()));
+
+            TextView locationAddress = (TextView) bottomSheet.findViewById(R.id.txtAddress);
+            locationAddress.setText(marker.getSnippet());
+
 
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 

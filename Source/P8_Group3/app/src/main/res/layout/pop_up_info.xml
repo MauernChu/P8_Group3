@@ -18,8 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar3"
@@ -62,16 +61,35 @@
 
 
                 <TextView
-                    android:id="@+id/txtAdress"
+                    android:id="@+id/txtLocationName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:text="LocationName"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtLocationName"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:text="City"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCity"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"
                     android:text="Address"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black"
-                    />
-
-
+                    android:textColor="@color/black" />
 
 
             </RelativeLayout>
@@ -89,20 +107,18 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Check in now"
-                android:layout_below="@+id/txtAdress"
+                android:layout_below="@+id/txtLocationName"
                 android:background="@color/gray"
-                />
+                android:text="Check in now" />
 
             <Button
                 android:id="@+id/button2"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/button3"
-                android:text="Check in later"
+                android:layout_marginTop="10dp"
                 android:background="@color/gray"
-                />
+                android:text="Check in later" />
 
 
             <RatingBar
@@ -112,10 +128,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:background="@color/mustard"
                 android:numStars="5"
                 android:rating="3.5"
                 android:stepSize="0.5"
-                android:background="@color/mustard"
                 android:theme="@style/RatingBar" />
 
             <Button
@@ -128,7 +144,6 @@
                 android:text="SUBMIT RATING" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>

@@ -60,6 +60,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_LOCATIONLONGITUDE = "locationLongitude";
     public static final String COLUMN_LOCATIONLATITUDE = "locationLatitude";
     public static final String COLUMN_LOCATIONCATEGORY = "locationCategory";
+    public static final String COLUMN_LOCATIONADDRESS = "locationAddress";
+    public static final String COLUMN_LOCATIONCITY = "locationCity";
 
     //Columns for the Rating table
     public static final String TABLE_RATING = "rating";
@@ -129,6 +131,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + COLUMN_LOCATIONLONGITUDE + " DOUBLE NOT NULL, "
             + COLUMN_LOCATIONLATITUDE + " DOUBLE NOT NULL, "
             + COLUMN_LOCATIONCATEGORY + " TEXT "
+            + COLUMN_LOCATIONADDRESS + " TEXT NOT NULL "
+            + COLUMN_LOCATIONCITY + " TEXT NOT NULL "
             +");";
 
     public static final String SQL_CREATE_TABLE_RATING = "CREATE TABLE " + TABLE_RATING + "("
