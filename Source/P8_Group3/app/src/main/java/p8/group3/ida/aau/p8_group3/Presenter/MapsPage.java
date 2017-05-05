@@ -16,8 +16,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import p8.group3.ida.aau.p8_group3.Database.LocationDAOImpl;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,11 +27,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import p8.group3.ida.aau.p8_group3.Database.LocationDAOImpl;
 import p8.group3.ida.aau.p8_group3.R;
 
 public class MapsPage extends BaseActivity implements OnMapReadyCallback {
@@ -48,6 +46,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     double latitude, longitude;
 
 
+
     private BottomSheetBehavior bottomSheetBehavior;
     private View bottomSheet;
 
@@ -55,6 +54,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     private Hashtable<String, String>hashCity;
     private Hashtable<String, String>hashAddress;
     private Hashtable<String, String>hashPicture;
+    private Hashtable<String, String>hashCategory;
 
     //Arraylists to store the location positions for each category
     final ArrayList<LatLng> libraryMarkerPosition = new ArrayList<LatLng>();
@@ -67,6 +67,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     final ArrayList<Marker> playgroundMarker = new ArrayList<Marker>();
     final ArrayList<Marker> movieMarker = new ArrayList<Marker>();
     final ArrayList<Marker> parkMarker = new ArrayList<Marker>();
+
+
+
+    final Hashtable <Integer, String> test = new Hashtable<Integer, String>();
 
     //Variable to store title information about marker
     String titleNoerresundbyLibraryMarker;
@@ -83,6 +87,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         hashCity = new Hashtable<String, String>();
         hashAddress = new Hashtable<String, String>();
         hashPicture = new Hashtable<String, String>();
+        hashCategory = new Hashtable<String, String>();
 
 
         // Ask for permission
@@ -121,6 +126,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
         final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.ratingBar);
         Button submitButton = (Button) findViewById(R.id.submitRating);
+
         // perform click event on button
         submitButton.setOnClickListener(new View.OnClickListener() {
 
@@ -149,7 +155,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
 
-        List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
+        final List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
 
 
         for (int i = 0; i < l.size(); i++){
@@ -162,6 +168,9 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
             hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
             hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+            hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
+
+            test.put(i,l.get(i).getLocationCategory());
 
 
         }
@@ -194,7 +203,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             }
         });
 
-         /*
+
 
 
         final boolean sheetShowing = true;
@@ -220,23 +229,52 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             }
         });
 
-*/
+
         // Creates the focus on the map to be at user's position
         CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
         locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
-/*
+
         //Add markers to library category
         final Button libraries = (Button) findViewById(R.id.libraries);
         libraries.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 locationMap.clear();
 
-
                 if (sheetShowing){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
 
+
+                    for (int i = 0; i < l.size(); i++){
+
+                        if( test.get(i).equals("library")){
+
+                            LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
+
+
+                            markerCity2 = locationMap.addMarker(new MarkerOptions()
+                                    .title(l.get(i).getLocationName())
+                                    .snippet(l.get(i).getLocationAddress())
+                                    .position(lat).icon(BitmapDescriptorFactory.fromResource(R.drawable.book1)));
+                            hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
+                            hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
+                            hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+
+                        }
+
+                    }
+
+                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+
+                };
+
+        });
+
+
+              /*
                 Marker mNoerresunbyLibrary = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(57.057619, 9.923992))
                         .title("Noerresundby Library")
@@ -273,13 +311,11 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 libraryMarkerPosition.add(vejgaardLibraryPosition);
                 libraryMarker.add(mVejgaardLibrary);
 
-                for (LatLng collectedLibraryMarkerPosition : libraryMarkerPosition) {
-                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
-                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
-                }
-            }
-        });
+
+                */
+
+
+
 
         //Add markers to playground category
         final Button playgrounds = (Button) findViewById(R.id.playgrounds);
@@ -290,6 +326,35 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 if (sheetShowing){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
+
+
+                for (int i = 0; i < l.size(); i++){
+
+                    if( test.get(i).equals("playground")){
+
+                        LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
+
+                        markerCity2 = locationMap.addMarker(new MarkerOptions()
+                                .title(l.get(i).getLocationName())
+                                .snippet(l.get(i).getLocationAddress())
+                                .position(lat).icon(BitmapDescriptorFactory.fromResource(R.drawable.playground2)));
+                        hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
+                        hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
+                        hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+
+                    }
+
+                }
+
+                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+
+            };
+
+        });
+
+                /*
 
              //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
              //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
@@ -333,19 +398,48 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             }
         });
 
-        //Add markers to cinema category
-        final Button cinema = (Button) findViewById(R.id.movies);
-        cinema.setOnClickListener(new View.OnClickListener() {
+        */
+
+        //Add markers to swimming pool category
+        final Button swimmingPool = (Button) findViewById(R.id.swimming);
+        swimmingPool.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 locationMap.clear();
-
-             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
-             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
                 if (sheetShowing){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
+
+
+                for (int i = 0; i < l.size(); i++){
+
+
+                    if( test.get(i).equals("swimming pool")){
+
+                        LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
+
+                        markerCity2 = locationMap.addMarker(new MarkerOptions()
+                                .title(l.get(i).getLocationName())
+                                .snippet(l.get(i).getLocationAddress())
+                                .position(lat).icon(BitmapDescriptorFactory.fromResource(R.drawable.swimming)));
+                        hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
+                        hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
+                        hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+
+                    }
+
+                }
+
+                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+
+            };
+
+        });
+
+
+                /*
 
                 Marker mCinemaKennedyArkaden = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(57.042392, 9.918497))
@@ -364,7 +458,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 }
 
             }
-        });
+        });   */
 
         //Add markers to park category
         final Button park = (Button) findViewById(R.id.forests);
@@ -372,13 +466,41 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             public void onClick(View view) {
                 locationMap.clear();
 
-             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
-             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
                 if (sheetShowing){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
+
+
+                for (int i = 0; i < l.size(); i++){
+
+
+
+                    if( test.get(i).equals("park")){
+
+                        LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
+
+                        markerCity2 = locationMap.addMarker(new MarkerOptions()
+                                .title(l.get(i).getLocationName())
+                                .snippet(l.get(i).getLocationAddress())
+                                .position(lat).icon(BitmapDescriptorFactory.fromResource(R.drawable.forest)));
+                        hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
+                        hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
+                        hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+
+                    }
+
+                }
+
+                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+                CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+
+            };
+
+        });
+
+                /*
 
                 Marker mParkSohngaardsholmsparken = locationMap.addMarker(new MarkerOptions()
                         .position(new LatLng(56.802179, 9.855545))
@@ -397,7 +519,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
                 }
 
             }
-        });*/
+        });     */
 
     }
 
