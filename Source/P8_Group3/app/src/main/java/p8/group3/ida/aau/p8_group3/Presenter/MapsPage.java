@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,7 @@ import p8.group3.ida.aau.p8_group3.R;
 
 import static p8.group3.ida.aau.p8_group3.R.id.ratingBar;
 
-public class MapsPage extends BaseActivity implements OnMapReadyCallback {
+public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private static int MY_LOCATION_REQUEST_CODE ;
     private GoogleMap locationMap;
 

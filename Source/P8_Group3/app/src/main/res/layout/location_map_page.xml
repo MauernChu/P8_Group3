@@ -53,13 +53,6 @@
 
         </android.support.design.widget.CoordinatorLayout>
 
-        <include
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            layout="@layout/toolbar_page"
-            />
-
-
         <RadioGroup
         android:id="@+id/radio_group_list_selector"
         android:layout_width="match_parent"
@@ -160,15 +153,5 @@
 
     </RadioGroup>
     </RelativeLayout>
-
-    <android.support.design.widget.NavigationView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/navigation_view"
-        android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"
-        android:background="@color/brown"
-        android:textColor="@color/white"
-        ></android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
