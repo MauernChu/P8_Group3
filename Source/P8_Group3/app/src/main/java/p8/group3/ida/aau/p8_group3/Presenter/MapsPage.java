@@ -32,23 +32,30 @@ import java.util.Hashtable;
 import java.util.List;
 
 import p8.group3.ida.aau.p8_group3.Database.LocationDAOImpl;
+import p8.group3.ida.aau.p8_group3.Database.RatingDAOimpl;
+import p8.group3.ida.aau.p8_group3.Model.Rating;
 import p8.group3.ida.aau.p8_group3.R;
+
+import static p8.group3.ida.aau.p8_group3.R.id.ratingBar;
 
 public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     private static int MY_LOCATION_REQUEST_CODE ;
     private GoogleMap locationMap;
 
+
     Context context = this;
     LocationDAOImpl data;
+    RatingDAOimpl ratingData;
 
-    private GpsTracker gpsTracker;
-    private Location mLocation;
-    double latitude, longitude;
-
+   // private GpsTracker gpsTracker;
+   // private Location mLocation;
+    // double latitude, longitude;
 
 
     private BottomSheetBehavior bottomSheetBehavior;
     private View bottomSheet;
+
+    public RatingBar ratingbar;
 
     private Marker markerCity2;
     private Hashtable<String, String>hashCity;
@@ -76,7 +83,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
     String titleNoerresundbyLibraryMarker;
     private String[] permissions;
 
-    private static final int PERMISSION_ACCESS_COARSE_LOCATION = 1;
+    // private static final int PERMISSION_ACCESS_COARSE_LOCATION = 1;
 
 
     @Override
@@ -91,11 +98,12 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
 
         // Ask for permission
+        /*
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
                     PERMISSION_ACCESS_COARSE_LOCATION);
-        }
+        }*/
 
 
         data = new LocationDAOImpl(context);
@@ -105,11 +113,18 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
             Log.i("Error", "Data");
         }
 
-        gpsTracker = new GpsTracker(getApplicationContext());
+      ratingData = new RatingDAOimpl(context);
+        try{
+            ratingData.open();
+        }   catch (Exception e){
+            Log.i("Error", "Data");
+        }
+
+       /* gpsTracker = new GpsTracker(getApplicationContext());
         mLocation = gpsTracker.getLocation();
 
         latitude = mLocation.getLatitude();
-        longitude = mLocation.getLongitude();
+        longitude = mLocation.getLongitude();*/
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -123,21 +138,28 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         bottomSheetBehavior.setHideable(true);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-
-        final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+        final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
         Button submitButton = (Button) findViewById(R.id.submitRating);
 
         // perform click event on button
         submitButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                // get values and then displayed in a toast
-                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-                String rating = "Rating :: " + simpleRatingBar.getRating();
-                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating, Toast.LENGTH_LONG).show();
-            }
-        });
+        @Override
+        public void onClick(View v) {
+            // get values and then displayed in a toast
+
+           float f;
+            f = simpleRatingBar.getRating();
+            Rating rating = new Rating("255", "255", f, "blabla", 1, 1);
+            ratingData.createRating(rating);
+
+            String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
+            String rating2 = "Rating :: " + simpleRatingBar.getRating();
+            Toast.makeText(getApplicationContext(), totalStars + "\n" + rating2, Toast.LENGTH_LONG).show();
+        }
+
+    });
+
     }
 
 
@@ -178,13 +200,20 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
 
         // Add a marker at user's position and move the camera
-        final LatLng userPosition = new LatLng(latitude, longitude);
+        //final LatLng userPosition = new LatLng(latitude, longitude);
 
 
         //locationMap.addCircle(new CircleOptions().center(userPosition));
 
-        locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
-        locationMap.moveCamera(CameraUpdateFactory.newLatLng(userPosition));
+        final LatLng userPosition = new LatLng(57, 9.95);
+
+       /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+        locationMap.moveCamera(CameraUpdateFactory.newLatLng(userPosition));*/
+
+        // Creates the focus on the map to be at user's position
+        CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+        locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+
 
 
 
@@ -230,10 +259,6 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         });
 
 
-        // Creates the focus on the map to be at user's position
-        CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-        locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
-
 
         //Add markers to library category
         final Button libraries = (Button) findViewById(R.id.libraries);
@@ -274,48 +299,6 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         });
 
 
-              /*
-                Marker mNoerresunbyLibrary = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(57.057619, 9.923992))
-                        .title("Noerresundby Library")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.book1))
-                );
-
-             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
-             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
-
-                titleNoerresundbyLibraryMarker = mNoerresunbyLibrary.getTitle();
-                LatLng noerresundbyLibraryPosition = mNoerresunbyLibrary.getPosition();
-                libraryMarkerPosition.add(noerresundbyLibraryPosition);
-                libraryMarker.add(mNoerresunbyLibrary);
-
-                Marker mAalborgMainLibrary = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(57.047269, 9.928126))
-                        .title("Aalborg Main Library")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.book1))
-                );
-
-
-                LatLng aalborgMainLibraryPosition = mAalborgMainLibrary.getPosition();
-                libraryMarkerPosition.add(aalborgMainLibraryPosition);
-                libraryMarker.add(mAalborgMainLibrary);
-
-                Marker mVejgaardLibrary = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(57.041489, 9.951695))
-                        .title("Vejgaard Library")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.book1))
-                );
-
-                LatLng vejgaardLibraryPosition = mVejgaardLibrary.getPosition();
-                libraryMarkerPosition.add(vejgaardLibraryPosition);
-                libraryMarker.add(mVejgaardLibrary);
-
-
-                */
-
-
-
 
         //Add markers to playground category
         final Button playgrounds = (Button) findViewById(R.id.playgrounds);
@@ -354,51 +337,6 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
         });
 
-                /*
-
-             //   locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here..."));
-             //   CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-             //   locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
-
-                Marker mPlaygroundAalborgCenter = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(57.042001, 9.915755))
-                        .title("Playground Aalborg Center")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.playground2))
-                );
-
-                LatLng playgroundAalborgCenterPosition = mPlaygroundAalborgCenter.getPosition();
-                playgroundMarkerPosition.add(playgroundAalborgCenterPosition);
-                playgroundMarker.add(mPlaygroundAalborgCenter);
-
-                Marker mPlaygroundSolbyen = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(57.042912, 9.881086))
-                        .title("Playground Solbyen")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.playground2))
-                );
-
-                LatLng playgroundSolbyenPosition = mPlaygroundSolbyen.getPosition();
-                playgroundMarkerPosition.add(playgroundSolbyenPosition);
-                playgroundMarker.add(mPlaygroundSolbyen);
-
-                Marker mPlaygroundOestreAnlaeg = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(57.045442, 9.940251))
-                        .title("Playground Oestre Anlaeg")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.playground2))
-                );
-
-                LatLng playgroundOestreAnlaegPosition = mPlaygroundOestreAnlaeg.getPosition();
-                playgroundMarkerPosition.add(playgroundOestreAnlaegPosition);
-                playgroundMarker.add(mPlaygroundOestreAnlaeg);
-
-                for (LatLng collectedPlaygroundMarkerPosition : playgroundMarkerPosition) {
-                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
-                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
-                }
-            }
-        });
-
-        */
 
         //Add markers to swimming pool category
         final Button swimmingPool = (Button) findViewById(R.id.swimming);
@@ -439,26 +377,6 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
         });
 
 
-                /*
-
-                Marker mCinemaKennedyArkaden = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(57.042392, 9.918497))
-                        .title("Cinema Kennedy Arkaden")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.movie))
-                );
-
-                LatLng cinemaKennedyArkadePosition = mCinemaKennedyArkaden.getPosition();
-                movieMarkerPosition.add(cinemaKennedyArkadePosition);
-                movieMarker.add(mCinemaKennedyArkaden);
-
-                for (LatLng collectedMovieMarkerPosition : movieMarkerPosition) {
-                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
-                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
-                }
-
-            }
-        });   */
 
         //Add markers to park category
         final Button park = (Button) findViewById(R.id.forests);
@@ -500,28 +418,10 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
         });
 
-                /*
-
-                Marker mParkSohngaardsholmsparken = locationMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(56.802179, 9.855545))
-                        .title("CSohngaardsholmsparken")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.forest))
-                );
-
-                LatLng sohngaardsholmsparkenPosition = mParkSohngaardsholmsparken.getPosition();
-                parkMarkerPosition.add(sohngaardsholmsparkenPosition);
-                parkMarker.add(mParkSohngaardsholmsparken);
-
-                for (LatLng collectedParkMarkerPosition : parkMarkerPosition) {
-                    locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
-                    CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                    locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
-                }
-
-            }
-        });     */
 
     }
+
+
 
 
         public void updateBottomSheetContent(Marker marker) {
@@ -559,6 +459,16 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
         }
 
+/*
+        public void submitRating(){
+            float v;
+            v = ratingbar.getNumStars();
+            Rating rating = new Rating("255", "255", v, "blabla", 1, 1);
+            ratingData.createRating(rating);
+        };
+*/
+
+       /*
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -571,7 +481,7 @@ public class MapsPage extends BaseActivity implements OnMapReadyCallback {
 
                 break;
         }
-    }
+    }*/
 
 
 

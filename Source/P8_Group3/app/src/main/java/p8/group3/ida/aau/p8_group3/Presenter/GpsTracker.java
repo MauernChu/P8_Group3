@@ -1,3 +1,4 @@
+/*
 package p8.group3.ida.aau.p8_group3.Presenter;
 
 import android.Manifest;
@@ -16,6 +17,7 @@ import android.support.v4.content.ContextCompat;
  * Created by christosmentzelos on 01/05/2017.
  */
 
+/*
 public class GpsTracker extends Service implements LocationListener {
 
     private final Context context;
@@ -97,3 +99,4 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
 }
+*/
