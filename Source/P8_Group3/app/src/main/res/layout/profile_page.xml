@@ -23,11 +23,6 @@ android.support.v4.widget.DrawerLayout.
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include
-            layout="@layout/toolbar_page"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <RelativeLayout
 
             android:id="@+id/brownBackground"
@@ -350,24 +345,6 @@ android.support.v4.widget.DrawerLayout.
         </RelativeLayout>
 
     </RelativeLayout>
-    <!--
-      Create navigation view to hold the content of the navigation drawer.
-      Therefore we use the root: android.support.design.widget.NavigationView
-      and the ID = navigation_view.
-      The layout gravity indicates which side the navigation bar should come from, and when you
-      write "start" it means that the bar is "outside" of the frame to the left.
-      If we use a navigation view to create a navigation drawer we can specify the content of the
-      drawer in the format of a menu (menu ressource file).
-      -->
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/brown"
-        android:textColor="@color/white"
-        app:menu="@menu/drawer_menu"></android.support.design.widget.NavigationView>
-
 
 </android.support.v4.widget.DrawerLayout>
 

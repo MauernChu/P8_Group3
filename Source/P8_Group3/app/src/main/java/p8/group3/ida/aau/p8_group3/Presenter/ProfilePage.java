@@ -1,6 +1,7 @@
 package p8.group3.ida.aau.p8_group3.Presenter;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +13,7 @@ import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
 import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.R;
 
-public class ProfilePage extends BaseActivity {
+public class ProfilePage extends AppCompatActivity {
     TextView txProfileUsername;
 
     private String loginUsername;
@@ -24,7 +25,6 @@ public class ProfilePage extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
-        getSupportActionBar().setTitle("Profile");
 
         Bundle bundle = getIntent().getExtras();
         loginUsername = bundle.getString("loginUsername");
@@ -41,41 +41,6 @@ public class ProfilePage extends BaseActivity {
 
         txProfileUsername = (TextView) findViewById(R.id.name);
         txProfileUsername.setText(profileUsername);
-
-
-
-
-
-
-       /* Typeface custom_font= Typeface.createFromAsset(getAssets(),"KGCorneroftheSky.ttf");
-
-        TextView txName = (TextView) findViewById(R.id.name);
-        txName.setTypeface(custom_font);
-
-        TextView txChildren = (TextView) findViewById(R.id.children);
-        txChildren.setTypeface(custom_font);
-
-        TextView txAge = (TextView) findViewById(R.id.age);
-        txAge.setTypeface(custom_font);
-
-        TextView txCity = (TextView) findViewById(R.id.city);
-        txCity.setTypeface(custom_font);
-
-        TextView txLanguages = (TextView) findViewById(R.id.languages);
-        txLanguages.setTypeface(custom_font);
-
-        TextView txAllLanguages = (TextView) findViewById(R.id.allLanguages);
-        txAllLanguages.setTypeface(custom_font);
-
-        TextView txAbout = (TextView) findViewById(R.id.about);
-        txAbout.setTypeface(custom_font);
-
-        TextView txTextAbout = (TextView) findViewById(R.id.textAbout);
-        txTextAbout.setTypeface(custom_font);
-
-        TextView txHobbies = (TextView) findViewById(R.id.hobbies);
-        txHobbies.setTypeface(custom_font);
-        */
 
        //Button for finishing editing
         final Button done = (Button) findViewById(R.id.doneEdit);
