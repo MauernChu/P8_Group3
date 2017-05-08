@@ -125,5 +125,14 @@ public class ProfilePage extends AppCompatActivity {
                 Toast.makeText(ProfilePage.this, "You have been logged out.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        Button mapButton = (Button) findViewById(R.id.mapButtonProfilePage);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent profileIntent = new Intent(view.getContext(), MapsPage.class);
+                startActivityForResult(profileIntent, 0);
+            }
+        });
+
     }
 }
