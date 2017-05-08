@@ -64,14 +64,16 @@ public class LoginPage extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
-/*
-        Button mapButton = (Button) findViewById(R.id.map);
-        mapButton.setOnClickListener(new View.OnClickListener() {
+
+        Button profileButton = (Button) findViewById(R.id.profilePageButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), MapsPage.class);
-                startActivityForResult(myIntent, 0);
+                Intent profileIntent = new Intent(view.getContext(), ProfilePage.class);
+                profileIntent.putExtra("loginUsername", loginUsername.getText().toString());
+                profileIntent.putExtra("loginPassword", loginPassword.getText().toString());
+                startActivityForResult(profileIntent, 0);
             }
-        });*/
+        });
 
         //Method for checking the login credentials and changing view if the credentials is correct.
         Button logIn = (Button) findViewById(R.id.signIn);
@@ -89,8 +91,6 @@ public class LoginPage extends AppCompatActivity {
                         if (loginPasswordAsString.equals(password)) {
                             Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
                             Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
-                            mapIntent.putExtra("loginUsername", loginUsername.getText().toString());
-                            mapIntent.putExtra("loginPassword", loginPassword.getText().toString());
                             startActivityForResult(mapIntent, 0);
                         } else {
                             Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
