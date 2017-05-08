@@ -1,5 +1,6 @@
 package p8.group3.ida.aau.p8_group3.Presenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
@@ -112,6 +114,15 @@ public class ProfilePage extends AppCompatActivity {
                 done.setVisibility(View.GONE);
                 pencil.setVisibility(View.VISIBLE);
 
+            }
+        });
+
+        Button logoutButton = (Button) findViewById(R.id.logoutButtonProfilePage);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent profileIntent = new Intent(view.getContext(), LoginPage.class);
+                startActivityForResult(profileIntent, 0);
+                Toast.makeText(ProfilePage.this, "You have been logged out.", Toast.LENGTH_SHORT).show();
             }
         });
     }
