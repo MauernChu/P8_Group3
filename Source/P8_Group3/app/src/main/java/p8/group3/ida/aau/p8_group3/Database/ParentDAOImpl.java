@@ -16,6 +16,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.Date;
+
 public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO {
 
     private SQLiteDatabase database;
@@ -51,13 +53,14 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         values.put(DatabaseHandler.COLUMN_EMAIL, parent.getEmail());
         values.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, parent.getNumberOfChildren());
         values.put(DatabaseHandler.COLUMN_AGECHILDREN, parent.getAgeOfChildren());
+        values.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, parent.getCityOfResidence());
         long insertID = database.insert(DatabaseHandler.TABLE_PARENT, null, values);
         Cursor cursor = database.query(DatabaseHandler.TABLE_PARENT, parentAllColumns,
                 DatabaseHandler.COLUMN_PARENTID + "=" + insertID, null, null, null, null);
         cursor.moveToFirst();
-        Parent testParent = cursorToParent(cursor);
+        Parent createParent = cursorToParent(cursor);
         cursor.close();
-        return testParent;
+        return createParent;
     }
 
     private Parent cursorToParent(Cursor cursor) {
@@ -67,11 +70,26 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         String email = cursor.getString(9);
         int numberOfChildren = cursor.getInt(2);
         String ageOfChildren = cursor.getString(3);
-        Parent parent = new Parent(parentID, username, password, email, numberOfChildren, ageOfChildren);
+        String cityOfResidence = cursor.getString(10);
+        Parent parent = new Parent(parentID, username, password, email, numberOfChildren, ageOfChildren, cityOfResidence);
         return parent;
-
-
     }
+
+    private Parent fetchParentInformation(Cursor cursor) {
+        int parentID = cursor.getInt(0);;
+        String username = cursor.getString(1);;
+        int numberOfChildren = cursor.getInt(2);
+        String ageOfChildren = cursor.getString(3);;
+        String password = cursor.getString(4);
+        String profilePicture = cursor.getString(5);
+        String infoAboutParent = cursor.getString(6);
+        int locationIDCheckedIn = cursor.getInt(8);
+        String email = cursor.getString(9);
+        String cityOfResidence = cursor.getString(10);
+        Parent fetchParent = new Parent(parentID, username, numberOfChildren, ageOfChildren, password, profilePicture, infoAboutParent, locationIDCheckedIn, email, cityOfResidence);
+        return fetchParent;
+    }
+
     public String loginCheckCredentials(String username) {
         database = dbHelper.getReadableDatabase();
         String query = "SELECT username, password FROM " + DatabaseHandler.TABLE_PARENT;
@@ -99,7 +117,7 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         String query = "SELECT * FROM " + DatabaseHandler.TABLE_PARENT + " WHERE " + DatabaseHandler.COLUMN_USERNAME + " = ?  AND " + DatabaseHandler.COLUMN_PASSWORD + " = ? ";
         Cursor cursor = database.rawQuery(query, new String[]{username, password}, null);
         cursor.moveToFirst();
-        Parent testParent = cursorToParent(cursor);
+        Parent testParent = fetchParentInformation(cursor);
         cursor.close();
         return testParent;
     }

@@ -1,15 +1,20 @@
 package p8.group3.ida.aau.p8_group3.Model;
 
+import java.util.Date;
+
 
 public class Parent {
     private int parentID;
     private String username;
-    private String password;
-    private String email;
     private int numberOfChildren;
     private String ageOfChildren;
+    private String password;
+    private String profilePicture;
     private String infoAboutParent;
+    private int timeChekedIn;
     private int locationIdCheckin;
+    private String email;
+    private String cityOfResidence;
 
 
     /*
@@ -19,16 +24,28 @@ public class Parent {
     information immediatly when they are creating a profile.
     */
 
-    public Parent(int parentID, String username, String password, String email, int numberOfChildren, String ageOfChildren) {
+    public Parent(int parentID, String username, String password, String email, int numberOfChildren, String ageOfChildren, String cityOfResidence) {
         this.parentID = parentID;
         this.username = username;
         this.password = password;
         this.email = email;
         this.numberOfChildren = numberOfChildren;
         this.ageOfChildren = ageOfChildren;
+        this.cityOfResidence = cityOfResidence;
     }
 
-
+    public Parent(int parentID, String username, int numberOfChildren, String ageOfChildren, String password, String profilePicture, String infoAboutParent, int locationIdCheckin, String email, String cityOfResidence) {
+        this.parentID = parentID;
+        this.username = username;
+        this.numberOfChildren = numberOfChildren;
+        this.ageOfChildren = ageOfChildren;
+        this.password = password;
+        this.profilePicture = profilePicture;
+        this.infoAboutParent = infoAboutParent;
+        this.locationIdCheckin = locationIdCheckin;
+        this.email = email;
+        this.cityOfResidence = cityOfResidence;
+    }
 
     public int getParentID()
     {
@@ -95,5 +112,37 @@ public class Parent {
 
     public void setInfoAboutParent(String infoAboutParent) {
         this.infoAboutParent = infoAboutParent;
+    }
+
+    public String getCityOfResidence() {
+        return cityOfResidence;
+    }
+
+    public void setParentCity(String parentCity) {
+        this.cityOfResidence = parentCity;
+    }
+
+    public int getLocationIdCheckin() {
+        return locationIdCheckin;
+    }
+
+    public void setLocationIdCheckin(int locationIdCheckin) {
+        this.locationIdCheckin = locationIdCheckin;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public int getTimeChekedIn() {
+        return timeChekedIn;
+    }
+
+    public void setTimeChekedIn(int timeChekedIn) {
+        this.timeChekedIn = timeChekedIn;
     }
 }

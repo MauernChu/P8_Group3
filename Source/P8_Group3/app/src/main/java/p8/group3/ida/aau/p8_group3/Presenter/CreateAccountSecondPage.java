@@ -20,6 +20,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
 
     EditText numberOfChildren;
     EditText ageOfChildren;
+    EditText cityOfResidence;
 
     private String username;
     private String password;
@@ -40,6 +41,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
 
         numberOfChildren = (EditText) findViewById(R.id.numberOfChildren);
         ageOfChildren = (EditText) findViewById(R.id.ageOfChildren);
+        cityOfResidence = (EditText) findViewById(R.id.city);
 
         TextView txchimp = (TextView) findViewById(R.id.loginTitle);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "KGCorneroftheSky.ttf");
@@ -68,13 +70,13 @@ public class CreateAccountSecondPage extends AppCompatActivity {
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String numberOfChildrenAsString = numberOfChildren.getText().toString();
+                String cityOfResidenceAsString = cityOfResidence.getText().toString();
                 int numberofchildren = Integer.parseInt(numberOfChildrenAsString);
                 String ageofchildren = ageOfChildren.getText().toString();
-                Parent newParent = new Parent(0, username, password, email, numberofchildren, ageofchildren);
+                Parent newParent = new Parent(0, username, password, email, numberofchildren, ageofchildren, cityOfResidenceAsString);
                 Parent dbParent = parentDAO.createParent(newParent);
                 Intent myIntent = new Intent(view.getContext(), LoginPage.class);
                 startActivityForResult(myIntent, 0);
-                Toast.makeText(CreateAccountSecondPage.this, "Account created. Please log in again.", Toast.LENGTH_LONG).show();
             }
         });
     }

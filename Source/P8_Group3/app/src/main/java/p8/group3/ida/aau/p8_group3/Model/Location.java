@@ -67,7 +67,8 @@ public class Location {
         this.locationID = locationID;
     }
 
-    public String getLocationName() {
+    public String getLocationName()
+    {
         return locationName;
     }
 

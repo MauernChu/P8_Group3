@@ -17,6 +17,9 @@ import p8.group3.ida.aau.p8_group3.R;
 
 public class ProfilePage extends AppCompatActivity {
     TextView txProfileUsername;
+    TextView txProfileChildren;
+    TextView txProfileChildrenAge;
+    TextView txProfileCity;
 
     private String loginUsername;
     private String loginPassword;
@@ -38,13 +41,26 @@ public class ProfilePage extends AppCompatActivity {
         Parent profileParent = parentDAO.retrieveInformationAboutParent(loginUsername, loginPassword);
 
         String profileUsername = profileParent.getUsername();
-        String profilePassword = profileParent.getAgeOfChildren();
+        String profileParentAgeOfChildren = profileParent.getAgeOfChildren();
+        int profileChildren = profileParent.getNumberOfChildren();
         String profileEmail = profileParent.getEmail();
+        String profileParentDescription = profileParent.getInfoAboutParent();
+        String profileParentCity = profileParent.getCityOfResidence();
+
+
+        txProfileChildrenAge = (TextView) findViewById(R.id.age);
+        txProfileChildrenAge.setText(profileParentAgeOfChildren);
 
         txProfileUsername = (TextView) findViewById(R.id.name);
         txProfileUsername.setText(profileUsername);
 
-       //Button for finishing editing
+        txProfileChildren = (TextView) findViewById(R.id.children);
+        txProfileChildren.setText(Integer.toString(profileChildren));
+
+        txProfileCity = (TextView) findViewById(R.id.city);
+        txProfileCity.setText(profileParentCity);
+
+        //Button for finishing editing
         final Button done = (Button) findViewById(R.id.doneEdit);
 
         //Variables that change visibility.
