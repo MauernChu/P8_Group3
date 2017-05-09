@@ -142,7 +142,6 @@
                 android:layout_below="@+id/ratingBar"
                 android:layout_marginTop="10dp"
                 android:background="@color/gray"
-                android:onClick="submitRating"
                 android:text="SUBMIT RATING" />
         </LinearLayout>
 

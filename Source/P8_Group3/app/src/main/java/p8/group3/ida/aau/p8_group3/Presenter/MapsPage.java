@@ -60,13 +60,12 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private BottomSheetBehavior bottomSheetBehavior;
     private View bottomSheet;
 
-    public RatingBar ratingbar;
-
     private Marker markerCity2;
     private Hashtable<String, String>hashCity;
     private Hashtable<String, String>hashAddress;
     private Hashtable<String, String>hashPicture;
     private Hashtable<String, String>hashCategory;
+    private Hashtable<String, Integer>hashLocationID;
 
     //Arraylists to store the location positions for each category
     final ArrayList<LatLng> libraryMarkerPosition = new ArrayList<LatLng>();
@@ -101,6 +100,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         hashAddress = new Hashtable<String, String>();
         hashPicture = new Hashtable<String, String>();
         hashCategory = new Hashtable<String, String>();
+        hashLocationID = new Hashtable<String, Integer>();
 
 
         // Ask for permission
@@ -197,6 +197,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
             hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
             hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
+            hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
 
             test.put(i,l.get(i).getLocationCategory());
         }
@@ -480,21 +481,39 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 }
             });
 
-                   // setText(hashAddress.get(marker.getId()));
-
+            ratingBarFunctions(marker);
 
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
         }
 
-/*
-        public void submitRating(){
-            float v;
-            v = ratingbar.getNumStars();
-            Rating rating = new Rating("255", "255", v, "blabla", 1, 1);
-            ratingData.createRating(rating);
-        };
-*/
+    public void ratingBarFunctions(Marker marker) {
+
+        final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
+        Button submitButton = (Button) findViewById(R.id.submitRating);
+        final int locID = hashLocationID.get(marker.getId());
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                // get values and then displayed in a toast
+
+                float f;
+                f = simpleRatingBar.getRating();
+                Rating rating = new Rating("255", "255", f, "blabla", locID, 1);
+                ratingData.createRating(rating);
+
+                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
+                String rating2 = "Rating :: " + simpleRatingBar.getRating();
+                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating2, Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+
+    }
+
 
        /*
     @Override
