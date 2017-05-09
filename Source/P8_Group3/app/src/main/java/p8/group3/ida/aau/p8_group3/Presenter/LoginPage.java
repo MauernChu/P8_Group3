@@ -80,25 +80,18 @@ public class LoginPage extends AppCompatActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button logIn = (Button) findViewById(R.id.signIn);
-                logIn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String loginUsernameAsString = loginUsername.getText().toString();
-                        String loginPasswordAsString = loginPassword.getText().toString();
-                        String password = parentDAO.loginCheckCredentials(loginUsernameAsString);
-
-                        if (loginPasswordAsString.equals(password)) {
-                            Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
-                            Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
-                            mapIntent.putExtra("loginUsername", loginUsername.getText().toString());
-                            mapIntent.putExtra("loginPassword", loginPassword.getText().toString());
-                            startActivityForResult(mapIntent, 0);
-                        } else {
-                            Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                String loginUsernameAsString = loginUsername.getText().toString();
+                String loginPasswordAsString = loginPassword.getText().toString();
+                String password = parentDAO.loginCheckCredentials(loginUsernameAsString);
+                if (loginPasswordAsString.equals(password)) {
+                    Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
+                    Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
+                    mapIntent.putExtra("loginUsername", loginUsername.getText().toString());
+                    mapIntent.putExtra("loginPassword", loginPassword.getText().toString());
+                    startActivityForResult(mapIntent, 0);
+                } else {
+                    Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
