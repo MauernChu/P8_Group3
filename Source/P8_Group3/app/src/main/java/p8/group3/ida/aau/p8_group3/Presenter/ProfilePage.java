@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,91 +47,29 @@ public class ProfilePage extends AppCompatActivity {
         String profileParentCity = profileParent.getCityOfResidence();
 
 
-        txProfileChildrenAge = (TextView) findViewById(R.id.age);
+        txProfileChildrenAge = (TextView) findViewById(R.id.editAge);
         txProfileChildrenAge.setText(profileParentAgeOfChildren);
 
-        txProfileUsername = (TextView) findViewById(R.id.name);
+        txProfileUsername = (TextView) findViewById(R.id.editName);
         txProfileUsername.setText(profileUsername);
 
-        txProfileChildren = (TextView) findViewById(R.id.children);
+        txProfileChildren = (TextView) findViewById(R.id.editChildren);
         txProfileChildren.setText(Integer.toString(profileChildren));
 
-        txProfileCity = (TextView) findViewById(R.id.city);
+        txProfileCity = (TextView) findViewById(R.id.editCity);
         txProfileCity.setText(profileParentCity);
 
-        //Button for finishing editing
-        final Button done = (Button) findViewById(R.id.doneEdit);
 
         //Variables that change visibility.
-        final TextView name = (TextView) findViewById(R.id.name);
-        final EditText editedName = (EditText) findViewById(R.id.editName);
-        final TextView children = (TextView) findViewById(R.id.children);
-        final EditText editedChildren = (EditText) findViewById(R.id.editChildren);
-        final TextView ageOfChildren = (TextView) findViewById(R.id.age);
-        final EditText editedAge = (EditText) findViewById(R.id.editAge);
-        final TextView city = (TextView) findViewById(R.id.city);
-        final EditText editedCity = (EditText) findViewById(R.id.editCity);
+        final TextView name = (TextView) findViewById(R.id.editName);
+        final TextView children = (TextView) findViewById(R.id.editChildren);
+        final TextView ageOfChildren = (TextView) findViewById(R.id.editAge);
+        final TextView city = (TextView) findViewById(R.id.editCity);
         final ImageView pencil = (ImageView) findViewById(R.id.pencilIconEdit);
         final TextView languages = (TextView) findViewById(R.id.allLanguages);
-        final EditText editedLanguages = (EditText) findViewById(R.id.editLanguages);
         final TextView about = (TextView) findViewById(R.id.textAbout);
-        final EditText editedAbout = (EditText) findViewById(R.id.editAbout);
 
-        //Button to edit
-        final Button editProfileButton = (Button) findViewById(R.id.editProfile);
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                name.setVisibility(View.GONE);
-                editedName.setVisibility(View.VISIBLE);
-                children.setVisibility(View.GONE);
-                editedChildren.setVisibility(View.VISIBLE);
-                ageOfChildren.setVisibility(View.GONE);
-                editedAge.setVisibility(View.VISIBLE);
-                city.setVisibility(View.GONE);
-                editedCity.setVisibility(View.VISIBLE);
-                languages.setVisibility(View.GONE);
-                editedLanguages.setVisibility(View.VISIBLE);
-                about.setVisibility(View.GONE);
-                editedAbout.setVisibility(View.VISIBLE);
-
-                //Changing visibility of edit and done buttons
-                editProfileButton.setVisibility(View.GONE);
-                done.setVisibility(View.VISIBLE);
-                pencil.setVisibility(View.GONE);
-
-            }
-        });
-
-        //Remainder of code for button to finish editing
-        done.setOnClickListener(new View.OnClickListener() {
-
-
-            @Override
-            public void onClick(View v) {
-
-                name.setVisibility(View.VISIBLE);
-                editedName.setVisibility(View.GONE);
-                children.setVisibility(View.VISIBLE);
-                editedChildren.setVisibility(View.GONE);
-                ageOfChildren.setVisibility(View.VISIBLE);
-                editedAge.setVisibility(View.GONE);
-                city.setVisibility(View.VISIBLE);
-                editedCity.setVisibility(View.GONE);
-                languages.setVisibility(View.VISIBLE);
-                editedLanguages.setVisibility(View.GONE);
-                about.setVisibility(View.VISIBLE);
-                editedAbout.setVisibility(View.GONE);
-
-                //Changing visibility of edit and done buttons
-                editProfileButton.setVisibility(View.VISIBLE);
-                done.setVisibility(View.GONE);
-                pencil.setVisibility(View.VISIBLE);
-
-            }
-        });
-
+        //methods for menu bar
         Button logoutButton = (Button) findViewById(R.id.logoutButtonProfilePage);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -146,9 +83,21 @@ public class ProfilePage extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent profileIntent = new Intent(view.getContext(), MapsPage.class);
+                profileIntent.putExtra("loginUsername", loginUsername);
+                profileIntent.putExtra("loginPassword", loginPassword);
                 startActivityForResult(profileIntent, 0);
             }
         });
 
+        //method for going to EditProfilePage
+        Button editButton = (Button) findViewById(R.id.editProfile);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent editProfileIntent = new Intent(view.getContext(), EditProfilePage.class);
+                editProfileIntent.putExtra("loginUsername", loginUsername);
+                editProfileIntent.putExtra("loginPassword", loginPassword);
+                startActivityForResult(editProfileIntent, 0);
+            }
+        });
     }
 }

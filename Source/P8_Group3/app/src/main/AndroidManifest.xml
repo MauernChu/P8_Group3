@@ -50,6 +50,10 @@
             android:name=".Presenter.ProfilePage"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".Presenter.EditProfilePage"
+            android:screenOrientation="portrait">
+        </activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

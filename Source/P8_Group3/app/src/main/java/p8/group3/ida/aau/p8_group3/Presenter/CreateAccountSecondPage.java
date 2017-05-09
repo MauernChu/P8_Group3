@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
@@ -41,7 +40,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
 
         numberOfChildren = (EditText) findViewById(R.id.numberOfChildren);
         ageOfChildren = (EditText) findViewById(R.id.ageOfChildren);
-        cityOfResidence = (EditText) findViewById(R.id.city);
+        cityOfResidence = (EditText) findViewById(R.id.editCity);
 
         TextView txchimp = (TextView) findViewById(R.id.loginTitle);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "KGCorneroftheSky.ttf");
@@ -53,7 +52,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
         TextView txFinish = (TextView) findViewById(R.id.finish);
         txFinish.setTypeface(custom_font);
 
-        TextView txCity = (TextView) findViewById(R.id.city);
+        TextView txCity = (TextView) findViewById(R.id.editCity);
         txCity.setTypeface(custom_font);
 
         TextView txNumberOfChildren = (TextView) findViewById(R.id.numberOfChildren);
