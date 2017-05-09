@@ -12,7 +12,7 @@ import java.util.List;
 
 import p8.group3.ida.aau.p8_group3.Model.Rating;
 
-public class RatingDAOimpl {
+public class RatingDAOImpl {
 
 
     private SQLiteDatabase database;
@@ -28,7 +28,7 @@ public class RatingDAOimpl {
 
 
 
-    public RatingDAOimpl(Context context)
+    public RatingDAOImpl(Context context)
     {
         dbHelper = new DatabaseHandler(context);
     }

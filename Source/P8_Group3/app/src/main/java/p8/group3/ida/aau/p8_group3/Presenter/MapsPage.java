@@ -30,7 +30,7 @@ import java.util.List;
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.LocationDAOImpl;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
-import p8.group3.ida.aau.p8_group3.Database.RatingDAOimpl;
+import p8.group3.ida.aau.p8_group3.Database.RatingDAOImpl;
 import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.Model.Rating;
 import p8.group3.ida.aau.p8_group3.R;
@@ -46,7 +46,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
     Context context = this;
     LocationDAOImpl data;
-    RatingDAOimpl ratingData;
+    RatingDAOImpl ratingData;
     ParentDAO parentData;
 
    // private GpsTracker gpsTracker;
@@ -100,7 +100,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             Log.i("Error", "Data");
         }
 
-      ratingData = new RatingDAOimpl(context);
+      ratingData = new RatingDAOImpl(context);
         try{
             ratingData.open();
         }   catch (Exception e){
