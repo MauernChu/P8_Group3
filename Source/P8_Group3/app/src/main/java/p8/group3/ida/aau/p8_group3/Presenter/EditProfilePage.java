@@ -1,8 +1,11 @@
 package p8.group3.ida.aau.p8_group3.Presenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
@@ -64,6 +67,16 @@ public class EditProfilePage extends AppCompatActivity{
         editAgeOfChildren.setText(profileAgeOfChildren);
         editCity.setText(profileCity);
         editTextAbout.setText(profileTextAbout);
+
+        Button doneEdittingButton = (Button) findViewById(R.id.doneEdittingButton);
+        doneEdittingButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent doneEdittingIntent = new Intent(view.getContext(), ProfilePage.class);
+                doneEdittingIntent.putExtra("loginUsername", loginUsername);
+                doneEdittingIntent.putExtra("loginPassword", loginPassword);
+                startActivityForResult(doneEdittingIntent, 0);
+            }
+        });
 
     }
 }

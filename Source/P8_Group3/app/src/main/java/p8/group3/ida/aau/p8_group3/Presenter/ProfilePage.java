@@ -83,6 +83,8 @@ public class ProfilePage extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent profileIntent = new Intent(view.getContext(), MapsPage.class);
+                profileIntent.putExtra("loginUsername", loginUsername);
+                profileIntent.putExtra("loginPassword", loginPassword);
                 startActivityForResult(profileIntent, 0);
             }
         });
