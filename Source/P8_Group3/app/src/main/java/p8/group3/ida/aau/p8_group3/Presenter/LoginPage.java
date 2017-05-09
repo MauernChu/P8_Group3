@@ -91,6 +91,8 @@ public class LoginPage extends AppCompatActivity {
                         if (loginPasswordAsString.equals(password)) {
                             Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
                             Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
+                            mapIntent.putExtra("loginUsername", loginUsername.getText().toString());
+                            mapIntent.putExtra("loginPassword", loginPassword.getText().toString());
                             startActivityForResult(mapIntent, 0);
                         } else {
                             Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();

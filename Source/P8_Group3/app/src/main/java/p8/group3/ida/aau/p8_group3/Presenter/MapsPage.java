@@ -45,8 +45,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private static int MY_LOCATION_REQUEST_CODE ;
     private GoogleMap locationMap;
 
-    private String loginUsernameMap;
-    private String loginPasswordMap;
+    private String loginUsername;
+    private String loginPassword;
 
     Context context = this;
     LocationDAOImpl data;
@@ -91,6 +91,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     // private static final int PERMISSION_ACCESS_COARSE_LOCATION = 1;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +101,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         hashAddress = new Hashtable<String, String>();
         hashPicture = new Hashtable<String, String>();
         hashCategory = new Hashtable<String, String>();
+
 
         // Ask for permission
         /*
@@ -210,7 +212,18 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             }
         });
 
-
+        Button profileButtonMapPage = (Button) findViewById(R.id.profileButtonMapPage);
+        profileButtonMapPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent mapIntent = new Intent(view.getContext(), ProfilePage.class);
+                Bundle bundle = getIntent().getExtras();
+                loginUsername = bundle.getString("loginUsername");
+                loginPassword = bundle.getString("loginPassword");
+                mapIntent.putExtra("loginUsername", loginUsername);
+                mapIntent.putExtra("loginPassword", loginPassword);
+                startActivityForResult(mapIntent, 0);
+            }
+        });
 
         // Add a marker at user's position and move the camera
         //final LatLng userPosition = new LatLng(latitude, longitude);
