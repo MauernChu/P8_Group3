@@ -13,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 30 ;
+    private static final int DATABASE_VERSION = 31 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -62,6 +62,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_LOCATIONCATEGORY = "locationCategory";
     public static final String COLUMN_LOCATIONADDRESS = "locationAddress";
     public static final String COLUMN_LOCATIONCITY = "locationCity";
+    public static final String COLUMN_AVERAGERATING = "averageRating";
+    public static final String COLUMN_PARENTSCURRENTLYCHECKEDIN = "parentsCurrentlyCheckedIn";
 
     //Columns for the Rating table
     public static final String TABLE_RATING = "rating";
@@ -132,7 +134,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + COLUMN_LOCATIONLATITUDE + " DOUBLE NOT NULL, "
             + COLUMN_LOCATIONCATEGORY + " TEXT, "
             + COLUMN_LOCATIONADDRESS + " TEXT NOT NULL, "
-            + COLUMN_LOCATIONCITY + " TEXT NOT NULL "
+            + COLUMN_LOCATIONCITY + " TEXT NOT NULL, "
+            + COLUMN_AVERAGERATING + " DECIMAL, "
+            + COLUMN_PARENTSCURRENTLYCHECKEDIN + " INTEGER "
             +");";
 
     public static final String SQL_CREATE_TABLE_RATING = "CREATE TABLE " + TABLE_RATING + "("

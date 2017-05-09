@@ -26,7 +26,10 @@ public class LocationDAOImpl {
             DatabaseHandler.COLUMN_LOCATIONCATEGORY,
             DatabaseHandler.COLUMN_LOCATIONADDRESS,
             DatabaseHandler.COLUMN_LOCATIONCITY,
-            DatabaseHandler.COLUMN_LOCATIONPICTURE};
+            DatabaseHandler.COLUMN_LOCATIONPICTURE,
+            DatabaseHandler.COLUMN_AVERAGERATING,
+            DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN
+    };
 
 
 
@@ -55,6 +58,8 @@ public class LocationDAOImpl {
         v.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, location.getLocationAddress());
         v.put(DatabaseHandler.COLUMN_LOCATIONCITY, location.getLocationCity());
         v.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, location.getLocationPicture());
+        v.put(DatabaseHandler.COLUMN_AVERAGERATING, location.getAverageRating());
+        v.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, location.getParentsCurrentlyCheckedIn());
 
         long insertID = database.insert(DatabaseHandler.TABLE_LOCATION, null, v);
 
@@ -88,8 +93,11 @@ public class LocationDAOImpl {
         String locationAddress = cursor.getString(6);
         String locationCity = cursor.getString(7);
         String locationPicture = cursor.getString(8);
+        Double averageRating = cursor.getDouble(9);
+        int parentsCurrentlyCheckedIn = cursor.getInt(10);
 
-        Location l = new Location(locationID, locationName, locationDescription, locationLongitude, locationLatitude, locationCategory, locationAddress, locationCity , locationPicture );
+
+        Location l = new Location(locationID, locationName, locationDescription, locationLongitude, locationLatitude, locationCategory, locationAddress, locationCity , locationPicture, averageRating, parentsCurrentlyCheckedIn );
 
         return l;
 

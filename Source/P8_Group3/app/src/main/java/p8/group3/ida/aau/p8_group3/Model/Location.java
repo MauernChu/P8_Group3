@@ -13,6 +13,8 @@ public class Location {
     private String locationAddress;
     private String locationCity;
     private String locationPicture;
+    private double averageRating;
+    private int parentsCurrentlyCheckedIn;
 
 
 
@@ -21,8 +23,10 @@ public class Location {
     locationID is included in the constructor for future usage.
     */
 
+
     public Location(int locationID, String locationName, String locationDescription, Double locationLongitude,
-                    Double locationLatitude, String locationCategory, String locationAddress, String locationCity, String locationPicture) {
+                    Double locationLatitude, String locationCategory, String locationAddress, String locationCity, String locationPicture,
+                    double averageRating, int parentsCurrentlyCheckedIn) {
         this.locationID = locationID;
         this.locationName = locationName;
         this.locationDescription = locationDescription;
@@ -32,6 +36,27 @@ public class Location {
         this.locationAddress = locationAddress;
         this.locationCity = locationCity;
         this.locationPicture = locationPicture;
+        this.averageRating = averageRating;
+        this.parentsCurrentlyCheckedIn = parentsCurrentlyCheckedIn;
+    }
+
+
+
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public int getParentsCurrentlyCheckedIn() {
+        return parentsCurrentlyCheckedIn;
+    }
+
+    public void setParentsCurrentlyCheckedIn(int parentsCurrentlyCheckedIn) {
+        this.parentsCurrentlyCheckedIn = parentsCurrentlyCheckedIn;
     }
 
 

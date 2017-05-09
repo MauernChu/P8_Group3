@@ -56,7 +56,6 @@ public class RatingDAOImpl {
     }
 
 
-
     public List<Rating> getMyRating(){
         List<Rating> stars = new ArrayList<Rating>();
 
@@ -70,7 +69,6 @@ public class RatingDAOImpl {
         }
         cursor.close();
         return stars;
-
     }
 
     private Rating cursorToMarker(Cursor cursor) {
