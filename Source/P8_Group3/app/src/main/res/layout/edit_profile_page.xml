@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,39 +5,24 @@
     android:layout_height="match_parent"
     android:background="@drawable/jungle">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/black">
-
-        <Button
-            android:id="@+id/profileButtonProfilePage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Profile" />
-
-        <Button
-            android:id="@+id/mapButtonProfilePage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/black"
-            android:text="Map" />
-
-        <Button
-            android:id="@+id/logoutButtonProfilePage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/black"
-            android:text="Log out" />
-    </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/black">
+
+            <Button
+                android:id="@+id/profileButtonProfilePage"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Done" />
+        </LinearLayout>
 
         <RelativeLayout
 
@@ -82,12 +64,12 @@
                     app:srcCompat="@drawable/monkey_color" />
 
 
-                <TextView
+                <EditText
                     android:id="@+id/editName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="18dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_toEndOf="@+id/profilePictureButton"
                     android:fontFamily="sans-serif"
@@ -97,13 +79,12 @@
                     android:textStyle="bold"
                     android:visibility="visible" />
 
-                <TextView
+                <EditText
                     android:id="@+id/editChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/editName"
                     android:layout_below="@+id/editName"
-                    android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif"
                     android:text="@string/children"
                     android:textColor="@color/black"
@@ -111,50 +92,26 @@
                     android:visibility="visible" />
 
 
-                <TextView
+                <EditText
                     android:id="@+id/editAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/editChildren"
                     android:layout_below="@+id/editChildren"
-                    android:layout_marginTop="5dp"
                     android:text="@string/age"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/editCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/editAge"
                     android:layout_below="@+id/editAge"
-                    android:layout_marginTop="5dp"
                     android:text="@string/city"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/editProfile"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="80dp"
-                    android:layout_height="35dp"
-                    android:layout_alignBottom="@+id/profilePictureButton"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentRight="true"
-                    android:text="@string/edit"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:visibility="visible" />
-
-
-                <ImageView
-                    android:id="@+id/pencilIconEdit"
-                    android:layout_width="18dp"
-                    android:layout_height="35dp"
-                    android:layout_alignBottom="@+id/editProfile"
-                    android:layout_toStartOf="@+id/editProfile"
-                    app:srcCompat="@drawable/pencil"
-                    android:visibility="visible"/>
 
             </RelativeLayout>
 
@@ -181,8 +138,8 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/allLanguages"
+                <EditText
+                    android:id="@+id/editAllLanguages"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/languages"
@@ -192,7 +149,7 @@
                     android:text="@string/english_german_spanish"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/about"
@@ -207,8 +164,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textAbout"
+                <EditText
+                    android:id="@+id/editTextAbout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/about"
@@ -217,7 +174,7 @@
                     android:text="@string/i_am_active_and_i_like_to_socialise"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
 
             </RelativeLayout>
 
@@ -245,8 +202,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textHobbies"
+                <EditText
+                    android:id="@+id/editTextHobbies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/hobbies"
