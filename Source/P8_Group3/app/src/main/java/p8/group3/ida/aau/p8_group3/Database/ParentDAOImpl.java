@@ -23,12 +23,20 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
     private SQLiteDatabase database;
     private DatabaseHandler dbHelper;
     private Context parentContext;
-    private String[] parentAllColumns = new String[]{DatabaseHandler.COLUMN_PARENTID,
-            DatabaseHandler.COLUMN_USERNAME, DatabaseHandler.COLUMN_NUMBERCHILDREN,
-            DatabaseHandler.COLUMN_AGECHILDREN, DatabaseHandler.COLUMN_PASSWORD,
-            DatabaseHandler.COLUMN_PROFILEPICTURE, DatabaseHandler.COLUMN_INFOPARENT,
-            DatabaseHandler.COLUMN_TIMECHECKEDIN, DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN,
-            DatabaseHandler.COLUMN_EMAIL, DatabaseHandler.COLUMN_CITYOFRESIDENCE};
+
+    private String[] parentAllColumns = new String[]{
+            DatabaseHandler.COLUMN_PARENTID,
+            DatabaseHandler.COLUMN_USERNAME,
+            DatabaseHandler.COLUMN_NUMBERCHILDREN,
+            DatabaseHandler.COLUMN_AGECHILDREN,
+            DatabaseHandler.COLUMN_PASSWORD,
+            DatabaseHandler.COLUMN_PROFILEPICTURE,
+            DatabaseHandler.COLUMN_INFOPARENT,
+            DatabaseHandler.COLUMN_TIMECHECKEDIN,
+            DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN,
+            DatabaseHandler.COLUMN_EMAIL,
+            DatabaseHandler.COLUMN_CITYOFRESIDENCE};
+
 
     public ParentDAOImpl(Context context)
     {
@@ -62,6 +70,8 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         cursor.close();
         return createParent;
     }
+
+
 
     private Parent cursorToParent(Cursor cursor) {
         int parentID = cursor.getInt(0);

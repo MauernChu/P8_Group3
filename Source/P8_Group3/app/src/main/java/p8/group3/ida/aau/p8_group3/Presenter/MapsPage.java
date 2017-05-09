@@ -1,19 +1,13 @@
 package p8.group3.ida.aau.p8_group3.Presenter;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -30,12 +24,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.LocationDAOImpl;
+import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
 import p8.group3.ida.aau.p8_group3.Database.RatingDAOimpl;
+import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.Model.Rating;
 import p8.group3.ida.aau.p8_group3.R;
 
@@ -51,6 +47,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     Context context = this;
     LocationDAOImpl data;
     RatingDAOimpl ratingData;
+    ParentDAO parentData;
 
    // private GpsTracker gpsTracker;
    // private Location mLocation;
@@ -66,27 +63,10 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private Hashtable<String, String>hashPicture;
     private Hashtable<String, String>hashCategory;
     private Hashtable<String, Integer>hashLocationID;
+    final Hashtable <Integer, String> locationCategories = new Hashtable<Integer, String>();
 
-    //Arraylists to store the location positions for each category
-    final ArrayList<LatLng> libraryMarkerPosition = new ArrayList<LatLng>();
-    final ArrayList<LatLng> playgroundMarkerPosition = new ArrayList<LatLng>();
-    final ArrayList<LatLng> movieMarkerPosition = new ArrayList<LatLng>();
-    final ArrayList<LatLng> parkMarkerPosition = new ArrayList<LatLng>();
-
-    //Arraylists to store the Marker for each category
-    final ArrayList<Marker> libraryMarker = new ArrayList<Marker>();
-    final ArrayList<Marker> playgroundMarker = new ArrayList<Marker>();
-    final ArrayList<Marker> movieMarker = new ArrayList<Marker>();
-    final ArrayList<Marker> parkMarker = new ArrayList<Marker>();
-
-
-
-    final Hashtable <Integer, String> test = new Hashtable<Integer, String>();
-
-    //Variable to store title information about marker
-    String titleNoerresundbyLibraryMarker;
+    //Variable to store permissions
     private String[] permissions;
-
     // private static final int PERMISSION_ACCESS_COARSE_LOCATION = 1;
 
 
@@ -101,6 +81,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         hashPicture = new Hashtable<String, String>();
         hashCategory = new Hashtable<String, String>();
         hashLocationID = new Hashtable<String, Integer>();
+
 
 
         // Ask for permission
@@ -126,6 +107,13 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             Log.i("Error", "Data");
         }
 
+        parentData = new ParentDAOImpl(context);
+        try{
+            parentData.open();
+        }   catch (Exception e){
+            Log.i("Error", "Data");
+        }
+
        /* gpsTracker = new GpsTracker(getApplicationContext());
         mLocation = gpsTracker.getLocation();
 
@@ -144,27 +132,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         bottomSheetBehavior.setHideable(true);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-        final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
-        Button submitButton = (Button) findViewById(R.id.submitRating);
-
-        // perform click event on button
-        submitButton.setOnClickListener(new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            // get values and then displayed in a toast
-
-           float f;
-            f = simpleRatingBar.getRating();
-            Rating rating = new Rating("255", "255", f, "blabla", 1, 1);
-            ratingData.createRating(rating);
-
-            String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-            String rating2 = "Rating :: " + simpleRatingBar.getRating();
-            Toast.makeText(getApplicationContext(), totalStars + "\n" + rating2, Toast.LENGTH_LONG).show();
-        }
-
-    });
 
     }
 
@@ -177,7 +144,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      **/
-
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
@@ -198,9 +164,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
             hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
             hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
-
-            test.put(i,l.get(i).getLocationCategory());
+            locationCategories.put(i,l.get(i).getLocationCategory());
         }
+
 
 
 
@@ -300,7 +266,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                     for (int i = 0; i < l.size(); i++){
 
-                        if( test.get(i).equals("library")){
+                        if( locationCategories.get(i).equals("library")){
 
                             LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
@@ -340,7 +306,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                 for (int i = 0; i < l.size(); i++){
 
-                    if( test.get(i).equals("playground")){
+                    if( locationCategories.get(i).equals("playground")){
 
                         LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
@@ -379,7 +345,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 for (int i = 0; i < l.size(); i++){
 
 
-                    if( test.get(i).equals("swimming pool")){
+                    if( locationCategories.get(i).equals("swimming pool")){
 
                         LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
@@ -421,7 +387,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
-                    if( test.get(i).equals("park")){
+                    if( locationCategories.get(i).equals("park")){
 
                         LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
@@ -487,11 +453,18 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         }
 
+
     public void ratingBarFunctions(Marker marker) {
 
         final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
         Button submitButton = (Button) findViewById(R.id.submitRating);
         final int locID = hashLocationID.get(marker.getId());
+
+        Bundle bundle = getIntent().getExtras();
+        loginUsername = bundle.getString("loginUsername");
+        loginPassword = bundle.getString("loginPassword");
+        Parent mapParent = parentData.retrieveInformationAboutParent(loginUsername, loginPassword);
+        final int parentID = mapParent.getParentID();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
 
@@ -501,7 +474,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                 float f;
                 f = simpleRatingBar.getRating();
-                Rating rating = new Rating("255", "255", f, "blabla", locID, 1);
+                Rating rating = new Rating("255", "255", f, "blabla", locID, parentID);
                 ratingData.createRating(rating);
 
                 String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();

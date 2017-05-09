@@ -11,7 +11,7 @@ public class Parent {
     private String password;
     private String profilePicture;
     private String infoAboutParent;
-    private int timeChekedIn;
+    //private int timeChekedIn;
     private int locationIdCheckin;
     private String email;
     private String cityOfResidence;
@@ -47,33 +47,27 @@ public class Parent {
         this.cityOfResidence = cityOfResidence;
     }
 
-    public int getParentID()
-    {
+    public int getParentID() {
         return parentID;
     }
 
-    public void setParentID(int parentID)
-    {
+    public void setParentID(int parentID) {
         this.parentID = parentID;
     }
 
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -85,28 +79,23 @@ public class Parent {
         this.email = email;
     }
 
-    public int getNumberOfChildren()
-    {
+    public int getNumberOfChildren() {
         return numberOfChildren;
     }
 
-    public void setNumberOfChildren(int numberOfChildren)
-    {
+    public void setNumberOfChildren(int numberOfChildren) {
         this.numberOfChildren = numberOfChildren;
     }
 
-    public String getAgeOfChildren()
-    {
+    public String getAgeOfChildren() {
         return ageOfChildren;
     }
 
-    public void setAgeOfChildren(String ageOfChildren)
-    {
+    public void setAgeOfChildren(String ageOfChildren) {
         this.ageOfChildren = ageOfChildren;
     }
 
-    public String getInfoAboutParent()
-    {
+    public String getInfoAboutParent() {
         return infoAboutParent;
     }
 
@@ -138,11 +127,12 @@ public class Parent {
         this.profilePicture = profilePicture;
     }
 
-    public int getTimeChekedIn() {
+   /* public int getTimeChekedIn() {
         return timeChekedIn;
     }
 
     public void setTimeChekedIn(int timeChekedIn) {
         this.timeChekedIn = timeChekedIn;
     }
+*/
 }

@@ -2,6 +2,8 @@ package p8.group3.ida.aau.p8_group3.Database.DAO;
 
 import android.database.SQLException;
 
+import java.util.List;
+
 import p8.group3.ida.aau.p8_group3.Model.Parent;
 
 
@@ -15,4 +17,5 @@ public interface ParentDAO {
     String loginCheckCredentials(String username);
 
     Parent retrieveInformationAboutParent(String username, String password);
+
 }
