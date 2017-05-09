@@ -2,6 +2,7 @@ package p8.group3.ida.aau.p8_group3.Presenter;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -43,6 +45,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private static int MY_LOCATION_REQUEST_CODE ;
     private GoogleMap locationMap;
 
+    private String loginUsernameMap;
+    private String loginPasswordMap;
 
     Context context = this;
     LocationDAOImpl data;
@@ -96,7 +100,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         hashAddress = new Hashtable<String, String>();
         hashPicture = new Hashtable<String, String>();
         hashCategory = new Hashtable<String, String>();
-
 
         // Ask for permission
         /*
@@ -194,9 +197,18 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
 
             test.put(i,l.get(i).getLocationCategory());
-
-
         }
+
+
+
+        Button logoutButtonMapPage = (Button) findViewById(R.id.logoutButtonMapPage);
+        logoutButtonMapPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent profileIntent = new Intent(view.getContext(), LoginPage.class);
+                startActivityForResult(profileIntent, 0);
+                Toast.makeText(MapsPage.this, "You have been logged out.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 
@@ -421,6 +433,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
 
     }
+
+
 
 
 

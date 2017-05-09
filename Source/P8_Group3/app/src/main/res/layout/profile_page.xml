@@ -8,15 +8,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/jungle">
 
-    <!--
-   When using the DrawerLayout:
-   The first "child" (FrameLayout) represents the content of the layout (the page itself)
-   The second "child" (Navigation_view) will holds the information of the navigation drawer.
-   The main layout (first child) should always be before the navigation drawer layout
-   because the XML order implies z-ordering.
-
-   -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

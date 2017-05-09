@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
@@ -73,6 +74,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
                 Parent dbParent = parentDAO.createParent(newParent);
                 Intent myIntent = new Intent(view.getContext(), LoginPage.class);
                 startActivityForResult(myIntent, 0);
+                Toast.makeText(CreateAccountSecondPage.this, "Account created. Please log in again.", Toast.LENGTH_LONG).show();
             }
         });
     }

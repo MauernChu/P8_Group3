@@ -2,18 +2,43 @@
 
 
 
-<android.support.v4.widget.DrawerLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
-    tools:context="p8.group3.ida.aau.p8_group3.Presenter.MapsPage" >
+    android:layout_marginTop="23dp"
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/profileButtonMapPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:text="Profile" />
+
+        <Button
+            android:id="@+id/mapButtonMapPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Map" />
+
+        <Button
+            android:id="@+id/logoutButtonMapPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:text="Log out" />
+    </LinearLayout>
 
         <android.support.design.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,7 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            tools:context=".Presenter.MapsPage">
+            tools:context=".Presenter.MapsPage"
+            android:layout_alignTop="@+id/radio_group_list_selector">
 
 
 
@@ -60,9 +86,8 @@
         android:orientation="horizontal"
         android:background="@color/mustard"
         android:padding="0.5dp"
-        android:layout_marginTop="80dp"
 
-            >
+            android:layout_below="@+id/linearLayout">
             <View
                 android:id="@+id/VerticalLine4"
                 android:layout_width="1dip"
@@ -150,8 +175,5 @@
                 android:layout_marginLeft="20dp"
                 />
 
-
-    </RadioGroup>
-    </RelativeLayout>
-
-</android.support.v4.widget.DrawerLayout>
+        </RadioGroup>
+</RelativeLayout>
