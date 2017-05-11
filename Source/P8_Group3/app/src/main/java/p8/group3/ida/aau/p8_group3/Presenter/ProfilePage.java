@@ -37,7 +37,7 @@ public class ProfilePage extends AppCompatActivity {
         parentDAO = new ParentDAOImpl(this);
         parentDAO.open();
 
-        Parent profileParent = parentDAO.retrieveInformationAboutParent(loginUsername, loginPassword);
+        Parent profileParent = parentDAO.retrieveInformationAboutParent(loginPassword);
 
         String profileUsername = profileParent.getUsername();
         String profileParentAgeOfChildren = profileParent.getAgeOfChildren();

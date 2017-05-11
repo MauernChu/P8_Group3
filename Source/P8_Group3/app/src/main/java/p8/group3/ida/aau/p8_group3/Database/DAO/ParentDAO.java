@@ -16,6 +16,7 @@ public interface ParentDAO {
 
     String loginCheckCredentials(String username);
 
-    Parent retrieveInformationAboutParent(String username, String password);
+    Parent retrieveInformationAboutParent(String password);
 
+    void editProfile (Parent parent);
 }

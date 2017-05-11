@@ -122,13 +122,30 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         return passwordDb;
     }
 
-    public Parent retrieveInformationAboutParent(String username, String password){
+    public Parent retrieveInformationAboutParent(String password){
         database = dbHelper.getReadableDatabase();
-        String query = "SELECT * FROM " + DatabaseHandler.TABLE_PARENT + " WHERE " + DatabaseHandler.COLUMN_USERNAME + " = ?  AND " + DatabaseHandler.COLUMN_PASSWORD + " = ? ";
-        Cursor cursor = database.rawQuery(query, new String[]{username, password}, null);
+        String query = "SELECT * FROM " + DatabaseHandler.TABLE_PARENT + " WHERE " + DatabaseHandler.COLUMN_PASSWORD + " = ? ";
+        Cursor cursor = database.rawQuery(query, new String[]{password}, null);
         cursor.moveToFirst();
-        Parent testParent = fetchParentInformation(cursor);
+        Parent databaseParent = fetchParentInformation(cursor);
         cursor.close();
-        return testParent;
+        return databaseParent;
+    }
+
+    //method for inserting new data to the database
+    public void editProfile (Parent parent) {
+        database = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHandler.COLUMN_USERNAME, parent.getUsername());
+        values.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, parent.getNumberOfChildren());
+        values.put(DatabaseHandler.COLUMN_AGECHILDREN, parent.getAgeOfChildren());
+        values.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, parent.getCityOfResidence());
+        //values.put(DatabaseHandler.COLUMN_LANGUAGE, parent.get());
+        values.put(DatabaseHandler.COLUMN_INFOPARENT, parent.getInfoAboutParent());
+        //values.put(DatabaseHandler.COLUMN_HOBBY, parent.getUsername());
+        String parentPassword = parent.getPassword();
+        String[] arguments = new String[] {parentPassword};
+        database.update(DatabaseHandler.TABLE_PARENT, values, DatabaseHandler.COLUMN_PASSWORD + " = ? " , arguments);
+
     }
 }
