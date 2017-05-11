@@ -13,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 31 ;
+    private static final int DATABASE_VERSION = 32 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -96,7 +96,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + COLUMN_PASSWORD + " TEXT NOT NULL, "
                 + COLUMN_PROFILEPICTURE + " BLOB, "
                 + COLUMN_INFOPARENT + " TEXT, "
-                + COLUMN_TIMECHECKEDIN + " REAL, "
+                + COLUMN_TIMECHECKEDIN + " INTEGER, "
                 + COLUMN_LOCATIONIDCHECKEDIN + " INT, "
                 + COLUMN_EMAIL + " TEXT NOT NULL, "
                 + COLUMN_CITYOFRESIDENCE + " TEXT "

@@ -23,6 +23,13 @@ public class Location {
     locationID is included in the constructor for future usage.
     */
 
+    public Location(int locationID, String locationName, double locationLongitude, double locationLatitude, String locationCategory) {
+        this.locationID = locationID;
+        this.locationName = locationName;
+        this.locationLongitude = locationLongitude;
+        this.locationLatitude = locationLatitude;
+        this.locationCategory = locationCategory;
+    }
 
     public Location(int locationID, String locationName, String locationDescription, Double locationLongitude,
                     Double locationLatitude, String locationCategory, String locationAddress, String locationCity, String locationPicture,

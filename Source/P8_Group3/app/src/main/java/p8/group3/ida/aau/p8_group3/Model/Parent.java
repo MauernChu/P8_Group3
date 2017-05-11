@@ -11,7 +11,7 @@ public class Parent {
     private String password;
     private String profilePicture;
     private String infoAboutParent;
-    //private int timeChekedIn;
+    private int timeChekedIn;
     private int locationIdCheckin;
     private String email;
     private String cityOfResidence;
@@ -127,12 +127,12 @@ public class Parent {
         this.profilePicture = profilePicture;
     }
 
-   /* public int getTimeChekedIn() {
+    public int getTimeChekedIn() {
         return timeChekedIn;
     }
 
     public void setTimeChekedIn(int timeChekedIn) {
         this.timeChekedIn = timeChekedIn;
     }
-*/
+
 }
