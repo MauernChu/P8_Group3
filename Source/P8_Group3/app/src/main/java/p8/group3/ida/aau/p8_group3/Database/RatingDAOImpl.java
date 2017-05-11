@@ -55,27 +55,24 @@ public class RatingDAOImpl {
     }
 
 
-    public double getAverageRating (){
+    public List<Double> getAverageRating (){
 
         double averageRating = 0;
+
+        List<Double> averageRatingOfPlaces = new ArrayList<Double>();
 
 
         String query = "SELECT ratingLocationID FROM " + DatabaseHandler.TABLE_RATING;
 
         Cursor cursor = database.rawQuery(query, null);
-        //cursor.moveToFirst();
 
         String query1 = "SELECT ratingValue FROM " + DatabaseHandler.TABLE_RATING;
 
         Cursor cursor1 = database.rawQuery(query1, null);
-        //cursor1.moveToFirst();
 
         String query2 = "SELECT _locationID FROM " + DatabaseHandler.TABLE_LOCATION;
 
         Cursor cursor2 = database.rawQuery(query2, null);
-        //cursor2.moveToFirst();
-
-        //System.out.println(cursor.getDouble(1));
 
 
         int rating_ratingvalue = cursor1.getCount();
@@ -83,8 +80,6 @@ public class RatingDAOImpl {
         int location_locationid = cursor2.getCount();
 
         int i;
-        int j;
-
 
 
         for (i = 0; i < location_locationid; i++){
@@ -97,22 +92,18 @@ public class RatingDAOImpl {
 
             Cursor cursor4 = database.rawQuery(query4, null);
 
+                cursor4.isFirst();
 
-        //    for (j = 0; j <= ratinglocationid; j++){
-
-                cursor4.moveToFirst();
 
             String query5 = "SELECT ratingValue FROM " + DatabaseHandler.TABLE_RATING;
 
             Cursor cursor5 = database.rawQuery(query5, null);
 
-            cursor5.moveToFirst();
+            cursor5.isFirst();
 
                 while (cursor4.moveToNext()){
 
-                //cursor.moveToPosition(j);
-
-                if( cursor4.getInt(cursor4.getColumnIndex("ratingLocationID")) == i+1 ){
+                if( cursor4.getInt(cursor4.getColumnIndex("ratingLocationID")) == (i+1) ){
 
                     cursor5.moveToPosition(cursor4.getPosition());
 
@@ -129,23 +120,24 @@ public class RatingDAOImpl {
 
                 }
 
-        //}
+                cursor4.close();
+                cursor5.close();
 
             if ( g!= 0 ){
 
-                // Na kanw to average rating pinaka wste na apo8hkeuei ton M.O gia to ka8e meros!!
-
                 averageRating = averageRating / g;
+                averageRatingOfPlaces.add(averageRating);
 
             }
             else {
                 averageRating = 0;
+                averageRatingOfPlaces.add(averageRating);
             }
 
         }
 
-        System.out.println(averageRating);
-        return averageRating;
+        System.out.println(averageRatingOfPlaces);
+        return averageRatingOfPlaces;
 
     }
 

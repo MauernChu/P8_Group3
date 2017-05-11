@@ -217,8 +217,13 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
-                double r = ratingData.getAverageRating();
-                System.out.println(r);
+
+                List<Double> averageRating = ratingData.getAverageRating();
+
+                //double r = ratingData.getAverageRating();
+
+                System.out.println(averageRating);
+
                 return true;
             }
         });
