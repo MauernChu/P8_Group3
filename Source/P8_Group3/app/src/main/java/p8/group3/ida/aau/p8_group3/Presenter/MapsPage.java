@@ -218,9 +218,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
 
-                List<Double> averageRating = ratingData.getAverageRating();
-
-                //double r = ratingData.getAverageRating();
+                List<Float> averageRating = ratingData.getAverageRating();
 
                 System.out.println(averageRating);
 
@@ -443,6 +441,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
             ImageView locationPicture = (ImageView) bottomSheet.findViewById(R.id.infowindow);
             Picasso.with(this).load(hashPicture.get(marker.getId())).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(locationPicture, new com.squareup.picasso.Callback() {
+
                 @Override
                 public void onSuccess() {
 
@@ -467,6 +466,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
         Button submitButton = (Button) findViewById(R.id.submitRating);
+        Button editButton = (Button) findViewById(R.id.editRating);
         final int locID = hashLocationID.get(marker.getId());
 
         Bundle bundle = getIntent().getExtras();
@@ -487,6 +487,27 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 f = simpleRatingBar.getRating();
                 Rating rating = new Rating("255", "255", f, "blabla", locID, parentID);
                 ratingData.createRating(rating);
+
+
+                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
+                String rating2 = "Rating :: " + simpleRatingBar.getRating();
+                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating2, Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                // get values and then displayed in a toast
+
+                float f;
+                f = simpleRatingBar.getRating();
+                Rating rating = new Rating("255", "255", f, "blabla", locID, parentID);
+                ratingData.updateRating(rating);
 
 
                 String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();

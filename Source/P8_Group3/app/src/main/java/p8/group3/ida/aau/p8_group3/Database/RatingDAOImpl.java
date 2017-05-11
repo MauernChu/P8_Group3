@@ -54,92 +54,117 @@ public class RatingDAOImpl {
 
     }
 
+    public void updateRating (Rating rating) {
 
-    public List<Double> getAverageRating (){
+     /*
+     Na balw sun8hkh na elegxw prwta an exei dwsei o paparas ba8mologia, alliws na mhn epitrepei to edit!
 
-        double averageRating = 0;
+     database = dbHelper.getReadableDatabase();
 
-        List<Double> averageRatingOfPlaces = new ArrayList<Double>();
-
-
-        String query = "SELECT ratingLocationID FROM " + DatabaseHandler.TABLE_RATING;
-
-        Cursor cursor = database.rawQuery(query, null);
-
-        String query1 = "SELECT ratingValue FROM " + DatabaseHandler.TABLE_RATING;
-
-        Cursor cursor1 = database.rawQuery(query1, null);
-
-        String query2 = "SELECT _locationID FROM " + DatabaseHandler.TABLE_LOCATION;
-
+        String query2 = "SELECT * FROM " + DatabaseHandler.TABLE_LOCATION;
         Cursor cursor2 = database.rawQuery(query2, null);
 
+        cursor2.isFirst();
 
-        int rating_ratingvalue = cursor1.getCount();
-        int ratinglocationid = cursor.getCount();
+        while (cursor2.moveToNext()) {
+
+            int h =0;
+
+            if (cursor2.getInt(cursor2.getColumnIndex("ratingParentID")) == (parent.getParentID()) && cursor2.getInt(cursor2.getColumnIndex("ratingLocationID")) == (parent.getParentID())) {
+
+            }
+        }
+*/
+
+
+        database = dbHelper.getWritableDatabase();
+        ContentValues v = new ContentValues();
+
+        v.put(DatabaseHandler.COLUMN_TIMERATINGCREATED, rating.getTimeRatingCreated());
+        v.put(DatabaseHandler.COLUMN_TIMERATINGEDITED, rating.getTimeRatingEdited());
+        v.put(DatabaseHandler.COLUMN_RATINGVALUE, rating.getRatingValue());
+        v.put(DatabaseHandler.COLUMN_REVIEWTEXT, rating.getReviewText());
+        v.put(DatabaseHandler.COLUMN_RATINGLOCATIONID, rating.getRatingLocationID());
+        v.put(DatabaseHandler.COLUMN_RATINGPARENTID, rating.getRatingParentID());
+
+        int ratingLocationID = rating.getRatingLocationID();
+        int ratingParentID = rating.getRatingParentID();
+
+
+        String[] arguments = new String[] {String.valueOf(ratingLocationID), String.valueOf(ratingParentID)};
+
+
+        database.update(DatabaseHandler.TABLE_RATING, v, DatabaseHandler.COLUMN_RATINGLOCATIONID + " = ? AND " + DatabaseHandler.COLUMN_RATINGPARENTID + " = ? " , arguments);
+
+    }
+
+
+
+
+    public List<Float> getAverageRating (){
+
+        float averageRating = 0;
+        List<Float> averageRatingOfPlaces = new ArrayList<Float>();
+        String query2 = "SELECT _locationID FROM " + DatabaseHandler.TABLE_LOCATION;
+        Cursor cursor2 = database.rawQuery(query2, null);
         int location_locationid = cursor2.getCount();
-
         int i;
 
-
         for (i = 0; i < location_locationid; i++){
-
             int g = 0;
             averageRating = 0;
-
-
             String query4 = "SELECT ratingLocationID FROM " + DatabaseHandler.TABLE_RATING;
-
             Cursor cursor4 = database.rawQuery(query4, null);
-
                 cursor4.isFirst();
-
-
             String query5 = "SELECT ratingValue FROM " + DatabaseHandler.TABLE_RATING;
-
             Cursor cursor5 = database.rawQuery(query5, null);
-
             cursor5.isFirst();
 
-                while (cursor4.moveToNext()){
+            while (cursor4.moveToNext()){
 
-                if( cursor4.getInt(cursor4.getColumnIndex("ratingLocationID")) == (i+1) ){
-
+                if(cursor4.getInt(cursor4.getColumnIndex("ratingLocationID")) == (i+1)){
                     cursor5.moveToPosition(cursor4.getPosition());
-
                         averageRating = averageRating + cursor5.getInt(cursor5.getColumnIndex("ratingValue"));
-
-
                     System.out.println(averageRating);
                         g=g+1;
-
-                } else{
+                    } else{
                     System.out.println("false");
-                }
-
-
+                     }
                 }
 
                 cursor4.close();
                 cursor5.close();
 
             if ( g!= 0 ){
-
                 averageRating = averageRating / g;
                 averageRatingOfPlaces.add(averageRating);
-
             }
             else {
                 averageRating = 0;
                 averageRatingOfPlaces.add(averageRating);
             }
-
         }
-
         System.out.println(averageRatingOfPlaces);
         return averageRatingOfPlaces;
-
     }
+
+
+  /*  public float editRating(){
+
+        float editRating = 0;
+
+        String query2 = "SELECT ratingParentID FROM " + DatabaseHandler.TABLE_RATING;
+        Cursor cursor2 = database.rawQuery(query2, null);
+
+        String query5 = "SELECT ratingValue FROM " + DatabaseHandler.TABLE_RATING;
+        Cursor cursor5 = database.rawQuery(query5, null);
+
+        String query4 = "SELECT ratingLocationID FROM " + DatabaseHandler.TABLE_RATING;
+        Cursor cursor4 = database.rawQuery(query4, null);
+
+
+        return editRating;
+    } */
 
 
 
