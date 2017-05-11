@@ -48,33 +48,21 @@ public class LocationDAOImpl {
 
 
     public void createLocation (Location location) {
-        ContentValues locationValues = new ContentValues();
-        locationValues.put(DatabaseHandler.COLUMN_LOCATIONID, location.getLocationID());
-        locationValues.put(DatabaseHandler.COLUMN_LOCATIONNAME, location.getLocationName());
-        //locationValues.put(DatabaseHandler.COLUMN_LOCATIONDESCRIPTION, location.getLocationDescription());
-        locationValues.put(DatabaseHandler.COLUMN_LOCATIONLONGITUDE, location.getLocationLongitude());
-        locationValues.put(DatabaseHandler.COLUMN_LOCATIONLATITUDE, location.getLocationLatitude());
-        locationValues.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, location.getLocationCategory());
-        //locationValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, location.getLocationAddress());
-        //locationValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, location.getLocationCity());
-        //locationValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, location.getLocationPicture());
-        //locationValues.put(DatabaseHandler.COLUMN_AVERAGERATING, location.getAverageRating());
-        //locationValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, location.getParentsCurrentlyCheckedIn());
-        long insertID = database.insert(DatabaseHandler.TABLE_LOCATION, null, locationValues);
-        Cursor cursor = database.query(DatabaseHandler.TABLE_LOCATION, locationAllColumns, DatabaseHandler.COLUMN_LOCATIONID + "=" + insertID, null, null, null, null);
-        cursor.moveToFirst();
-        Location createLocation = cursorToLocation(cursor);
-        cursor.close();
-    }
+        ContentValues v = new ContentValues();
+        v.put(DatabaseHandler.COLUMN_LOCATIONID, location.getLocationID());
+        v.put(DatabaseHandler.COLUMN_LOCATIONNAME, location.getLocationName());
+        v.put(DatabaseHandler.COLUMN_LOCATIONDESCRIPTION, location.getLocationDescription());
+        v.put(DatabaseHandler.COLUMN_LOCATIONLONGITUDE, location.getLocationLongitude());
+        v.put(DatabaseHandler.COLUMN_LOCATIONLATITUDE, location.getLocationLatitude());
+        v.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, location.getLocationCategory());
+        v.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, location.getLocationAddress());
+        v.put(DatabaseHandler.COLUMN_LOCATIONCITY, location.getLocationCity());
+        v.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, location.getLocationPicture());
+        v.put(DatabaseHandler.COLUMN_AVERAGERATING, location.getAverageRating());
+        v.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, location.getParentsCurrentlyCheckedIn());
 
-    private Location cursorToLocation(Cursor cursor){
-        int locationID = cursor.getInt(0);
-        String locationName = cursor.getString(1);
-        Double locationLongitude = cursor.getDouble(3);
-        Double locationLatitude = cursor.getDouble(4);
-        String locationCategory = cursor.getString(5);
-        Location databaseLocation = new Location(locationID, locationName, locationLongitude, locationLatitude, locationCategory);
-        return databaseLocation;
+        long insertID = database.insert(DatabaseHandler.TABLE_LOCATION, null, v);
+
     }
 
 
@@ -109,9 +97,9 @@ public class LocationDAOImpl {
         int parentsCurrentlyCheckedIn = cursor.getInt(10);
 
 
-        Location location = new Location(locationID, locationName, locationDescription, locationLongitude, locationLatitude, locationCategory, locationAddress, locationCity , locationPicture, averageRating, parentsCurrentlyCheckedIn );
+        Location l = new Location(locationID, locationName, locationDescription, locationLongitude, locationLatitude, locationCategory, locationAddress, locationCity , locationPicture, averageRating, parentsCurrentlyCheckedIn );
 
-        return location;
+        return l;
 
     }
 

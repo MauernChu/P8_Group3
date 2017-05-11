@@ -146,17 +146,6 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         String parentPassword = parent.getPassword();
         String[] arguments = new String[] {parentPassword};
         database.update(DatabaseHandler.TABLE_PARENT, values, DatabaseHandler.COLUMN_PASSWORD + " = ? " , arguments);
-    }
 
-    //Method for storing date for check in now.
-    public void checkInNow (Parent parent){
-        database = dbHelper.getWritableDatabase();
-        ContentValues dateValues = new ContentValues();
-        dateValues.put(DatabaseHandler.COLUMN_TIMECHECKEDIN, System.currentTimeMillis());
-        String parentPassword = parent.getPassword();
-        String[] arguments = new String[] {parentPassword};
-        database.update(DatabaseHandler.TABLE_PARENT, dateValues, DatabaseHandler.COLUMN_PASSWORD + " = ? " , arguments);
-        //database.execSQL("");
-        //mDb.execSQL("INSERT INTO "+DATABASE_TABLE+" VALUES (null, datetime()) ");
     }
 }
