@@ -19,6 +19,7 @@ public class ProfilePage extends AppCompatActivity {
     TextView txProfileChildren;
     TextView txProfileChildrenAge;
     TextView txProfileCity;
+    TextView txAboutParent;
 
     private String loginUsername;
     private String loginPassword;
@@ -37,7 +38,7 @@ public class ProfilePage extends AppCompatActivity {
         parentDAO = new ParentDAOImpl(this);
         parentDAO.open();
 
-        Parent profileParent = parentDAO.retrieveInformationAboutParent(loginUsername, loginPassword);
+        Parent profileParent = parentDAO.retrieveInformationAboutParent(loginPassword);
 
         String profileUsername = profileParent.getUsername();
         String profileParentAgeOfChildren = profileParent.getAgeOfChildren();
@@ -58,6 +59,9 @@ public class ProfilePage extends AppCompatActivity {
 
         txProfileCity = (TextView) findViewById(R.id.editCity);
         txProfileCity.setText(profileParentCity);
+
+        txAboutParent = (TextView) findViewById(R.id.textAbout);
+        txAboutParent.setText(profileParentDescription);
 
 
         //Variables that change visibility.

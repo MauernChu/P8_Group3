@@ -2,7 +2,6 @@ package p8.group3.ida.aau.p8_group3.Presenter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -53,7 +52,7 @@ public class EditProfilePage extends AppCompatActivity{
         loginUsername = bundle.getString("loginUsername");
         loginPassword = bundle.getString("loginPassword");
 
-        Parent editProfileParent = parentDAO.retrieveInformationAboutParent(loginUsername, loginPassword);
+        final Parent editProfileParent = parentDAO.retrieveInformationAboutParent(loginPassword);
         String profileUserName = editProfileParent.getUsername();
         int profileChildren = editProfileParent.getNumberOfChildren();
         String profileAgeOfChildren = editProfileParent.getAgeOfChildren();
@@ -63,20 +62,32 @@ public class EditProfilePage extends AppCompatActivity{
         //String profileTextHobbies = editProfileParent.getUsername();
 
         editName.setText(profileUserName);
-        editChildren.setText(String.valueOf(profileChildren));
+        editChildren.setText(Integer.toString(profileChildren));
         editAgeOfChildren.setText(profileAgeOfChildren);
         editCity.setText(profileCity);
         editTextAbout.setText(profileTextAbout);
 
-        Button doneEdittingButton = (Button) findViewById(R.id.doneEdittingButton);
-        doneEdittingButton.setOnClickListener(new View.OnClickListener() {
+        Button doneEditingButton = (Button) findViewById(R.id.doneEditingButton);
+        doneEditingButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                String editNameAsString = editName.getText().toString();
+                int profileChildrenAsString = Integer.parseInt(editChildren.getText().toString());
+                String editAgeOfChildrenAsString = editAgeOfChildren.getText().toString();
+                String editCityAsString = editCity.getText().toString();
+                String editTextAboutAsString = editTextAbout.getText().toString();
+                editProfileParent.setUsername(editNameAsString);
+                editProfileParent.setNumberOfChildren(profileChildrenAsString);
+                editProfileParent.setAgeOfChildren(editAgeOfChildrenAsString);
+                editProfileParent.setParentCity(editCityAsString);
+                editProfileParent.setInfoAboutParent(editTextAboutAsString);
+                parentDAO.editProfile(editProfileParent);
                 Intent doneEdittingIntent = new Intent(view.getContext(), ProfilePage.class);
                 doneEdittingIntent.putExtra("loginUsername", loginUsername);
                 doneEdittingIntent.putExtra("loginPassword", loginPassword);
                 startActivityForResult(doneEdittingIntent, 0);
             }
         });
+
 
     }
 }

@@ -467,7 +467,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         Bundle bundle = getIntent().getExtras();
         loginUsername = bundle.getString("loginUsername");
         loginPassword = bundle.getString("loginPassword");
-        Parent mapParent = parentData.retrieveInformationAboutParent(loginUsername, loginPassword);
+        Parent mapParent = parentData.retrieveInformationAboutParent(loginPassword);
         final int parentID = mapParent.getParentID();
 
 
