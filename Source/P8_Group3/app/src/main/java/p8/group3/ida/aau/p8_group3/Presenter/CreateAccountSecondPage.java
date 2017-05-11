@@ -40,7 +40,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
 
         numberOfChildren = (EditText) findViewById(R.id.numberOfChildren);
         ageOfChildren = (EditText) findViewById(R.id.ageOfChildren);
-        cityOfResidence = (EditText) findViewById(R.id.editCity);
+        cityOfResidence = (EditText) findViewById(R.id.profileParentCity);
 
         TextView txchimp = (TextView) findViewById(R.id.loginTitle);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "KGCorneroftheSky.ttf");
@@ -52,7 +52,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
         TextView txFinish = (TextView) findViewById(R.id.finish);
         txFinish.setTypeface(custom_font);
 
-        TextView txCity = (TextView) findViewById(R.id.editCity);
+        TextView txCity = (TextView) findViewById(R.id.profileParentCity);
         txCity.setTypeface(custom_font);
 
         TextView txNumberOfChildren = (TextView) findViewById(R.id.numberOfChildren);

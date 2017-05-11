@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,30 +47,21 @@ public class ProfilePage extends AppCompatActivity {
         String profileParentCity = profileParent.getCityOfResidence();
 
 
-        txProfileChildrenAge = (TextView) findViewById(R.id.editAge);
+        txProfileChildrenAge = (TextView) findViewById(R.id.profileParentAgeOfChildren);
         txProfileChildrenAge.setText(profileParentAgeOfChildren);
 
-        txProfileUsername = (TextView) findViewById(R.id.editName);
+        txProfileUsername = (TextView) findViewById(R.id.profileUsername);
         txProfileUsername.setText(profileUsername);
 
-        txProfileChildren = (TextView) findViewById(R.id.editChildren);
+        txProfileChildren = (TextView) findViewById(R.id.profileChildren);
         txProfileChildren.setText(Integer.toString(profileChildren));
 
-        txProfileCity = (TextView) findViewById(R.id.editCity);
+        txProfileCity = (TextView) findViewById(R.id.profileParentCity);
         txProfileCity.setText(profileParentCity);
 
-        txAboutParent = (TextView) findViewById(R.id.textAbout);
+        txAboutParent = (TextView) findViewById(R.id.profileParentDescription);
         txAboutParent.setText(profileParentDescription);
 
-
-        //Variables that change visibility.
-        final TextView name = (TextView) findViewById(R.id.editName);
-        final TextView children = (TextView) findViewById(R.id.editChildren);
-        final TextView ageOfChildren = (TextView) findViewById(R.id.editAge);
-        final TextView city = (TextView) findViewById(R.id.editCity);
-        final ImageView pencil = (ImageView) findViewById(R.id.pencilIconEdit);
-        final TextView languages = (TextView) findViewById(R.id.allLanguages);
-        final TextView about = (TextView) findViewById(R.id.textAbout);
 
         //methods for menu bar
         Button logoutButton = (Button) findViewById(R.id.logoutButtonProfilePage);

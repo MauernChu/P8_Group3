@@ -37,10 +37,10 @@ public class EditProfilePage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_page);
 
-        editName = (EditText) findViewById(R.id.editName);
-        editChildren = (EditText) findViewById(R.id.editChildren);
-        editAgeOfChildren = (EditText) findViewById(R.id.editAge);
-        editCity = (EditText) findViewById(R.id.editCity);
+        editName = (EditText) findViewById(R.id.profileUsername);
+        editChildren = (EditText) findViewById(R.id.profileChildren);
+        editAgeOfChildren = (EditText) findViewById(R.id.profileParentAgeOfChildren);
+        editCity = (EditText) findViewById(R.id.profileParentCity);
         editAllLanguages = (EditText) findViewById(R.id.editAllLanguages);
         editTextAbout = (EditText) findViewById(R.id.editTextAbout);
         editTextHobbies = (EditText) findViewById(R.id.editTextHobbies);

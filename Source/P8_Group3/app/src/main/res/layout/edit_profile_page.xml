@@ -65,7 +65,7 @@
 
 
                 <EditText
-                    android:id="@+id/editName"
+                    android:id="@+id/profileUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -80,11 +80,11 @@
                     android:visibility="visible" />
 
                 <EditText
-                    android:id="@+id/editChildren"
+                    android:id="@+id/profileChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/editName"
-                    android:layout_below="@+id/editName"
+                    android:layout_alignStart="@+id/profileUsername"
+                    android:layout_below="@+id/profileUsername"
                     android:fontFamily="sans-serif"
                     android:text="@string/children"
                     android:textColor="@color/black"
@@ -93,21 +93,21 @@
 
 
                 <EditText
-                    android:id="@+id/editAge"
+                    android:id="@+id/profileParentAgeOfChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/editChildren"
-                    android:layout_below="@+id/editChildren"
+                    android:layout_alignStart="@+id/profileChildren"
+                    android:layout_below="@+id/profileChildren"
                     android:text="@string/age"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editCity"
+                    android:id="@+id/profileParentCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/editAge"
-                    android:layout_below="@+id/editAge"
+                    android:layout_alignStart="@+id/profileParentAgeOfChildren"
+                    android:layout_below="@+id/profileParentAgeOfChildren"
                     android:text="@string/city"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
