@@ -64,7 +64,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private Hashtable<String, String>hashCategory;
     private Hashtable<String, Integer>hashLocationID;
     final Hashtable <Integer, String> locationCategories = new Hashtable<Integer, String>();
-    private Hashtable<Integer, Double> hashTest = new Hashtable<>();
 
     //Variable to store permissions
     private String[] permissions;
@@ -82,8 +81,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         hashPicture = new Hashtable<String, String>();
         hashCategory = new Hashtable<String, String>();
         hashLocationID = new Hashtable<String, Integer>();
-        hashTest = new Hashtable<Integer, Double>();
-
 
 
 
@@ -158,8 +155,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         for (int i = 0; i < l.size(); i++){
             LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
-
-
             markerCity2 = locationMap.addMarker(new MarkerOptions()
                     .title(l.get(i).getLocationName())
                     .snippet(l.get(i).getLocationAddress())
@@ -170,9 +165,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
             hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
             locationCategories.put(i,l.get(i).getLocationCategory());
-           // hashTest.put(i,l.get(i).getAverageRating());
-           // System.out.println(r);
         }
+
+
 
 
         Button logoutButtonMapPage = (Button) findViewById(R.id.logoutButtonMapPage);
@@ -201,6 +196,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         //final LatLng userPosition = new LatLng(latitude, longitude);
 
 
+        //locationMap.addCircle(new CircleOptions().center(userPosition));
+
         final LatLng userPosition = new LatLng(57, 9.95);
 
        /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
@@ -217,8 +214,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
-                double r = ratingData.getAverageRating();
-                System.out.println(r);
                 return true;
             }
         });
@@ -229,6 +224,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             }
         });
+
+
+
 
         final boolean sheetShowing = true;
 
@@ -426,12 +424,12 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             View view = getLayoutInflater().inflate(R.layout.pop_up_info, null);
             List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
 
+
             TextView locationName = (TextView) bottomSheet.findViewById(R.id.txtLocationName);
             locationName.setText(marker.getTitle());
 
             TextView locationCity = (TextView) bottomSheet.findViewById(R.id.txtCity);
             locationCity.setText(hashCity.get(marker.getId()));
-
 
             TextView locationAddress = (TextView) bottomSheet.findViewById(R.id.txtAddress);
             locationAddress.setText(hashAddress.get(marker.getId()));
@@ -451,8 +449,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
             ratingBarFunctions(marker);
 
-
-
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
         }
@@ -470,8 +466,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         Parent mapParent = parentData.retrieveInformationAboutParent(loginUsername, loginPassword);
         final int parentID = mapParent.getParentID();
 
-
-
         submitButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -482,7 +476,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 f = simpleRatingBar.getRating();
                 Rating rating = new Rating("255", "255", f, "blabla", locID, parentID);
                 ratingData.createRating(rating);
-
 
                 String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
                 String rating2 = "Rating :: " + simpleRatingBar.getRating();
