@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -49,13 +51,17 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     RatingDAOImpl ratingData;
     ParentDAO parentData;
 
-   // private GpsTracker gpsTracker;
-   // private Location mLocation;
+    // private GpsTracker gpsTracker;
+    // private Location mLocation;
     // double latitude, longitude;
 
 
     private BottomSheetBehavior bottomSheetBehavior;
     private View bottomSheet;
+
+    private AlertDialog dialog;
+    private AlertDialog dialogSecond;
+
 
     private Marker markerCity2;
     private Hashtable<String, String>hashCity;
@@ -86,7 +92,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
-
         // Ask for permission
         /*
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -103,7 +108,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             Log.i("Error", "Data");
         }
 
-      ratingData = new RatingDAOImpl(context);
+        ratingData = new RatingDAOImpl(context);
         try{
             ratingData.open();
         }   catch (Exception e){
@@ -151,6 +156,10 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
+        loadCheckInLater();
+
+
+
 
         final List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
 
@@ -170,8 +179,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
             hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
             locationCategories.put(i,l.get(i).getLocationCategory());
-           // hashTest.put(i,l.get(i).getAverageRating());
-           // System.out.println(r);
+            // hashTest.put(i,l.get(i).getAverageRating());
+            // System.out.println(r);
         }
 
 
@@ -217,8 +226,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
-
                 List<Float> averageRating = ratingData.getAverageRating();
+
 
                 System.out.println(averageRating);
 
@@ -235,7 +244,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         final boolean sheetShowing = true;
 
-        Button button4 = (Button) findViewById(R.id.button2);
+       /* Button button4 = (Button) findViewById(R.id.checkInLater);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,7 +252,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
-        });
+        });*/
 
 
         Button button5 = (Button) findViewById(R.id.button3);
@@ -269,30 +278,30 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 }
 
 
-                    for (int i = 0; i < l.size(); i++){
+                for (int i = 0; i < l.size(); i++){
 
-                        if( locationCategories.get(i).equals("library")){
+                    if( locationCategories.get(i).equals("library")){
 
-                            LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
+                        LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
 
-                            markerCity2 = locationMap.addMarker(new MarkerOptions()
-                                    .title(l.get(i).getLocationName())
-                                    .snippet(l.get(i).getLocationAddress())
-                                    .position(lat).icon(BitmapDescriptorFactory.fromResource(R.drawable.book1)));
-                            hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
-                            hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
-                            hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
-
-                        }
+                        markerCity2 = locationMap.addMarker(new MarkerOptions()
+                                .title(l.get(i).getLocationName())
+                                .snippet(l.get(i).getLocationAddress())
+                                .position(lat).icon(BitmapDescriptorFactory.fromResource(R.drawable.book1)));
+                        hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
+                        hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
+                        hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
 
                     }
+
+                }
 
                 locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
                 CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
                 locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
-                };
+            };
 
         });
 
@@ -424,49 +433,48 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
-        public void updateBottomSheetContent(Marker marker) {
+    public void updateBottomSheetContent(Marker marker) {
 
-            View view = getLayoutInflater().inflate(R.layout.pop_up_info, null);
-            List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
+        View view = getLayoutInflater().inflate(R.layout.pop_up_info, null);
+        List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
 
-            TextView locationName = (TextView) bottomSheet.findViewById(R.id.txtLocationName);
-            locationName.setText(marker.getTitle());
+        TextView locationName = (TextView) bottomSheet.findViewById(R.id.txtLocationName);
+        locationName.setText(marker.getTitle());
 
-            TextView locationCity = (TextView) bottomSheet.findViewById(R.id.txtCity);
-            locationCity.setText(hashCity.get(marker.getId()));
-
-
-            TextView locationAddress = (TextView) bottomSheet.findViewById(R.id.txtAddress);
-            locationAddress.setText(hashAddress.get(marker.getId()));
-
-            ImageView locationPicture = (ImageView) bottomSheet.findViewById(R.id.infowindow);
-            Picasso.with(this).load(hashPicture.get(marker.getId())).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(locationPicture, new com.squareup.picasso.Callback() {
-
-                @Override
-                public void onSuccess() {
-
-                }
-
-                @Override
-                public void onError() {
-
-                }
-            });
-
-            ratingBarFunctions(marker);
+        TextView locationCity = (TextView) bottomSheet.findViewById(R.id.txtCity);
+        locationCity.setText(hashCity.get(marker.getId()));
 
 
+        TextView locationAddress = (TextView) bottomSheet.findViewById(R.id.txtAddress);
+        locationAddress.setText(hashAddress.get(marker.getId()));
 
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        ImageView locationPicture = (ImageView) bottomSheet.findViewById(R.id.infowindow);
+        Picasso.with(this).load(hashPicture.get(marker.getId())).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(locationPicture, new com.squareup.picasso.Callback() {
+            @Override
+            public void onSuccess() {
 
-        }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+
+        ratingBarFunctions(marker);
+
+
+
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+    }
 
 
     public void ratingBarFunctions(Marker marker) {
 
         final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
-        Button submitButton = (Button) findViewById(R.id.submitRating);
         Button editButton = (Button) findViewById(R.id.editRating);
+        Button submitButton = (Button) findViewById(R.id.submitRating);
         final int locID = hashLocationID.get(marker.getId());
 
         Bundle bundle = getIntent().getExtras();
@@ -497,7 +505,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         });
 
-
         editButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -518,7 +525,87 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         });
 
+
     }
+
+
+
+    public void loadCheckInLater(){
+
+        Button mShowDialog = (Button) findViewById(R.id.checkInLater);
+        mShowDialog.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+
+
+                final AlertDialog.Builder secondBuilder = new AlertDialog.Builder(MapsPage.this);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MapsPage.this);
+                final View mView = getLayoutInflater().inflate(R.layout.check_in_later_popup, null);
+                final View secondView = getLayoutInflater().inflate(R.layout.check_in_later_popup_second_view, null);
+                Button approve = (Button) mView.findViewById(R.id.approve);
+                Button cancel = (Button) mView.findViewById(R.id.cancel);
+                Button approveSecond = (Button) secondView.findViewById(R.id.approveSecond);
+                Button cancelSecond = (Button) secondView.findViewById(R.id.cancelSecond);
+
+
+
+                mBuilder.setView(mView);
+                dialog = mBuilder.create();
+
+                secondBuilder.setView(secondView);
+                dialogSecond = secondBuilder.create();
+
+                dialog.show();
+
+                approve.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Here goes code that activates when you push APPROVE
+                        dialog.dismiss();
+                        dialogSecond.show();
+
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Here goes code that activates when you push CANCEL
+                        dialog.dismiss();
+                    }
+                });
+
+
+
+                cancelSecond.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Here goes code that activates when you push CANCEL
+                        dialogSecond.dismiss();
+                        dialog.show();
+                    }
+                });
+
+
+                approveSecond.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Here goes code that activates when you push APPROVE
+
+                    }
+                });
+
+
+            }
+        });
+
+
+
+    }
+
+
 
 
        /*
