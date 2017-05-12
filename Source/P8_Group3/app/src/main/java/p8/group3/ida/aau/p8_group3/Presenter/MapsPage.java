@@ -292,6 +292,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                         hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
                         hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
                         hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+                        hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
+                        hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
+                        locationCategories.put(i,l.get(i).getLocationCategory());
 
                     }
 
@@ -331,6 +334,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                         hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
                         hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
                         hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+                        hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
+                        hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
+                        locationCategories.put(i,l.get(i).getLocationCategory());
 
                     }
 
@@ -370,6 +376,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                         hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
                         hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
                         hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+                        hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
+                        hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
+                        locationCategories.put(i,l.get(i).getLocationCategory());
 
                     }
 
@@ -412,6 +421,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                         hashCity.put(markerCity2.getId(),l.get(i).getLocationCity());
                         hashAddress.put(markerCity2.getId(),l.get(i).getLocationAddress());
                         hashPicture.put(markerCity2.getId(),l.get(i).getLocationPicture());
+                        hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
+                        hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
+                        locationCategories.put(i,l.get(i).getLocationCategory());
 
                     }
 
