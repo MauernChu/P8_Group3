@@ -13,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 32 ;
+    private static final int DATABASE_VERSION = 40 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -29,27 +29,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_LOCATIONIDCHECKEDIN = "locationIDCheckedIn";
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_CITYOFRESIDENCE = "cityOfResidence";
-
-    //Columns for the HobbyList table
-    public static final String TABLE_HOBBYLIST = "hobbyList";
-    public static final String COLUMN_HOBBYID = "_hobbyID";
-    public static final String COLUMN_HOBBYNAME = "hobbyName";
-    public static final String COLUMN_HOBBYICON = "hobbyIcon";
-
-    //Columns for ParentHobby table
-    public static final String TABLE_PARENTHOBBY = "parentHobby";
-    public static final String COLUMN_TRACKHOBBYPARENTID = "trackParentID";
-    public static final String COLUMN_TRACKHOBBYID = "trackHobbyID";
-
-    //Columns for the LanguageList table
-    public static final String TABLE_LANGUAGELIST = "languageList";
-    public static final String COLUMN_LANGUAGEID = "_languageID";
-    public static final String COLUMN_LANGUAGE = "language";
-
-    //Columns for ParentLanguage table
-    public static final String TABLE_PARENTLANGUAGE = "parentLanguage";
-    public static final String COLUMN_TRACKLANGUAGEPARENTID = "trackLanguageParentID";
-    public static final String COLUMN_TRACKLANGUAGEID = "trackLanguageID";
+    public static final String COLUMN_HOBBYLIST = "hobbyList";
+    public static final String COLUMN_lANGUAGELIST = "languageList";
 
     //Columns for the Location table
     public static final String TABLE_LOCATION = "location";
@@ -100,35 +81,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + COLUMN_LOCATIONIDCHECKEDIN + " INT, "
                 + COLUMN_EMAIL + " TEXT NOT NULL, "
                 + COLUMN_CITYOFRESIDENCE + " TEXT "
+                + COLUMN_HOBBYLIST + " TEXT "
+                + COLUMN_lANGUAGELIST + " TEXT "
                 +");";
 
-    public static final String SQL_CREATE_TABLE_HOBBYLIST = "CREATE TABLE " + TABLE_HOBBYLIST + "("
-            + COLUMN_HOBBYID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_HOBBYNAME + " TEXT NOT NULL, "
-            + COLUMN_HOBBYICON + " BLOB "
-            +");";
-
-    public static final String SQL_CREATE_TABLE_PARENTHOBBY = "CREATE TABLE " + TABLE_PARENTHOBBY + "("
-            + COLUMN_TRACKHOBBYPARENTID + " INTEGER NOT NULL, "
-            + COLUMN_TRACKHOBBYID + " INTEGER NOT NULL, "
-            + " FOREIGN KEY ("+COLUMN_TRACKHOBBYPARENTID+") REFERENCES "+TABLE_PARENT+" ("+COLUMN_PARENTID+"), "
-            + " FOREIGN KEY ("+COLUMN_TRACKHOBBYID+") REFERENCES "+TABLE_HOBBYLIST+" ("+COLUMN_HOBBYID+"));";
-
-    public static final String SQL_CREATE_TABLE_LANGUAGELIST = "CREATE TABLE " + TABLE_LANGUAGELIST + "("
-            + COLUMN_LANGUAGEID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_LANGUAGE + " TEXT NOT NULL "
-            +");";
-
-    public static final String SQL_CREATE_TABLE_PARENLANGUAGE = "CREATE TABLE " + TABLE_PARENTLANGUAGE + "("
-            + COLUMN_TRACKLANGUAGEPARENTID + " INTEGER NOT NULL, "
-            + COLUMN_TRACKLANGUAGEID + " INTEGER NOT NULL, "
-            + " FOREIGN KEY ("+COLUMN_TRACKLANGUAGEPARENTID+") REFERENCES "+TABLE_PARENT+" ("+COLUMN_PARENTID+"), "
-            + " FOREIGN KEY ("+COLUMN_TRACKLANGUAGEID+") REFERENCES "+TABLE_LANGUAGELIST+" ("+COLUMN_LANGUAGEID+"));";
 
     public static final String SQL_CREATE_TABLE_LOCATION = "CREATE TABLE " + TABLE_LOCATION + "("
             + COLUMN_LOCATIONID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_LOCATIONNAME + " TEXT NOT NULL, "
-            + COLUMN_LOCATIONPICTURE + " TEXT, "
+            + COLUMN_LOCATIONPICTURE + " TEXT NOT NULL, "
             + COLUMN_LOCATIONDESCRIPTION + " TEXT, "
             + COLUMN_LOCATIONLONGITUDE + " DOUBLE NOT NULL, "
             + COLUMN_LOCATIONLATITUDE + " DOUBLE NOT NULL, "
@@ -160,14 +121,79 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //The first time we are going to create this database for the first time it is going to call this method
     public void onCreate(SQLiteDatabase database){
+        createOnCreateTables(database);
+        InsertInitialLocationRows(database);
+        InsertInitialParentRows(database);
+    }
+
+    private void createOnCreateTables(SQLiteDatabase database) {
         database.execSQL(SQL_CREATE_TABLE_PARENT);
-        database.execSQL(SQL_CREATE_TABLE_HOBBYLIST);
-        database.execSQL(SQL_CREATE_TABLE_PARENTHOBBY);
-        database.execSQL(SQL_CREATE_TABLE_LANGUAGELIST);
-        database.execSQL(SQL_CREATE_TABLE_PARENLANGUAGE);
         database.execSQL(SQL_CREATE_TABLE_LOCATION);
         database.execSQL(SQL_CREATE_TABLE_RATING);
         database.execSQL(SQL_CREATE_TABLE_PLANNEDACTIVITY);
+    }
+
+    private void InsertInitialLocationRows(SQLiteDatabase database) {
+        //Havnefront Location
+        ContentValues initialLocationHavnefrontValues = new ContentValues();
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONNAME, "Østre Anlæg Legeplads");
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONLONGITUDE, 9.939690);
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONLATITUDE, 57.043719);
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "playground");
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Bonnesensgade");
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.takepart.com/sites/default/files/styles/tp_gallery_slide/public/Dragon_9-itok=VtWnRjSf.jpg");
+        database.insert(DatabaseHandler.TABLE_LOCATION, null, initialLocationHavnefrontValues);
+
+        //Slotspladsen Location
+        ContentValues initialLocationSlotspladsenValues = new ContentValues();
+        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONNAME, "Jomfru Ane Parken");
+        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONLONGITUDE, 9.922097);
+        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONLATITUDE, 57.051100);
+        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "park");
+        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Aalborg Centrum");
+        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "Aalborg");
+        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
+        database.insert(DatabaseHandler.TABLE_LOCATION, null, initialLocationSlotspladsenValues);
+    }
+
+    private void InsertInitialParentRows(SQLiteDatabase database){
+        ContentValues initialParentValues = new ContentValues();
+        initialParentValues.put(DatabaseHandler.COLUMN_USERNAME, "jannik");
+        initialParentValues.put(DatabaseHandler.COLUMN_PASSWORD, "jannik");
+        initialParentValues.put(DatabaseHandler.COLUMN_EMAIL, "jannik");
+        initialParentValues.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, "Aalborg");
+        initialParentValues.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, 1);
+        initialParentValues.put(DatabaseHandler.COLUMN_AGECHILDREN, "One");
+        database.insert(DatabaseHandler.TABLE_PARENT, null, initialParentValues);
+        initialParentValues.put(DatabaseHandler.COLUMN_USERNAME, "christos");
+        initialParentValues.put(DatabaseHandler.COLUMN_PASSWORD, "christos");
+        initialParentValues.put(DatabaseHandler.COLUMN_EMAIL, "christos");
+        initialParentValues.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, "Aalborg");
+        initialParentValues.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, 1);
+        initialParentValues.put(DatabaseHandler.COLUMN_AGECHILDREN, "One");
+        database.insert(DatabaseHandler.TABLE_PARENT, null, initialParentValues);
+        initialParentValues.put(DatabaseHandler.COLUMN_USERNAME, "katarina");
+        initialParentValues.put(DatabaseHandler.COLUMN_PASSWORD, "katarina");
+        initialParentValues.put(DatabaseHandler.COLUMN_EMAIL, "katarina");
+        initialParentValues.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, "Aalborg");
+        initialParentValues.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, 1);
+        initialParentValues.put(DatabaseHandler.COLUMN_AGECHILDREN, "One");
+        database.insert(DatabaseHandler.TABLE_PARENT, null, initialParentValues);
+        initialParentValues.put(DatabaseHandler.COLUMN_USERNAME, "camilla");
+        initialParentValues.put(DatabaseHandler.COLUMN_PASSWORD, "camilla");
+        initialParentValues.put(DatabaseHandler.COLUMN_EMAIL, "camilla");
+        initialParentValues.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, "Aalborg");
+        initialParentValues.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, 1);
+        initialParentValues.put(DatabaseHandler.COLUMN_AGECHILDREN, "One");
+        database.insert(DatabaseHandler.TABLE_PARENT, null, initialParentValues);
+        initialParentValues.put(DatabaseHandler.COLUMN_USERNAME, "mette");
+        initialParentValues.put(DatabaseHandler.COLUMN_PASSWORD, "mette");
+        initialParentValues.put(DatabaseHandler.COLUMN_EMAIL, "mette");
+        initialParentValues.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, "Aalborg");
+        initialParentValues.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, 1);
+        initialParentValues.put(DatabaseHandler.COLUMN_AGECHILDREN, "One");
+        database.insert(DatabaseHandler.TABLE_PARENT, null, initialParentValues);
     }
 
 
@@ -178,10 +204,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARENT);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HOBBYLIST);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARENTHOBBY);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LANGUAGELIST);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARENTLANGUAGE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATING);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLANNEDACTIVITY);
