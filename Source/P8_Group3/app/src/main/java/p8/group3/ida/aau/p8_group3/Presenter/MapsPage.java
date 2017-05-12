@@ -9,10 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,17 +28,22 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
+import java.security.Timestamp;
+import java.sql.Time;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.LocationDAOImpl;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
+import p8.group3.ida.aau.p8_group3.Database.PlannedActivityDAOImpl;
 import p8.group3.ida.aau.p8_group3.Database.RatingDAOImpl;
 import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.Model.Rating;
 import p8.group3.ida.aau.p8_group3.R;
 
+import static p8.group3.ida.aau.p8_group3.R.id.chooseTime;
 import static p8.group3.ida.aau.p8_group3.R.id.ratingBar;
 
 public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
@@ -50,6 +57,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     LocationDAOImpl data;
     RatingDAOImpl ratingData;
     ParentDAO parentData;
+    PlannedActivityDAOImpl CheckInLaterData;
 
     // private GpsTracker gpsTracker;
     // private Location mLocation;
@@ -62,6 +70,13 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private AlertDialog dialog;
     private AlertDialog dialogSecond;
 
+    // Store time and date of CheckInLater
+    public int storeDay;
+    public int storeMonth;
+    public int storeYear;
+    public int storeHour;
+    public int storeMinute;
+    public int[] storeCheckInlaterData;
 
     private Marker markerCity2;
     private Hashtable<String, String>hashCity;
@@ -71,6 +86,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private Hashtable<String, Integer>hashLocationID;
     final Hashtable <Integer, String> locationCategories = new Hashtable<Integer, String>();
     private Hashtable<Integer, Double> hashTest = new Hashtable<>();
+    private Hashtable<Integer, String> checkInLaterDate = new Hashtable<>();
 
     //Variable to store permissions
     private String[] permissions;
@@ -156,8 +172,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
-        loadCheckInLater();
-
 
 
 
@@ -226,6 +240,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
+                loadCheckInLater(marker);
                 List<Float> averageRating = ratingData.getAverageRating();
 
 
@@ -485,16 +500,10 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     public void ratingBarFunctions(Marker marker) {
 
         final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
-        Button editButton = (Button) findViewById(R.id.editRating);
         Button submitButton = (Button) findViewById(R.id.submitRating);
         final int locID = hashLocationID.get(marker.getId());
 
-        Bundle bundle = getIntent().getExtras();
-        loginUsername = bundle.getString("loginUsername");
-        loginPassword = bundle.getString("loginPassword");
-        Parent mapParent = parentData.retrieveInformationAboutParent(loginPassword);
-        final int parentID = mapParent.getParentID();
-
+        final int parentID = parentLoggedIn();
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -506,27 +515,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 float f;
                 f = simpleRatingBar.getRating();
                 Rating rating = new Rating("255", "255", f, "blabla", locID, parentID);
-                ratingData.createRating(rating);
-
-
-                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-                String rating2 = "Rating :: " + simpleRatingBar.getRating();
-                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating2, Toast.LENGTH_LONG).show();
-
-            }
-
-        });
-
-        editButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                // get values and then displayed in a toast
-
-                float f;
-                f = simpleRatingBar.getRating();
-                Rating rating = new Rating("255", "255", f, "blabla", locID, parentID);
-                ratingData.updateRating(rating);
+                ratingData.createOrUpdateRating(rating);
 
 
                 String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
@@ -540,9 +529,19 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
+    public int parentLoggedIn(){
+        Bundle bundle = getIntent().getExtras();
+        loginUsername = bundle.getString("loginUsername");
+        loginPassword = bundle.getString("loginPassword");
+        Parent mapParent = parentData.retrieveInformationAboutParent(loginPassword);
+        int parentID = mapParent.getParentID();
+
+        return parentID;
+    }
 
 
-    public void loadCheckInLater(){
+
+    public void loadCheckInLater( Marker marker){
 
         Button mShowDialog = (Button) findViewById(R.id.checkInLater);
         mShowDialog.setOnClickListener(new View.OnClickListener() {
@@ -560,6 +559,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 Button cancel = (Button) mView.findViewById(R.id.cancel);
                 Button approveSecond = (Button) secondView.findViewById(R.id.approveSecond);
                 Button cancelSecond = (Button) secondView.findViewById(R.id.cancelSecond);
+                final TimePicker timepicker = (TimePicker) findViewById(R.id.chooseTime);
+                final DatePicker datepicker = (DatePicker) findViewById(R.id.chooseDate);
+
 
 
 
@@ -605,6 +607,19 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                     @Override
                     public void onClick(View view) {
                         // Here goes code that activates when you push APPROVE
+                       /* storeHour = timepicker.getHour();
+                        storeMinute = timepicker.getMinute();
+                        storeMonth = datepicker.getMonth();
+                        storeYear = datepicker.getYear();
+                        storeDay = datepicker.getDayOfMonth();*/
+                        /*
+                        storeCheckInlaterData[0] = storeMinute;
+                        storeCheckInlaterData[1] = storeHour;
+                        storeCheckInlaterData[2] = storeDay;
+                        storeCheckInlaterData[3] = storeMonth;
+                        storeCheckInlaterData[4] = storeYear;*/
+
+
 
                     }
                 });
@@ -614,8 +629,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         });
 
 
-
     }
+
 
 
 

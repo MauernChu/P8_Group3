@@ -145,14 +145,6 @@
                 android:background="@color/gray"
                 android:text="SUBMIT RATING" />
 
-            <Button
-                android:id="@+id/editRating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/submitRating"
-                android:layout_marginTop="10dp"
-                android:background="@color/gray"
-                android:text="EDIT RATING" />
 
         </LinearLayout>
 
