@@ -27,6 +27,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -266,12 +269,27 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         Button button5 = (Button) findViewById(R.id.button3);
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (sheetShowing) {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            public void onClick(View view) {
+                Bundle bundle = getIntent().getExtras();
+                loginPassword = bundle.getString("loginPassword");
+                Parent mapParent = parentData.retrieveInformationAboutParent(loginPassword);
+                parentData.checkInNow(mapParent);
+                Date dateTest = mapParent.getTimeChekedIn();
+                if (dateTest != null) {
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
+                    Toast.makeText(MapsPage.this, "You are now checked in to this location at time: " + dateFormat.format(dateTest), Toast.LENGTH_SHORT).show();
                 }
-            }
+                    if (sheetShowing) {
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                    }
+                }
+
         });
+
+
+
+
+
 
 
 

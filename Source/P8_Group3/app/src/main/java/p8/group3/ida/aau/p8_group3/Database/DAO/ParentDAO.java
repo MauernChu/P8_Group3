@@ -19,4 +19,6 @@ public interface ParentDAO {
     Parent retrieveInformationAboutParent(String password);
 
     void editProfile (Parent parent);
+
+    void checkInNow(Parent parent);
 }

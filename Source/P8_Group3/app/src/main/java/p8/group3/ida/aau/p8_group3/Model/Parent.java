@@ -11,7 +11,7 @@ public class Parent {
     private String password;
     private String profilePicture;
     private String infoAboutParent;
-    //private int timeChekedIn;
+    private Date timeChekedIn;
     private int locationIdCheckin;
     private String email;
     private String cityOfResidence;
@@ -34,7 +34,7 @@ public class Parent {
         this.cityOfResidence = cityOfResidence;
     }
 
-    public Parent(int parentID, String username, int numberOfChildren, String ageOfChildren, String password, String profilePicture, String infoAboutParent, int locationIdCheckin, String email, String cityOfResidence) {
+    public Parent(int parentID, String username, int numberOfChildren, String ageOfChildren, String password, String profilePicture, String infoAboutParent, int locationIdCheckin, String email, String cityOfResidence, Date timeChekedIn) {
         this.parentID = parentID;
         this.username = username;
         this.numberOfChildren = numberOfChildren;
@@ -45,6 +45,8 @@ public class Parent {
         this.locationIdCheckin = locationIdCheckin;
         this.email = email;
         this.cityOfResidence = cityOfResidence;
+        this.timeChekedIn = timeChekedIn;
+
     }
 
     public int getParentID() {
@@ -127,12 +129,12 @@ public class Parent {
         this.profilePicture = profilePicture;
     }
 
-   /* public int getTimeChekedIn() {
+    public Date getTimeChekedIn() {
         return timeChekedIn;
     }
 
-    public void setTimeChekedIn(int timeChekedIn) {
+    public void setTimeChekedIn(Date timeChekedIn) {
         this.timeChekedIn = timeChekedIn;
     }
-*/
+
 }
