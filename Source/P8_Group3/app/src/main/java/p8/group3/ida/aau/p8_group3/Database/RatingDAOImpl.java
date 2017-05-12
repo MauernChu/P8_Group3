@@ -7,7 +7,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.android.gms.maps.model.Marker;
+
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import p8.group3.ida.aau.p8_group3.Model.Rating;
@@ -116,10 +119,14 @@ public class RatingDAOImpl {
 
 
 
-    public List<Float> getAverageRating (){
+    public float getAverageRating(Marker marker, Hashtable<String, Integer> hashLocationID){
 
-        float averageRating = 0;
-        List<Float> averageRatingOfPlaces = new ArrayList<Float>();
+        float averageRating;
+        float averageRatingOfPlaces = 0;
+        float test2 = 0;
+
+        List<Float> test = new ArrayList<Float>();
+
         String query2 = "SELECT _locationID FROM " + DatabaseHandler.TABLE_LOCATION;
         Cursor cursor2 = database.rawQuery(query2, null);
         int location_locationid = cursor2.getCount();
@@ -151,16 +158,26 @@ public class RatingDAOImpl {
             cursor5.close();
 
             if ( g!= 0 ){
-                averageRating = averageRating / g;
-                averageRatingOfPlaces.add(averageRating);
+                averageRatingOfPlaces = averageRating / g;
+                test.add(averageRatingOfPlaces);
             }
             else {
-                averageRating = 0;
-                averageRatingOfPlaces.add(averageRating);
+                averageRatingOfPlaces = 0;
+                test.add(averageRatingOfPlaces);
             }
         }
+
         System.out.println(averageRatingOfPlaces);
-        return averageRatingOfPlaces;
+
+        int k = hashLocationID.get(marker.getId());
+        
+        for (i = 0; i < location_locationid; i++){
+            if ( (i+1) == k ){
+                test2 = test.get(i);
+            }
+        }
+
+        return test2;
     }
 
 

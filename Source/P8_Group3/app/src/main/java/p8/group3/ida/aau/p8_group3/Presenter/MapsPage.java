@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -28,9 +27,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
-import java.security.Timestamp;
-import java.sql.Time;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -43,7 +39,6 @@ import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.Model.Rating;
 import p8.group3.ida.aau.p8_group3.R;
 
-import static p8.group3.ida.aau.p8_group3.R.id.chooseTime;
 import static p8.group3.ida.aau.p8_group3.R.id.ratingBar;
 
 public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
@@ -83,10 +78,12 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private Hashtable<String, String>hashAddress;
     private Hashtable<String, String>hashPicture;
     private Hashtable<String, String>hashCategory;
-    private Hashtable<String, Integer>hashLocationID;
+    public Hashtable<String, Integer>hashLocationID;
     final Hashtable <Integer, String> locationCategories = new Hashtable<Integer, String>();
     private Hashtable<Integer, Double> hashTest = new Hashtable<>();
     private Hashtable<Integer, String> checkInLaterDate = new Hashtable<>();
+
+    float averageRating;
 
     //Variable to store permissions
     private String[] permissions;
@@ -241,10 +238,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
                 loadCheckInLater(marker);
-                List<Float> averageRating = ratingData.getAverageRating();
-
-
-                System.out.println(averageRating);
 
                 return true;
             }
@@ -499,7 +492,12 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
     public void ratingBarFunctions(Marker marker) {
 
+
         final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
+
+        averageRating = ratingData.getAverageRating(marker, hashLocationID);
+        simpleRatingBar.setRating(averageRating);
+
         Button submitButton = (Button) findViewById(R.id.submitRating);
         final int locID = hashLocationID.get(marker.getId());
 
