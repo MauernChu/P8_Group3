@@ -44,13 +44,12 @@ public class RatingDAOImpl {
     }
 
 
-    public void createOrUpdateRating(Rating rating) {
 
+    public void createOrUpdateRating(Rating rating) {
 
         int k = rating.getRatingParentID();
 
         int e = rating.getRatingLocationID();
-
 
         database = dbHelper.getReadableDatabase();
 
@@ -112,8 +111,6 @@ public class RatingDAOImpl {
 
             long insertID = database.insert(DatabaseHandler.TABLE_RATING, null, v);
         }
-
-
 
     }
 

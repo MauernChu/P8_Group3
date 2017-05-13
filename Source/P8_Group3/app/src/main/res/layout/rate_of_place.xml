@@ -1,0 +1,59 @@
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ratingDialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_above="@+id/dialog_ratingbar"
+            android:gravity="center"
+
+            android:layout_marginTop="130dp"
+            android:text="Rate this place!"
+            android:textSize="24dp"
+            android:visibility="visible" />
+
+
+        <RatingBar
+            android:id="@+id/dialog_ratingbar"
+            style="@style/Widget.AppCompat.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="submitRating"
+            android:background="@color/mustard"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar"
+            android:layout_marginBottom="80dp"
+            android:layout_alignBottom="@+id/dialog_submitRating"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/dialog_submitRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="277dp"
+            android:background="@color/gray"
+            android:text="SUBMIT RATING"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/dialog_cancelRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="350dp"
+            android:background="@color/gray"
+            android:text="Cancel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+
+    </RelativeLayout>

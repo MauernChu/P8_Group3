@@ -42,6 +42,7 @@ import p8.group3.ida.aau.p8_group3.Model.Parent;
 import p8.group3.ida.aau.p8_group3.Model.Rating;
 import p8.group3.ida.aau.p8_group3.R;
 
+import static p8.group3.ida.aau.p8_group3.R.id.dialog_ratingbar;
 import static p8.group3.ida.aau.p8_group3.R.id.ratingBar;
 
 public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
@@ -67,6 +68,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
     private AlertDialog dialog;
     private AlertDialog dialogSecond;
+    private AlertDialog dialogRating;
 
     // Store time and date of CheckInLater
     public int storeDay;
@@ -241,6 +243,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
                 loadCheckInLater(marker);
+                submitRating(marker);
 
                 return true;
             }
@@ -501,8 +504,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         ratingBarFunctions(marker);
 
-
-
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
     }
@@ -516,34 +517,13 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         averageRating = ratingData.getAverageRating(marker, hashLocationID);
         simpleRatingBar.setRating(averageRating);
 
-        Button submitButton = (Button) findViewById(R.id.submitRating);
         final int locID = hashLocationID.get(marker.getId());
 
         final int parentID = parentLoggedIn();
 
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                // get values and then displayed in a toast
-
-                float f;
-                f = simpleRatingBar.getRating();
-                Rating rating = new Rating("255", "255", f, "blabla", locID, parentID);
-                ratingData.createOrUpdateRating(rating);
-
-
-                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-                String rating2 = "Rating :: " + simpleRatingBar.getRating();
-                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating2, Toast.LENGTH_LONG).show();
-
-            }
-
-        });
-
-
     }
+
+
 
     public int parentLoggedIn(){
         Bundle bundle = getIntent().getExtras();
@@ -554,6 +534,67 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         return parentID;
     }
+
+
+    public void submitRating (Marker marker){
+
+        final int locID = hashLocationID.get(marker.getId());
+        final int parentID = parentLoggedIn();
+
+        Button ratePlace = (Button) findViewById(R.id.submitRating);
+        ratePlace.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                final AlertDialog.Builder submitRate = new AlertDialog.Builder(MapsPage.this);
+                final View mView = getLayoutInflater().inflate(R.layout.rate_of_place, null);
+
+
+                Button submitRating = (Button) mView.findViewById(R.id.dialog_submitRating);
+                Button cancelRating = (Button) mView.findViewById(R.id.dialog_cancelRating);
+
+                submitRate.setView(mView);
+
+                dialog = submitRate.create();
+                dialog.show();
+
+                submitRating.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        final RatingBar simpleRatingBar1 = (RatingBar) mView.findViewById(dialog_ratingbar);
+
+                        float f;
+                        f = simpleRatingBar1.getRating();
+                        Rating rating1 = new Rating("255", "255", f, "blabla", locID, parentID);
+                        ratingData.createOrUpdateRating(rating1);
+
+                        String totalStars = "Total Stars:: " + simpleRatingBar1.getNumStars();
+                        String rating2 = "Rating :: " + simpleRatingBar1.getRating();
+
+                        Toast.makeText(getApplicationContext(), totalStars + "\n" + rating2, Toast.LENGTH_LONG).show();
+
+                        dialog.dismiss();
+
+
+                    }
+                });
+
+
+                cancelRating.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+
+                    }
+                });
+            }
+        });
+    }
+
 
 
 
@@ -646,10 +687,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
 
     }
-
-
-
-
 
        /*
     @Override
