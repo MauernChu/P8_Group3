@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -184,7 +186,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
 
 
-
             markerCity2 = locationMap.addMarker(new MarkerOptions()
                     .title(l.get(i).getLocationName())
                     .snippet(l.get(i).getLocationAddress())
@@ -236,14 +237,13 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
 
-
-
         locationMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 updateBottomSheetContent(marker);
                 loadCheckInLater(marker);
                 submitRating(marker);
+                peopleCheckedInNow(marker);
 
                 return true;
             }
@@ -288,12 +288,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 }
 
         });
-
-
-
-
-
-
 
 
         //Add markers to library category
@@ -434,10 +428,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
 
-
                 for (int i = 0; i < l.size(); i++){
-
-
 
                     if( locationCategories.get(i).equals("park")){
 
@@ -511,7 +502,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
     public void ratingBarFunctions(Marker marker) {
 
-
         final RatingBar simpleRatingBar = (RatingBar) findViewById(ratingBar);
 
         averageRating = ratingData.getAverageRating(marker, hashLocationID);
@@ -535,6 +525,22 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         return parentID;
     }
 
+
+    public int peopleCheckedInNow (Marker marker){
+
+        int peopleIn = 0;
+
+        peopleIn = data.getPeopleCheckedInNow(marker, hashLocationID);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Number of people currently present: " + peopleIn);
+
+        return peopleIn;
+    }
 
     public void submitRating (Marker marker){
 
@@ -620,8 +626,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 final DatePicker datepicker = (DatePicker) findViewById(R.id.chooseDate);
 
 
-
-
                 mBuilder.setView(mView);
                 dialog = mBuilder.create();
 
@@ -647,8 +651,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                         dialog.dismiss();
                     }
                 });
-
-
 
                 cancelSecond.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -676,8 +678,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                         storeCheckInlaterData[3] = storeMonth;
                         storeCheckInlaterData[4] = storeYear;*/
 
-
-
                     }
                 });
 
@@ -688,7 +688,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
-       /*
+   /*
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -701,7 +701,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                 break;
         }
-    }*/
+    }   */
 
 
 

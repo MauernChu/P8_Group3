@@ -6,9 +6,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import java.sql.Blob;
-import java.util.List;
+
+import com.google.android.gms.maps.model.Marker;
+
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
 
 import p8.group3.ida.aau.p8_group3.Model.Location;
 
@@ -80,6 +83,45 @@ public class LocationDAOImpl {
         }
         cursor.close();
         return markers;
+
+    }
+
+    public int getPeopleCheckedInNow (Marker marker, Hashtable<String, Integer> hashLocationID){
+
+        int peopleInNow = 0;
+        final int locationID = hashLocationID.get(marker.getId());
+
+        System.out.println(locationID);
+
+
+        String query2 = "SELECT parentsCurrentlyCheckedIn FROM " + DatabaseHandler.TABLE_LOCATION;
+        Cursor cursor2 = database.rawQuery(query2, null);
+
+        String query3 = "SELECT _locationID FROM " + DatabaseHandler.TABLE_LOCATION;
+        Cursor cursor3 = database.rawQuery(query3, null);
+
+
+        cursor2.isFirst();
+        cursor3.isFirst();
+
+        while (cursor3.moveToNext()){
+
+                if (locationID == cursor3.getInt(cursor3.getColumnIndex("_locationID"))){
+
+                    int k = cursor3.getPosition();
+
+                    cursor2.moveToPosition(k);
+
+                    peopleInNow = cursor2.getInt(cursor2.getColumnIndex("parentsCurrentlyCheckedIn"));
+
+                }
+
+            }
+
+        cursor2.close();
+        cursor3.close();
+
+        return peopleInNow;
 
     }
 

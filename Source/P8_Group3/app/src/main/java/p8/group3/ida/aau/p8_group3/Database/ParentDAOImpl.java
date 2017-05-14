@@ -2,25 +2,17 @@ package p8.group3.ida.aau.p8_group3.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-
-import p8.group3.ida.aau.p8_group3.Model.Parent;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+import p8.group3.ida.aau.p8_group3.Model.Parent;
 
 public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO {
 
@@ -135,6 +127,7 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         }
         return passwordDb;
     }
+
 
     public Parent retrieveInformationAboutParent(String password) {
         database = dbHelper.getReadableDatabase();

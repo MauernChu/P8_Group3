@@ -1,19 +1,16 @@
 package p8.group3.ida.aau.p8_group3.Database;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.Cursor;
-import android.content.Context;
-import android.content.ContentValues;
-
-import p8.group3.ida.aau.p8_group3.Model.Parent;
 
 //This class is for working directly with the database
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 42 ;
+    private static final int DATABASE_VERSION = 44 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -142,6 +139,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "playground");
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Bonnesensgade");
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 2);
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.takepart.com/sites/default/files/styles/tp_gallery_slide/public/Dragon_9-itok=VtWnRjSf.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialLocationHavnefrontValues);
 
@@ -155,6 +153,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "Aalborg");
         initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialLocationSlotspladsenValues);
+
+        //Random Location
+        ContentValues initialRandomValues = new ContentValues();
+        initialRandomValues.put(DatabaseHandler.COLUMN_LOCATIONNAME, "Random Parken");
+        initialRandomValues.put(DatabaseHandler.COLUMN_LOCATIONLONGITUDE, 9.91);
+        initialRandomValues.put(DatabaseHandler.COLUMN_LOCATIONLATITUDE, 57.03);
+        initialRandomValues.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "park");
+        initialRandomValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Aalborg Centrum");
+        initialRandomValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "Aalborg");
+        initialRandomValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 5);
+        initialRandomValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
+        database.insert(DatabaseHandler.TABLE_LOCATION, null, initialRandomValues);
     }
 
     private void InsertInitialParentRows(SQLiteDatabase database){
