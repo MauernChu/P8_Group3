@@ -91,6 +91,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private Hashtable<Integer, String> checkInLaterDate = new Hashtable<>();
 
     float averageRating;
+    public int j;
+
 
     //Variable to store permissions
     private String[] permissions;
@@ -142,6 +144,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             Log.i("Error", "Data");
         }
 
+
        /* gpsTracker = new GpsTracker(getApplicationContext());
         mLocation = gpsTracker.getLocation();
 
@@ -180,7 +183,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
 
         final List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
-
 
         for (int i = 0; i < l.size(); i++){
             LatLng lat = new LatLng(l.get(i).getLocationLatitude(), l.get(i).getLocationLongitude());
@@ -227,6 +229,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         //final LatLng userPosition = new LatLng(latitude, longitude);
 
 
+        parentData.checkOut(loginPassword, markerCity2);
+
         final LatLng userPosition = new LatLng(57, 9.95);
 
        /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
@@ -244,6 +248,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 loadCheckInLater(marker);
                 submitRating(marker);
                 peopleCheckedInNow(marker);
+
+                j=passLocationId(marker, hashLocationID);
 
                 return true;
             }
@@ -276,7 +282,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 Bundle bundle = getIntent().getExtras();
                 loginPassword = bundle.getString("loginPassword");
                 Parent mapParent = parentData.retrieveInformationAboutParent(loginPassword);
-                parentData.checkInNow(mapParent);
+
+                parentData.checkInNow(mapParent, j);
+
                 Date dateTest = mapParent.getTimeChekedIn();
                 if (dateTest != null) {
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
@@ -453,16 +461,12 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
                 locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
-            };
+            }
 
         });
 
 
     }
-
-
-
-
 
 
     public void updateBottomSheetContent(Marker marker) {
@@ -684,7 +688,13 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
             }
         });
+    }
 
+    public int passLocationId (Marker marker, Hashtable<String, Integer> hashLocationID){
+
+        int j = hashLocationID.get(marker.getId());
+
+        return j;
 
     }
 

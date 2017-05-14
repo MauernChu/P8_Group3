@@ -10,8 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.Marker;
+
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
-import p8.group3.ida.aau.p8_group3.Database.DatabaseHandler;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
 import p8.group3.ida.aau.p8_group3.R;
 
@@ -20,6 +21,8 @@ public class LoginPage extends AppCompatActivity {
 
     EditText loginUsername;
     EditText loginPassword;
+
+    Marker marker;
 
 
     @Override
@@ -33,6 +36,7 @@ public class LoginPage extends AppCompatActivity {
         //Log-in variables
         loginUsername = (EditText) findViewById(R.id.createUsername);
         loginPassword = (EditText) findViewById(R.id.createPassword);
+
 
 
         //Font variables
@@ -89,6 +93,9 @@ public class LoginPage extends AppCompatActivity {
                     mapIntent.putExtra("loginUsername", loginUsername.getText().toString());
                     mapIntent.putExtra("loginPassword", loginPassword.getText().toString());
                     startActivityForResult(mapIntent, 0);
+
+                    parentDAO.checkOut(password, marker);
+
                 } else {
                     Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
                 }

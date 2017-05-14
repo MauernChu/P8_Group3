@@ -6,9 +6,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.android.gms.maps.model.Marker;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -81,12 +84,12 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
 
     private Parent fetchParentInformation(Cursor cursor) {
         int parentID = cursor.getInt(0);
-        ;
+
         String username = cursor.getString(1);
-        ;
+
         int numberOfChildren = cursor.getInt(2);
         String ageOfChildren = cursor.getString(3);
-        ;
+
         String password = cursor.getString(4);
         String profilePicture = cursor.getString(5);
         String infoAboutParent = cursor.getString(6);
@@ -156,15 +159,126 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
 
     }
 
-    public void checkInNow(Parent parent) {
+    @Override
+    public void checkInNow(Parent parent, int j) {
+
         database = dbHelper.getWritableDatabase();
         ContentValues dateValues = new ContentValues();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         Date date = new Date();
+        int l = j;
         dateValues.put(DatabaseHandler.COLUMN_TIMECHECKEDIN, dateFormat.format(date));
+        dateValues.put(DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN, l);
         String parentPassword = parent.getPassword();
         String[] arguments = new String[]{parentPassword};
         database.update(DatabaseHandler.TABLE_PARENT, dateValues, DatabaseHandler.COLUMN_PASSWORD + " = ? ", arguments);
+
     }
+
+
+    @Override
+    public void checkOut(String loginPassword, Marker marker) {
+
+        database = dbHelper.getWritableDatabase();
+        ContentValues dateValues = new ContentValues();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+        Date date = new Date();
+
+        String parentPassword =loginPassword;
+        //String parentPassword = parent.getPassword();
+        String[] arguments = new String[]{parentPassword};
+
+        final Calendar calendar = Calendar.getInstance();
+        final Calendar calendar1 = Calendar.getInstance();
+
+        calendar.setTime(date);
+
+        Date timeOfCheckIn = calendar.getTime();
+
+        calendar1.add(Calendar.SECOND, 5);
+        long timeOfCheckOut = calendar1.getTimeInMillis();
+
+        System.out.println(timeOfCheckOut);
+        System.out.println(timeOfCheckIn);
+
+        boolean t = false;
+
+        while (t == false){
+
+            final Calendar calendar2 = Calendar.getInstance();
+
+            long time = calendar2.getTimeInMillis();
+
+
+            if (timeOfCheckOut <= time ){
+                dateValues.putNull(DatabaseHandler.COLUMN_TIMECHECKEDIN);
+                dateValues.putNull(DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN);
+                // dateValues.put(DatabaseHandler.COLUMN_TIMECHECKEDIN, );
+                // dateValues.put(DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN, );
+
+                database.update(DatabaseHandler.TABLE_PARENT, dateValues, DatabaseHandler.COLUMN_PASSWORD + " = ? ", arguments);
+                t = true;
+            }
+
+        }
+    }
+
+
+
+    @Override
+    public void checkOut(Parent parent, Marker marker) {
+        database = dbHelper.getWritableDatabase();
+        ContentValues dateValues = new ContentValues();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+        Date date = new Date();
+
+        //String parentPassword =loginPassword;
+        String parentPassword = parent.getPassword();
+        String[] arguments = new String[]{parentPassword};
+
+        final Calendar calendar = Calendar.getInstance();
+        final Calendar calendar1 = Calendar.getInstance();
+
+        calendar.setTime(date);
+
+        Date timeOfCheckIn = calendar.getTime();
+
+        calendar1.add(Calendar.SECOND, 5);
+        long timeOfCheckOut = calendar1.getTimeInMillis();
+
+        System.out.println(timeOfCheckOut);
+        System.out.println(timeOfCheckIn);
+
+        boolean t = false;
+
+        while (t = false){
+
+            final Calendar calendar2 = Calendar.getInstance();
+
+            long time = calendar2.getTimeInMillis();
+
+
+            if (timeOfCheckOut <= time ){
+                dateValues.putNull(DatabaseHandler.COLUMN_TIMECHECKEDIN);
+                dateValues.putNull(DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN);
+                // dateValues.put(DatabaseHandler.COLUMN_TIMECHECKEDIN, );
+                // dateValues.put(DatabaseHandler.COLUMN_LOCATIONIDCHECKEDIN, );
+
+                database.update(DatabaseHandler.TABLE_PARENT, dateValues, DatabaseHandler.COLUMN_PASSWORD + " = ? ", arguments);
+                t = true;
+            }
+
+        }
+    }
+
 }
+
+
+
+
+
+
+
