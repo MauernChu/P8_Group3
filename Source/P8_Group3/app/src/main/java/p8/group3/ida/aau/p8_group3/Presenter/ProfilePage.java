@@ -19,6 +19,8 @@ public class ProfilePage extends AppCompatActivity {
     TextView txProfileChildrenAge;
     TextView txProfileCity;
     TextView txAboutParent;
+    TextView txHobbies;
+    TextView txLanguage;
 
     private String loginUsername;
     private String loginPassword;
@@ -45,6 +47,8 @@ public class ProfilePage extends AppCompatActivity {
         String profileEmail = profileParent.getEmail();
         String profileParentDescription = profileParent.getInfoAboutParent();
         String profileParentCity = profileParent.getCityOfResidence();
+        String profileHobbyList = profileParent.getHobbyList();
+        String profileLanguageList = profileParent.getLanguageList();
 
 
         txProfileChildrenAge = (TextView) findViewById(R.id.profileParentAgeOfChildren);
@@ -61,6 +65,12 @@ public class ProfilePage extends AppCompatActivity {
 
         txAboutParent = (TextView) findViewById(R.id.profileParentDescription);
         txAboutParent.setText(profileParentDescription);
+
+        txHobbies = (TextView) findViewById(R.id.textHobbies);
+        txHobbies.setText(profileHobbyList);
+
+        txLanguage = (TextView) findViewById(R.id.allLanguages);
+        txLanguage.setText(profileLanguageList);
 
 
         //methods for menu bar

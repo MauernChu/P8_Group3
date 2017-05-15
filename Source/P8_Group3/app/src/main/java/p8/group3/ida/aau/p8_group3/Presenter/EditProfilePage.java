@@ -58,15 +58,17 @@ public class EditProfilePage extends AppCompatActivity{
         int profileChildren = editProfileParent.getNumberOfChildren();
         String profileAgeOfChildren = editProfileParent.getAgeOfChildren();
         String profileCity = editProfileParent.getCityOfResidence();
-        //String profileAllLanguages = editProfileParent.getUsername(); we have to add this to a table
+        String profileAllLanguages = editProfileParent.getLanguageList();
         String profileTextAbout = editProfileParent.getInfoAboutParent();
-        //String profileTextHobbies = editProfileParent.getUsername();
+        String profileTextHobbies = editProfileParent.getHobbyList();
 
         editName.setText(profileUserName);
         editChildren.setText(Integer.toString(profileChildren));
         editAgeOfChildren.setText(profileAgeOfChildren);
         editCity.setText(profileCity);
         editTextAbout.setText(profileTextAbout);
+        editAllLanguages.setText(profileAllLanguages);
+        editTextHobbies.setText(profileTextHobbies);
 
         Button doneEditingButton = (Button) findViewById(R.id.doneEditingButton);
         doneEditingButton.setOnClickListener(new View.OnClickListener() {
@@ -76,11 +78,15 @@ public class EditProfilePage extends AppCompatActivity{
                 String editAgeOfChildrenAsString = editAgeOfChildren.getText().toString();
                 String editCityAsString = editCity.getText().toString();
                 String editTextAboutAsString = editTextAbout.getText().toString();
+                String editLanguageListAsString = editAllLanguages.getText().toString();
+                String editHobbyListAsString = editTextHobbies.getText().toString();
                 editProfileParent.setUsername(editNameAsString);
                 editProfileParent.setNumberOfChildren(profileChildrenAsString);
                 editProfileParent.setAgeOfChildren(editAgeOfChildrenAsString);
-                editProfileParent.setParentCity(editCityAsString);
+                editProfileParent.setCityOfResidence(editCityAsString);
                 editProfileParent.setInfoAboutParent(editTextAboutAsString);
+                editProfileParent.setLanguageList(editLanguageListAsString);
+                editProfileParent.setHobbyList(editHobbyListAsString);
                 parentDAO.editProfile(editProfileParent);
                 Intent doneEdittingIntent = new Intent(view.getContext(), ProfilePage.class);
                 doneEdittingIntent.putExtra("loginUsername", loginUsername);
