@@ -200,6 +200,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             locationCategories.put(i,l.get(i).getLocationCategory());
             // hashTest.put(i,l.get(i).getAverageRating());
             // System.out.println(r);
+            markerCity2.setVisible(false);
         }
 
 
