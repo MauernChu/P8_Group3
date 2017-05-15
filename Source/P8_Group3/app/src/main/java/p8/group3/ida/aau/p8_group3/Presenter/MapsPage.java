@@ -230,7 +230,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         //final LatLng userPosition = new LatLng(latitude, longitude);
 
 
-        parentData.checkOut(loginPassword, markerCity2);
+       // parentData.checkOut(loginPassword, markerCity2);
 
         final LatLng userPosition = new LatLng(57, 9.95);
 
@@ -285,8 +285,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 Parent mapParent = parentData.retrieveInformationAboutParent(loginPassword);
 
                 parentData.checkInNow(mapParent, j);
-
-                Date dateTest = mapParent.getTimeChekedIn();
+                Parent updatedMapParent = parentData.retrieveInformationAboutParent(loginPassword);
+                Date dateTest = updatedMapParent.getTimeChekedIn();
                 if (dateTest != null) {
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
                     Toast.makeText(MapsPage.this, "You are now checked in to this location at time: " + dateFormat.format(dateTest), Toast.LENGTH_LONG).show();
