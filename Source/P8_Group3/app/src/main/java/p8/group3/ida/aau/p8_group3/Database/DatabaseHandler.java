@@ -10,7 +10,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 47 ;
+    private static final int DATABASE_VERSION = 48 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -181,7 +181,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //Karolinelund park
         ContentValues initialKarolinelund = new ContentValues();
-        initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONNAME, "Karolinelund Legeplads");
+        initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONNAME, "Kildeparken Legeplads");
         initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONLONGITUDE, 9.915324);
         initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONLATITUDE, 57.042170);
         initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "playground");

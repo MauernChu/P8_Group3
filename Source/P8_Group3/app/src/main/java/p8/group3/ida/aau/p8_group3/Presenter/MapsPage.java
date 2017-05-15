@@ -545,7 +545,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Number of people currently present: " + peopleIn);
+        actionBar.setTitle("People currently checked-in: " + peopleIn);
+
 
         return peopleIn;
     }
