@@ -140,7 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Bonnesensgade");
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 2);
-        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.takepart.com/sites/default/files/styles/tp_gallery_slide/public/Dragon_9-itok=VtWnRjSf.jpg");
+        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://weknowyourdreams.com/images/park/park-07.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialLocationHavnefrontValues);
 
         //Havnefront Location
@@ -164,7 +164,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Aalborg Centrum");
         initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
         initialMainLibrary.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 2);
-        initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
+        initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "https://pbs.twimg.com/media/C66X8TmU4AEbbiS.jpg:small");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialMainLibrary);
 
         //Slotspladsen park
@@ -176,7 +176,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Slotspladsen 1A");
         initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
         initialSlotspladsen.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 8);
-        initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
+        initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://weknowyourdreams.com/images/park/park-07.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialSlotspladsen);
 
         //Karolinelund park
@@ -200,7 +200,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Kastetvej 83");
         initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
         initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 11);
-        initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
+        initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.stjohns.ca/sites/default/files/CSJ_FileUpload/Recreation/DSC06968.JPG");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialHaraldslundSwimmingPool);
 
         //Haraldslund library
@@ -212,7 +212,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Kastetvej 83");
         initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
         initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 6);
-        initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
+        initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "https://pbs.twimg.com/media/C66X8TmU4AEbbiS.jpg:small");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialHaraldslundLibrary);
 
     }
