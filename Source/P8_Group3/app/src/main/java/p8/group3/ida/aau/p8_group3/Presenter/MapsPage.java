@@ -180,6 +180,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     public void onMapReady(final GoogleMap googleMap) {
         locationMap = googleMap;
 
+        LatLng aalborg = new LatLng(57.0422218,9.9312361);
+        CameraPosition cameraPositionUser = CameraPosition.builder().target(aalborg).zoom(12).tilt(45).bearing(0).build();
+        locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
 
         final List<p8.group3.ida.aau.p8_group3.Model.Location> l = data.getMyMarkers();
@@ -232,14 +235,14 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
        // parentData.checkOut(loginPassword, markerCity2);
 
-        final LatLng userPosition = new LatLng(57, 9.95);
+        //final LatLng userPosition = new LatLng(57, 9.95);
 
        /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
         locationMap.moveCamera(CameraUpdateFactory.newLatLng(userPosition));*/
 
         // Creates the focus on the map to be at user's position
-        CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-        locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+       // CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
+       // locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
 
 
         locationMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -332,9 +335,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                 }
 
-                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+               /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
                 CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));*/
 
             };
 
@@ -374,9 +377,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                 }
 
-                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+               /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
                 CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));*/
 
             };
 
@@ -416,9 +419,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                 }
 
-                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+               /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
                 CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));*/
 
             };
 
@@ -458,9 +461,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
                 }
 
-                locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
+               /* locationMap.addMarker(new MarkerOptions().position(userPosition).title("I'm here...").icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker)));
                 CameraPosition cameraPositionUser = CameraPosition.builder().target(userPosition).zoom(12).tilt(45).bearing(0).build();
-                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));
+                locationMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPositionUser));*/
 
             }
 
