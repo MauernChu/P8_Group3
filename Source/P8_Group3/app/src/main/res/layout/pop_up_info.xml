@@ -127,13 +127,24 @@
                 android:text="Check in later" />
 
 
+            <TextView
+                android:id="@+id/labelRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Average rating"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <RatingBar
                 android:id="@+id/ratingBar"
                 style="@style/Widget.AppCompat.RatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/mustard"
                 android:numStars="5"
                 android:rating="0"
@@ -149,7 +160,7 @@
                 android:layout_below="@+id/ratingBar"
                 android:layout_marginTop="10dp"
                 android:background="@color/gray"
-                android:text="Rate" />
+                android:text="Give Rating" />
 
 
         </LinearLayout>
