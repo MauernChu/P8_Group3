@@ -288,7 +288,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 Date dateTest = mapParent.getTimeChekedIn();
                 if (dateTest != null) {
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
-                    Toast.makeText(MapsPage.this, "You are now checked in to this location at time: " + dateFormat.format(dateTest), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsPage.this, "You are now checked in to this location at time: " + dateFormat.format(dateTest), Toast.LENGTH_LONG).show();
                 }
                     if (sheetShowing) {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);

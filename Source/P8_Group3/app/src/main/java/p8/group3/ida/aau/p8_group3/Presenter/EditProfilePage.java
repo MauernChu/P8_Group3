@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
@@ -84,6 +85,7 @@ public class EditProfilePage extends AppCompatActivity{
                 Intent doneEdittingIntent = new Intent(view.getContext(), ProfilePage.class);
                 doneEdittingIntent.putExtra("loginUsername", loginUsername);
                 doneEdittingIntent.putExtra("loginPassword", loginPassword);
+                Toast.makeText(EditProfilePage.this, "Your profile has been edited successfully.", Toast.LENGTH_SHORT).show();
                 startActivityForResult(doneEdittingIntent, 0);
             }
         });
