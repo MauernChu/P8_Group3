@@ -15,6 +15,8 @@ public class Parent {
     private int locationIdCheckin;
     private String email;
     private String cityOfResidence;
+    private String hobbyList;
+    private String languageList;
 
 
     /*
@@ -34,7 +36,7 @@ public class Parent {
         this.cityOfResidence = cityOfResidence;
     }
 
-    public Parent(int parentID, String username, int numberOfChildren, String ageOfChildren, String password, String profilePicture, String infoAboutParent, int locationIdCheckin, String email, String cityOfResidence, Date timeChekedIn) {
+    public Parent(int parentID, String username, int numberOfChildren, String ageOfChildren, String password, String profilePicture, String infoAboutParent, int locationIdCheckin, String email, String cityOfResidence, Date timeChekedIn, String hobbyList, String languageList) {
         this.parentID = parentID;
         this.username = username;
         this.numberOfChildren = numberOfChildren;
@@ -46,7 +48,8 @@ public class Parent {
         this.email = email;
         this.cityOfResidence = cityOfResidence;
         this.timeChekedIn = timeChekedIn;
-
+        this.hobbyList = hobbyList;
+        this.languageList = languageList;
     }
 
     public int getParentID() {
@@ -65,22 +68,6 @@ public class Parent {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getNumberOfChildren() {
         return numberOfChildren;
     }
@@ -97,28 +84,12 @@ public class Parent {
         this.ageOfChildren = ageOfChildren;
     }
 
-    public String getInfoAboutParent() {
-        return infoAboutParent;
+    public String getPassword() {
+        return password;
     }
 
-    public void setInfoAboutParent(String infoAboutParent) {
-        this.infoAboutParent = infoAboutParent;
-    }
-
-    public String getCityOfResidence() {
-        return cityOfResidence;
-    }
-
-    public void setParentCity(String parentCity) {
-        this.cityOfResidence = parentCity;
-    }
-
-    public int getLocationIdCheckin() {
-        return locationIdCheckin;
-    }
-
-    public void setLocationIdCheckin(int locationIdCheckin) {
-        this.locationIdCheckin = locationIdCheckin;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getProfilePicture() {
@@ -129,6 +100,14 @@ public class Parent {
         this.profilePicture = profilePicture;
     }
 
+    public String getInfoAboutParent() {
+        return infoAboutParent;
+    }
+
+    public void setInfoAboutParent(String infoAboutParent) {
+        this.infoAboutParent = infoAboutParent;
+    }
+
     public Date getTimeChekedIn() {
         return timeChekedIn;
     }
@@ -137,4 +116,43 @@ public class Parent {
         this.timeChekedIn = timeChekedIn;
     }
 
+    public int getLocationIdCheckin() {
+        return locationIdCheckin;
+    }
+
+    public void setLocationIdCheckin(int locationIdCheckin) {
+        this.locationIdCheckin = locationIdCheckin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCityOfResidence() {
+        return cityOfResidence;
+    }
+
+    public void setCityOfResidence(String cityOfResidence) {
+        this.cityOfResidence = cityOfResidence;
+    }
+
+    public String getHobbyList() {
+        return hobbyList;
+    }
+
+    public void setHobbyList(String hobbyList) {
+        this.hobbyList = hobbyList;
+    }
+
+    public String getLanguageList() {
+        return languageList;
+    }
+
+    public void setLanguageList(String languageList) {
+        this.languageList = languageList;
+    }
 }

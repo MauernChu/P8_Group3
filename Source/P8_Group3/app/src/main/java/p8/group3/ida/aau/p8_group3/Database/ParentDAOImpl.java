@@ -84,18 +84,17 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
 
     private Parent fetchParentInformation(Cursor cursor) {
         int parentID = cursor.getInt(0);
-
         String username = cursor.getString(1);
-
         int numberOfChildren = cursor.getInt(2);
         String ageOfChildren = cursor.getString(3);
-
         String password = cursor.getString(4);
         String profilePicture = cursor.getString(5);
         String infoAboutParent = cursor.getString(6);
         int locationIDCheckedIn = cursor.getInt(8);
         String email = cursor.getString(9);
         String cityOfResidence = cursor.getString(10);
+        String hobbyList = cursor.getString(11);
+        String languageList = cursor.getString(12);
         String timeCheckedIn = cursor.getString(7);
         DateFormat timeCheckedInToDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date timeCheckedInToDate = null;
@@ -105,7 +104,7 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
             } catch (ParseException e) {
             }
         }
-        Parent fetchParent = new Parent(parentID, username, numberOfChildren, ageOfChildren, password, profilePicture, infoAboutParent, locationIDCheckedIn, email, cityOfResidence, timeCheckedInToDate);
+        Parent fetchParent = new Parent(parentID, username, numberOfChildren, ageOfChildren, password, profilePicture, infoAboutParent, locationIDCheckedIn, email, cityOfResidence, timeCheckedInToDate, hobbyList, languageList);
         return fetchParent;
     }
 
@@ -150,9 +149,9 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         values.put(DatabaseHandler.COLUMN_NUMBERCHILDREN, parent.getNumberOfChildren());
         values.put(DatabaseHandler.COLUMN_AGECHILDREN, parent.getAgeOfChildren());
         values.put(DatabaseHandler.COLUMN_CITYOFRESIDENCE, parent.getCityOfResidence());
-        //values.put(DatabaseHandler.COLUMN_LANGUAGE, parent.get());
+        values.put(DatabaseHandler.COLUMN_lANGUAGELIST, parent.getLanguageList());
         values.put(DatabaseHandler.COLUMN_INFOPARENT, parent.getInfoAboutParent());
-        //values.put(DatabaseHandler.COLUMN_HOBBY, parent.getUsername());
+        values.put(DatabaseHandler.COLUMN_HOBBYLIST, parent.getHobbyList());
         String parentPassword = parent.getPassword();
         String[] arguments = new String[]{parentPassword};
         database.update(DatabaseHandler.TABLE_PARENT, values, DatabaseHandler.COLUMN_PASSWORD + " = ? ", arguments);
