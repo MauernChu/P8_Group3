@@ -628,6 +628,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 Button cancelSecond = (Button) secondView.findViewById(R.id.cancelSecond);
                 final TimePicker timepicker = (TimePicker) findViewById(R.id.chooseTime);
                 final DatePicker datepicker = (DatePicker) findViewById(R.id.chooseDate);
+                final Toast toast = Toast.makeText(context, "Your check-in has successfully been registered", Toast.LENGTH_LONG);
 
 
                 mBuilder.setView(mView);
@@ -669,18 +670,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 approveSecond.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // Here goes code that activates when you push APPROVE
-                       /* storeHour = timepicker.getHour();
-                        storeMinute = timepicker.getMinute();
-                        storeMonth = datepicker.getMonth();
-                        storeYear = datepicker.getYear();
-                        storeDay = datepicker.getDayOfMonth();*/
-                        /*
-                        storeCheckInlaterData[0] = storeMinute;
-                        storeCheckInlaterData[1] = storeHour;
-                        storeCheckInlaterData[2] = storeDay;
-                        storeCheckInlaterData[3] = storeMonth;
-                        storeCheckInlaterData[4] = storeYear;*/
+                        dialogSecond.dismiss();
+                        toast.show();
 
                     }
                 });
