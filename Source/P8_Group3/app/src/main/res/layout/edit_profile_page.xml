@@ -7,7 +7,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,6 +50,38 @@
                 android:background="@color/mustard">
 
 
+                <TextView
+                    android:id="@+id/labelChildrenEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/profileUsername"
+                    android:layout_below="@+id/profileUsername"
+                    android:text="Number of children"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/labelAgeEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/profileParentAgeOfChildren"
+                    android:layout_below="@+id/profileChildren"
+                    android:text="Age of children"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/labelCityEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/profileParentAgeOfChildren"
+                    android:layout_alignStart="@+id/labelAgeEdit" />
+
                 <ImageButton
                     android:id="@+id/profilePictureButton"
                     android:layout_width="wrap_content"
@@ -83,34 +117,34 @@
                     android:id="@+id/profileChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/profileUsername"
-                    android:layout_below="@+id/profileUsername"
                     android:fontFamily="sans-serif"
                     android:text="@string/children"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:layout_below="@+id/labelChildrenEdit"
+                    android:layout_alignStart="@+id/profileUsername" />
 
 
                 <EditText
                     android:id="@+id/profileParentAgeOfChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/profileChildren"
-                    android:layout_below="@+id/profileChildren"
                     android:text="@string/age"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_below="@+id/labelAgeEdit"
+                    android:layout_alignStart="@+id/profileChildren" />
 
                 <EditText
                     android:id="@+id/profileParentCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/profileParentAgeOfChildren"
-                    android:layout_below="@+id/profileParentAgeOfChildren"
                     android:text="@string/city"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_below="@+id/labelCityEdit"
+                    android:layout_alignStart="@+id/profileParentAgeOfChildren" />
 
 
             </RelativeLayout>
@@ -118,7 +152,7 @@
             <RelativeLayout
                 android:id="@+id/aboutProfileBox"
                 android:layout_width="320dp"
-                android:layout_height="135dp"
+                android:layout_height="100dp"
                 android:layout_alignStart="@+id/mainProfileBox"
                 android:layout_below="@+id/mainProfileBox"
                 android:layout_marginEnd="10dp"

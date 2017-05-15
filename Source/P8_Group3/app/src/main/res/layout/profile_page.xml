@@ -57,13 +57,14 @@
 
             <RelativeLayout
                 android:id="@+id/mainProfileBox"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/mustard">
+                android:layout_width="320dp"
+                android:layout_height="210dp"
+                android:background="@color/mustard"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
 
 
                 <ImageButton
@@ -98,53 +99,79 @@
                     android:visibility="visible" />
 
                 <TextView
-                    android:id="@+id/profileChildren"
+                    android:id="@+id/labelNumberOfChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/profileUsername"
                     android:layout_below="@+id/profileUsername"
-                    android:layout_marginTop="5dp"
+                    android:text="Number of children"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/profileChildren"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:text="@string/children"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:layout_below="@+id/labelNumberOfChildren"
+                    android:layout_alignStart="@+id/labelNumberOfChildren" />
 
 
                 <TextView
                     android:id="@+id/profileParentAgeOfChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/profileChildren"
-                    android:layout_below="@+id/profileChildren"
-                    android:layout_marginTop="5dp"
                     android:text="@string/age"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_below="@+id/labelAgeOfChildren"
+                    android:layout_alignStart="@+id/labelAgeOfChildren" />
+
+                <TextView
+                    android:id="@+id/labelAgeOfChildren"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/profileChildren"
+                    android:layout_below="@+id/profileChildren"
+                    android:text="Age of children"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/profileParentCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/profileParentAgeOfChildren"
-                    android:layout_below="@+id/profileParentAgeOfChildren"
-                    android:layout_marginTop="5dp"
                     android:text="@string/city"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_below="@+id/labelCity"
+                    android:layout_alignStart="@+id/labelCity" />
+
+                <TextView
+                    android:id="@+id/labelCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/profileParentAgeOfChildren"
+                    android:layout_below="@+id/profileParentAgeOfChildren"
+                    android:text="City"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
 
                 <Button
                     android:id="@+id/editProfile"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
-                    android:layout_alignBottom="@+id/profilePictureButton"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentRight="true"
                     android:text="@string/edit"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true" />
 
 
                 <ImageView
