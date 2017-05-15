@@ -230,7 +230,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         //final LatLng userPosition = new LatLng(latitude, longitude);
 
 
-        parentData.checkOut(loginPassword, markerCity2);
+       // parentData.checkOut(loginPassword, markerCity2);
 
         final LatLng userPosition = new LatLng(57, 9.95);
 
