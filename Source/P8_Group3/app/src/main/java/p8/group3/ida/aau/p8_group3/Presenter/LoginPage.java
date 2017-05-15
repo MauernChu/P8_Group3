@@ -94,7 +94,7 @@ public class LoginPage extends AppCompatActivity {
                     mapIntent.putExtra("loginPassword", loginPassword.getText().toString());
                     startActivityForResult(mapIntent, 0);
 
-                    parentDAO.checkOut(password, marker);
+                    //parentDAO.checkOut(password, marker);
 
                 } else {
                     Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();
