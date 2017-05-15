@@ -12,8 +12,6 @@
             android:layout_gravity="center"
             android:layout_above="@+id/dialog_ratingbar"
             android:gravity="center"
-
-            android:layout_marginTop="130dp"
             android:text="Rate this place!"
             android:textSize="24dp"
             android:visibility="visible" />
@@ -38,6 +36,8 @@
         <Button
             android:id="@+id/dialog_submitRating"
             android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="277dp"
             android:background="@color/gray"
@@ -50,6 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="350dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@color/gray"
             android:text="Cancel"
             android:layout_alignParentTop="true"
