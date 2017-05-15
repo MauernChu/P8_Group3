@@ -69,15 +69,6 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        Button profileButton = (Button) findViewById(R.id.profilePageButton);
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent profileIntent = new Intent(view.getContext(), ProfilePage.class);
-                profileIntent.putExtra("loginUsername", loginUsername.getText().toString());
-                profileIntent.putExtra("loginPassword", loginPassword.getText().toString());
-                startActivityForResult(profileIntent, 0);
-            }
-        });
 
         //Method for checking the login credentials and changing view if the credentials is correct.
         Button logIn = (Button) findViewById(R.id.signIn);
