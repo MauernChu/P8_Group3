@@ -84,13 +84,12 @@ public class LoginPage extends AppCompatActivity {
                 String loginPasswordAsString = loginPassword.getText().toString();
                 String password = parentDAO.loginCheckCredentials(loginUsernameAsString);
                 if (loginPasswordAsString.equals(password)) {
+                    //parentDAO.checkOut(password, marker); //Here it has the fastest response time and doesn't hide the toast!, but it takes 2 clicks on the marker to update!
                     Toast.makeText(LoginPage.this, "Username and Password accepted", Toast.LENGTH_SHORT).show();
                     Intent mapIntent = new Intent(view.getContext(), MapsPage.class);
                     mapIntent.putExtra("loginUsername", loginUsername.getText().toString());
                     mapIntent.putExtra("loginPassword", loginPassword.getText().toString());
                     startActivityForResult(mapIntent, 0);
-
-                    //parentDAO.checkOut(password, marker);
 
                 } else {
                     Toast.makeText(LoginPage.this, "Username and Password does not match existing user", Toast.LENGTH_SHORT).show();

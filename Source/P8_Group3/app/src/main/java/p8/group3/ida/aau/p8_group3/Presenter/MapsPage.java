@@ -248,6 +248,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 submitRating(marker);
                 peopleCheckedInNow(marker);
                 data.numberOfPeopleCheckedIn();
+                //parentData.checkOut(loginPassword, markerCity2);
 
                 j=passLocationId(marker, hashLocationID);
 
@@ -512,10 +513,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         averageRating = ratingData.getAverageRating(marker, hashLocationID);
         simpleRatingBar.setRating(averageRating);
-
-        //final int locID = hashLocationID.get(marker.getId());
-
-        //final int parentID = parentLoggedIn();
 
     }
 

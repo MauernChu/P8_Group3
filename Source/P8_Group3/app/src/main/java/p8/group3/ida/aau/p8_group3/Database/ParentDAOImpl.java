@@ -224,8 +224,13 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
         }
     }
 
+    @Override
+    public void checkOut(Parent parent, Marker marker) {
+
+    }
 
 
+/*
     @Override
     public void checkOut(Parent parent, Marker marker) {
         database = dbHelper.getWritableDatabase();
@@ -271,7 +276,7 @@ public class ParentDAOImpl implements p8.group3.ida.aau.p8_group3.Database.DAO.P
             }
 
         }
-    }
+    }  */
 
 }
 

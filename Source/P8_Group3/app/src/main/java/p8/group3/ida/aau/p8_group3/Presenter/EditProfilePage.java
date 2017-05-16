@@ -35,6 +35,7 @@ public class EditProfilePage extends AppCompatActivity{
 
     private String loginUsername;
     private String loginPassword;
+    private View view;
 
 
     @Override
@@ -43,6 +44,8 @@ public class EditProfilePage extends AppCompatActivity{
         setContentView(R.layout.edit_profile_page);
 
         setupUI(findViewById(R.id.editProfilePage));
+
+
 
         editName = (EditText) findViewById(R.id.profileUsername);
         editChildren = (EditText) findViewById(R.id.profileChildren);
@@ -60,6 +63,7 @@ public class EditProfilePage extends AppCompatActivity{
         loginPassword = bundle.getString("loginPassword");
 
         final Parent editProfileParent = parentDAO.retrieveInformationAboutParent(loginPassword);
+
         String profileUserName = editProfileParent.getUsername();
         int profileChildren = editProfileParent.getNumberOfChildren();
         String profileAgeOfChildren = editProfileParent.getAgeOfChildren();
@@ -75,6 +79,7 @@ public class EditProfilePage extends AppCompatActivity{
         editTextAbout.setText(profileTextAbout);
         editAllLanguages.setText(profileAllLanguages);
         editTextHobbies.setText(profileTextHobbies);
+
 
         Button doneEditingButton = (Button) findViewById(R.id.doneEditingButton);
         doneEditingButton.setOnClickListener(new View.OnClickListener() {
