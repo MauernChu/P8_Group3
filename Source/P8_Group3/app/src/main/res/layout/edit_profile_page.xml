@@ -42,7 +42,7 @@
 
             <RelativeLayout
                 android:id="@+id/mainProfileBox"
-                android:layout_width="320dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginEnd="10dp"
@@ -57,10 +57,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/profileUsername"
                     android:layout_below="@+id/profileUsername"
-                    android:text="Number of children"
                     android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Number of children"
                     android:textColor="@color/black"
-                    android:textStyle="italic" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/labelAgeEdit"
@@ -68,20 +70,24 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/profileParentAgeOfChildren"
                     android:layout_below="@+id/profileChildren"
-                    android:text="Age of children"
                     android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Age of children"
                     android:textColor="@color/black"
-                    android:textStyle="italic" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/labelCityEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/labelAgeEdit"
+                    android:layout_below="@+id/profileParentAgeOfChildren"
+                    android:layout_marginTop="5dp"
                     android:text="City"
                     android:textColor="@color/black"
-                    android:textStyle="italic"
-                    android:layout_below="@+id/profileParentAgeOfChildren"
-                    android:layout_alignStart="@+id/labelAgeEdit" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/profilePictureButton"
@@ -90,7 +96,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:adjustViewBounds="false"
                     android:background="@color/mustard"
@@ -104,59 +110,58 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toEndOf="@+id/profilePictureButton"
                     android:fontFamily="sans-serif"
                     android:text="@string/name"
-                    android:ems = "10"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@+id/profilePictureButton" />
 
                 <EditText
                     android:id="@+id/profileChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/profileUsername"
+                    android:layout_below="@+id/labelChildrenEdit"
                     android:fontFamily="sans-serif"
                     android:text="@string/children"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:ems = "10"
+                    android:textSize="14sp"
                     android:visibility="visible"
-                    android:layout_below="@+id/labelChildrenEdit"
-                    android:layout_alignStart="@+id/profileUsername" />
+                    android:layout_alignParentEnd="true" />
 
 
                 <EditText
                     android:id="@+id/profileParentAgeOfChildren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/profileChildren"
+                    android:layout_below="@+id/labelAgeEdit"
                     android:text="@string/age"
                     android:textColor="@color/black"
-                    android:ems = "10"
-                    android:textSize="18sp"
-                    android:layout_below="@+id/labelAgeEdit"
-                    android:layout_alignStart="@+id/profileChildren" />
+                    android:textSize="14sp"
+                    android:layout_alignParentEnd="true" />
 
                 <EditText
                     android:id="@+id/profileParentCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/city"
-                    android:ems = "10"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:layout_alignStart="@+id/profileParentAgeOfChildren"
                     android:layout_below="@+id/labelCityEdit"
-                    android:layout_alignStart="@+id/profileParentAgeOfChildren" />
+                    android:text="@string/city"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_alignParentEnd="true" />
 
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/aboutProfileBox"
-                android:layout_width="320dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/mainProfileBox"
                 android:layout_below="@+id/mainProfileBox"
@@ -184,7 +189,6 @@
                     android:layout_alignBaseline="@+id/languages"
                     android:layout_alignBottom="@+id/languages"
                     android:layout_marginStart="10dp"
-                    android:ems = "10"
                     android:layout_toEndOf="@+id/languages"
                     android:text="@string/english_german_spanish"
                     android:textColor="@color/black"
@@ -210,19 +214,18 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/about"
                     android:layout_below="@+id/about"
-                    android:ems = "18"
-                    android:maxLength="70"
                     android:layout_marginTop="5dp"
                     android:text="@string/i_am_active_and_i_like_to_socialise"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/hobbiesBox"
-                android:layout_width="320dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/aboutProfileBox"
                 android:layout_below="@+id/aboutProfileBox"
@@ -251,12 +254,11 @@
                     android:layout_alignStart="@+id/hobbies"
                     android:layout_below="@+id/hobbies"
                     android:layout_marginTop="5dp"
-                    android:ems = "18"
                     android:text="Swimming, reading, dancing"
-                    android:maxLength="64"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:layout_alignParentEnd="true" />
 
 
             </RelativeLayout>
