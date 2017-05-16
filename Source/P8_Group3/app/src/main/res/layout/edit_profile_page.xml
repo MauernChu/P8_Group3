@@ -193,6 +193,7 @@
                     android:text="@string/english_german_spanish"
                     android:textColor="@color/black"
                     android:textSize="12sp"
+                    android:ems="18"
                     android:visibility="visible" />
 
                 <TextView
@@ -218,6 +219,7 @@
                     android:text="@string/i_am_active_and_i_like_to_socialise"
                     android:textColor="@color/black"
                     android:textSize="14sp"
+                    android:maxLength="70"
                     android:visibility="visible"
                     android:layout_alignParentEnd="true" />
 
@@ -257,6 +259,7 @@
                     android:text="Swimming, reading, dancing"
                     android:textColor="@color/black"
                     android:textSize="14sp"
+                    android:maxLength="64"
                     android:visibility="visible"
                     android:layout_alignParentEnd="true" />
 
