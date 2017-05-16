@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import p8.group3.ida.aau.p8_group3.Database.DAO.ParentDAO;
 import p8.group3.ida.aau.p8_group3.Database.ParentDAOImpl;
@@ -73,6 +74,7 @@ public class CreateAccountSecondPage extends AppCompatActivity {
         // have entered informations in the create profile)
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                Toast.makeText(CreateAccountSecondPage.this, "Your account has been created successfully.", Toast.LENGTH_LONG).show();
                 String numberOfChildrenAsString = numberOfChildren.getText().toString();
                 String cityOfResidenceAsString = cityOfResidence.getText().toString();
                 int numberofchildren = Integer.parseInt(numberOfChildrenAsString);
