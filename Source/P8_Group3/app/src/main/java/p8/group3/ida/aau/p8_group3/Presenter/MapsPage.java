@@ -70,7 +70,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
     private AlertDialog dialog;
     private AlertDialog dialogSecond;
-    private AlertDialog dialogRating;
 
     // Store time and date of CheckInLater
     public int storeDay;
@@ -87,7 +86,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
     private Hashtable<String, String>hashCategory;
     public Hashtable<String, Integer>hashLocationID;
     final Hashtable <Integer, String> locationCategories = new Hashtable<Integer, String>();
-    private Hashtable<Integer, Double> hashTest = new Hashtable<>();
     private Hashtable<Integer, String> checkInLaterDate = new Hashtable<>();
 
     float averageRating;
@@ -110,7 +108,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         hashPicture = new Hashtable<String, String>();
         hashCategory = new Hashtable<String, String>();
         hashLocationID = new Hashtable<String, Integer>();
-        hashTest = new Hashtable<Integer, Double>();
 
 
 
@@ -201,8 +198,6 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
             hashCategory.put(markerCity2.getId(),l.get(i).getLocationCategory());
             hashLocationID.put(markerCity2.getId(),l.get(i).getLocationID());
             locationCategories.put(i,l.get(i).getLocationCategory());
-            // hashTest.put(i,l.get(i).getAverageRating());
-            // System.out.println(r);
             markerCity2.setVisible(false);
         }
 
@@ -233,7 +228,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         //final LatLng userPosition = new LatLng(latitude, longitude);
 
 
-       // parentData.checkOut(loginPassword, markerCity2);
+
 
         //final LatLng userPosition = new LatLng(57, 9.95);
 
@@ -252,6 +247,7 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
                 loadCheckInLater(marker);
                 submitRating(marker);
                 peopleCheckedInNow(marker);
+                data.numberOfPeopleCheckedIn();
 
                 j=passLocationId(marker, hashLocationID);
 
@@ -503,6 +499,8 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
 
         ratingBarFunctions(marker);
 
+        //parentData.checkOut(loginPassword, markerCity2);   // It works fine, it just slows down the appearance of the bottomsheets a lot. Needs finetuning.
+
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
     }
@@ -515,9 +513,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         averageRating = ratingData.getAverageRating(marker, hashLocationID);
         simpleRatingBar.setRating(averageRating);
 
-        final int locID = hashLocationID.get(marker.getId());
+        //final int locID = hashLocationID.get(marker.getId());
 
-        final int parentID = parentLoggedIn();
+        //final int parentID = parentLoggedIn();
 
     }
 
@@ -547,9 +545,9 @@ public class MapsPage extends AppCompatActivity implements OnMapReadyCallback {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("People currently checked-in: " + peopleIn);
 
-
         return peopleIn;
     }
+
 
     public void submitRating (Marker marker){
 

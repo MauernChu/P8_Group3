@@ -93,7 +93,6 @@ public class LocationDAOImpl {
 
         System.out.println(locationID);
 
-
         String query2 = "SELECT parentsCurrentlyCheckedIn FROM " + DatabaseHandler.TABLE_LOCATION;
         Cursor cursor2 = database.rawQuery(query2, null);
 
@@ -124,6 +123,75 @@ public class LocationDAOImpl {
         return peopleInNow;
 
     }
+
+
+    public void numberOfPeopleCheckedIn () {
+
+        List<Integer> numOfPplCheckedIn = new ArrayList<>();
+
+
+        String query2 = "SELECT _locationID FROM " + DatabaseHandler.TABLE_LOCATION;
+        Cursor cursor2 = database.rawQuery(query2, null);
+        int location_locationid = cursor2.getCount();
+
+        int i;
+        int j;
+        int h = 0;
+
+
+        for (i = 0; i < location_locationid; i++) {
+
+            Integer k = 0;
+
+            String query5 = "SELECT locationIDCheckedIn FROM " + DatabaseHandler.TABLE_PARENT;
+            Cursor cursor5 = database.rawQuery(query5, null);
+            cursor5.isFirst();
+
+            String query4 = "SELECT _parentID FROM " + DatabaseHandler.TABLE_PARENT;
+            Cursor cursor4 = database.rawQuery(query4, null);
+            cursor4.isFirst();
+
+            while (cursor4.moveToNext()) {
+
+                cursor5.moveToNext();
+
+                int l = cursor5.getInt(cursor5.getColumnIndex("locationIDCheckedIn"));
+                System.out.println(l);
+
+                if (l == (i + 1)) {
+
+                    k = k + 1;
+
+                } else {
+                    System.out.println("false");
+                }
+            }
+
+            cursor4.close();
+            cursor5.close();
+
+            numOfPplCheckedIn.add(k);
+
+            String query = "SELECT _locationID FROM " + DatabaseHandler.TABLE_LOCATION;
+            Cursor cursor = database.rawQuery(query, null);
+
+            h = numOfPplCheckedIn.get(i);
+
+            int locationID = i+1;
+
+            ContentValues values = new ContentValues();
+            values.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, h);
+
+
+            String[] arguments = new String[] {String.valueOf(locationID)};
+
+            database.update(DatabaseHandler.TABLE_LOCATION, values, DatabaseHandler.COLUMN_LOCATIONID + " = ? ", arguments);
+
+        }
+
+    }
+
+
 
     private Location cursorToMarker(Cursor cursor) {
         int locationID = cursor.getInt(0);

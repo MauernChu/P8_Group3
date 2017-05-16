@@ -10,7 +10,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Variables for database name and database version
     //If we are going to change the structure of the database, we need to upgrade the version.
-    private static final int DATABASE_VERSION = 48 ;
+    private static final int DATABASE_VERSION = 49 ;
     private static final String DATABASE_NAME = "chimp.db";
 
     //Columns for the Parent table
@@ -139,7 +139,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "park");
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Bonnesensgade");
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
-        initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 2);
+        //initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 2);
         initialLocationHavnefrontValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://weknowyourdreams.com/images/park/park-07.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialLocationHavnefrontValues);
 
@@ -151,7 +151,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "playground");
         initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Strandvejen 4A");
         initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
-        initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 0);
+        //initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 0);
         initialLocationSlotspladsenValues.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialLocationSlotspladsenValues);
 
@@ -163,7 +163,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "library");
         initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Aalborg Centrum");
         initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
-        initialMainLibrary.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 2);
+        //initialMainLibrary.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 2);
         initialMainLibrary.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "https://pbs.twimg.com/media/C66X8TmU4AEbbiS.jpg:small");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialMainLibrary);
 
@@ -175,7 +175,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "park");
         initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Slotspladsen 1A");
         initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
-        initialSlotspladsen.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 8);
+        //initialSlotspladsen.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 8);
         initialSlotspladsen.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://weknowyourdreams.com/images/park/park-07.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialSlotspladsen);
 
@@ -187,7 +187,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "playground");
         initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Solgangen");
         initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
-        initialKarolinelund.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 3);
+        //initialKarolinelund.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 3);
         initialKarolinelund.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.lonelyplanet.com/news/wp-content/uploads/2016/08/Monstrum2-630x394.jpg");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialKarolinelund);
 
@@ -199,7 +199,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "swimming pool");
         initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Kastetvej 83");
         initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
-        initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 11);
+        //initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 11);
         initialHaraldslundSwimmingPool.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "http://www.stjohns.ca/sites/default/files/CSJ_FileUpload/Recreation/DSC06968.JPG");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialHaraldslundSwimmingPool);
 
@@ -211,7 +211,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONCATEGORY, "library");
         initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONADDRESS, "Kastetvej 83");
         initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONCITY, "9000 Aalborg");
-        initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 6);
+        //initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_PARENTSCURRENTLYCHECKEDIN, 6);
         initialHaraldslundLibrary.put(DatabaseHandler.COLUMN_LOCATIONPICTURE, "https://pbs.twimg.com/media/C66X8TmU4AEbbiS.jpg:small");
         database.insert(DatabaseHandler.TABLE_LOCATION, null, initialHaraldslundLibrary);
 
