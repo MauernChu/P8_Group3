@@ -48,10 +48,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="1dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="55dp"
             android:background="@drawable/shape">
 
 
@@ -74,7 +74,6 @@
                 android:text="@string/edit"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:layout_marginBottom="10dp"
                 android:background="@color/mustard"
                 android:visibility="visible"
                 android:layout_below="@+id/hobbiesBox"
@@ -129,7 +128,7 @@
                     android:layout_alignStart="@+id/profileUsername"
                     android:layout_below="@+id/profileUsername"
                     android:layout_marginTop="10dp"
-                    android:text="Number of children"
+                    android:text="Nr. of children"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -260,10 +259,10 @@
             <RelativeLayout
                 android:id="@+id/hobbiesBox"
                 android:layout_width="350dp"
-                android:layout_height="125dp"
+                android:layout_height="80dp"
                 android:layout_alignStart="@+id/aboutProfileBox"
                 android:layout_below="@+id/aboutProfileBox"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/mustard">
